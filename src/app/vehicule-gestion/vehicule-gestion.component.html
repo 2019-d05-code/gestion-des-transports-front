@@ -1,0 +1,27 @@
+<div class="container">
+
+<div *ngFor="let item of listeV">
+
+<div class="row-group">
+<div class="card-deck">
+  <mdb-card class="col-lg-3">
+    <div class="view overlay waves-light" mdbWavesEffect>
+      <mdb-card-img class="img-fluid" src={{item.photoUrl}} alt="Card image cap"></mdb-card-img>
+      <a><div class="mask rgba-white-slight"></div></a>
+    </div>
+    <mdb-card-body>
+      <mdb-card-title>
+        <h4>{{item.immatriculation}}</h4>
+      </mdb-card-title>
+      <mdb-card-text>
+        {{item.marque}} - {{item.modele}}
+        <br />
+        {{item.categorie}}
+      </mdb-card-text>
+    </mdb-card-body>
+  </mdb-card>
+</div>
+</div>
+</div>
+
+</div>

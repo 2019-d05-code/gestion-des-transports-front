@@ -10,10 +10,12 @@ import { AuthComponent } from './auth/auth.component';
 import {FormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
   { path:'auth', component: AuthComponent},
+  { path:'admin/vehicules', component: VehiculeGestionComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -22,7 +24,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     TechComponent,
-    AuthComponent
+    AuthComponent,
+    VehiculeGestionComponent
   ],
   imports: [
     BrowserModule,

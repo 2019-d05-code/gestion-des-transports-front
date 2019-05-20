@@ -10,7 +10,7 @@ import {Collegue} from "./auth/auth.domains";
 @Component({
   selector: 'app-root',
   template: `
-    <div class="jumbotron">
+    <<div class="jumbotron">
       <h2 class="h1 h1-responsive">Super Application</h2>
       <div *ngIf="!(collegueConnecte | async).estAnonyme()">
         <span>{{(collegueConnecte | async).email}}</span>
@@ -18,7 +18,7 @@ import {Collegue} from "./auth/auth.domains";
         <a  class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</a>
       </div>
     </div>
-    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>>
   `,
   styles: []
 })
