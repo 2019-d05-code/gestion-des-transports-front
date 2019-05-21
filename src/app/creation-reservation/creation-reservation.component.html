@@ -1,0 +1,49 @@
+
+<form action="">
+    <!--ici la date de réservation-->
+    <div id="dateDeReservation">
+      <label for="dateDeReservation" style="margin-left:10px;">Date/heure De Réservation</label>
+      <input type="date" name="dateDeReservation" style="margin-left:10px;">
+      <label for="heureDeReservation" style="margin-left:10px;">Heure</label>
+      <select name="heureDeReservation" style="margin-left:10px;">
+        <option value="heure" *ngFor="let numb of numbers">{{numb}}</option>
+      </select>
+      <label for="minutes" style="margin-left:10px;">Minutes</label>
+      <select style="margin-left:10px;">
+        <option value="minutes" *ngFor="let min of minutes">{{min}}</option>
+      </select>
+    </div>
+  <!--ici la date de retour-->
+    <div id="dateDeRetour">
+        <label for="dateDeRetour" style="margin-left:10px;">Date/Heure de Retour</label>
+        <input type="date" name="dateDeRetour" style="margin-left:10px;">
+        <label for="heureDeRetour" style="margin-left:10px;">Heure</label>
+        <select name="heureDeRetour" style="margin-left:10px;">
+          <option value="heure" *ngFor="let numb of numbers">{{numb}}</option>
+        </select>
+        <label for="minutes" style="margin-left:10px;">Minutes</label>
+        <select style="margin-left:10px;">
+          <option value="minutes" *ngFor="let min of minutes">{{min}}</option>
+        </select>
+      </div>
+    <!--le carousel qui contiendra l'ensemble des vehicules contenu dans la base de données-->
+        <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'" >
+            <mdb-carousel-item *ngFor="let vehicule of listeVehicules">
+              <div class="view w-100">
+                <img class="d-block w-100" src="{{vehicule.photoUrl}}" alt="First slide">
+                <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+              </div>
+              <div class="carousel-caption">
+              <h3 class="h3-responsive">Light mask</h3>
+              <h3>{{vehicule.immatriculation}}</h3>
+               <p>{{vehicule.marque}}</p>
+               <p>{{vehicule.modele}}</p>
+              <p>{{vehicule.categorie}}</p>
+              <!--vehicule.id pour obtenir l'id dont nous avons besoin pour pouvoir effectuer une réservation-->
+              <button type="button" mdbBtn color="primary" mdbWavesEffect >Réserver</button>
+            </div>
+       </mdb-carousel-item>
+       </mdb-carousel>
+
+
+</form>

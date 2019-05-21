@@ -1,33 +1,28 @@
-<!--Navbar-->
-<nav class="navbar navbar-light light-blue lighten-4">
-
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">Navbar</a>
-
-  <!-- Collapse button -->
-  <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
-    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
-        class="fas fa-bars fa-1x"></i></span></button>
-
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-
-    <!-- Links -->
+<mdb-navbar SideClass="navbar navbar-1 navbar-light amber lighten-2" [containerInside]="false">
+  <mdb-navbar-brand>
+    <a class="navbar-brand" href="#">Navbar</a>
+  </mdb-navbar-brand>
+  <links>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link waves-light" mdbWavesEffect>Covoiturage
+          <span class="sr-only">(current)</span>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link waves-light" mdbWavesEffect>Véhicules de société </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <!-- seulement lorsqu'on clique sur le bouton réserver on affichera la composant création-reservation-->
+        <a class="nav-link waves-light" mdbWavesEffect (click)="show()">Créer une Réservation</a>
       </li>
     </ul>
-    <!-- Links -->
+  </links>
+</mdb-navbar>
+<!--création d'une réservation //qu'on affiche que seulement lorsque les deux autres covoiturage et vehicule de société -->
+<div *ngIf="showed ==true">
+  <app-creation-reservation></app-creation-reservation>
+</div>
 
-  </div>
-  <!-- Collapsible content -->
 
-</nav>
-<!--/.Navbar-->
+

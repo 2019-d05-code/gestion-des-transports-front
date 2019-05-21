@@ -2,18 +2,23 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-reservation',
-  template: `
-    <p>
-      reservation works!
-    </p>
-  `,
-  styles: []
+  templateUrl: './reservation.component.html',
+  styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent implements OnInit {
 
-  constructor() { }
+constructor() { }
+showed = false;
 
-  ngOnInit() {
+
+ngOnInit() {
+
   }
+
+show(){
+  this.showed=true;
+}
+
+
 
 }
