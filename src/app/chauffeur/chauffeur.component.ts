@@ -12,14 +12,19 @@ import { DataService } from '../service/data.service';
 export class ChauffeurComponent implements OnInit{
 
   message: string;
-  chauffeur = new Chauffeur(undefined, undefined, undefined);
+  chauffeur = new Chauffeur(undefined, undefined, undefined, undefined, undefined, undefined);
+  tabChauffeur = new Array();
 
   constructor(private _serv : DataService) {
    }
 
   ngOnInit() {
+    this._serv.recupCollegueChauffeur().subscribe(chauffeur => this.tabChauffeur = chauffeur, err => this.message = `${err}`);
+    console.log(this.tabChauffeur);
   }
 
+
+  //declenche la modal
   ajoutChauffeur(){
 
   }

@@ -15,7 +15,7 @@ import { ChauffeurComponent } from './chauffeur/chauffeur.component';
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
   { path:'auth', component: AuthComponent},
-  {path:'reserver', component: ChauffeurComponent},
+  {path:'admin/chauffeur', component: ChauffeurComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
