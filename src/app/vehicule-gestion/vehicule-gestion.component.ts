@@ -9,7 +9,11 @@ import { Vehicule } from '../models/vehicule';
 export class VehiculeGestionComponent implements OnInit {
 
   listeV: Vehicule[] = [];
+  listeVFiltree: Vehicule[] = [];
+  vehiculeTmp: Vehicule = new Vehicule('','',[],'','');
   msgErreur: string;
+  filtre: string;
+  filtreApplique: Boolean = false;
 
   constructor(private _srv: DataService) { }
 
@@ -20,5 +24,19 @@ export class VehiculeGestionComponent implements OnInit {
       err => this.msgErreur = err.error
     )
 
+  }
+
+  filtrerVehicules(filtre: string) {
+    this.listeV = this.listeV.filter(
+      vehicule => vehicule.immatriculation.includes(filtre) || vehicule.marque.includes(filtre)
+    );
+    this.filtreApplique = true;
+  }
+
+  enregistrerVehicule() {
+    this._srv.enregistrerVehiculeSrv(this.vehiculeTmp).subscribe(
+      returnValue => console.log(returnValue),
+      err => this.msgErreur = err.error
+    );
   }
 }

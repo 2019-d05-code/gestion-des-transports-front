@@ -1,27 +1,128 @@
 <div class="container">
 
-<div *ngFor="let item of listeV">
 
-<div class="row-group">
-<div class="card-deck">
-  <mdb-card class="col-lg-3">
-    <div class="view overlay waves-light" mdbWavesEffect>
-      <mdb-card-img class="img-fluid" src={{item.photoUrl}} alt="Card image cap"></mdb-card-img>
-      <a><div class="mask rgba-white-slight"></div></a>
-    </div>
-    <mdb-card-body>
-      <mdb-card-title>
-        <h4>{{item.immatriculation}}</h4>
-      </mdb-card-title>
-      <mdb-card-text>
-        {{item.marque}} - {{item.modele}}
+  <form>
+
+    <div class="form-row">
+      <span class="align-bottom">
+        <button class="col" (click)=filtrerVehicules(filtre)>Filtrer</button>
         <br />
-        {{item.categorie}}
-      </mdb-card-text>
-    </mdb-card-body>
-  </mdb-card>
+        <div class="col">
+          <div class="md-form mt-0">
+            <input type="search" class="form-control" placeholder="Immatriculation" #filtre>
+          </div>
+        </div>
+        <div class="col">
+          <div class="md-form md-0">
+            <input type="search" class="form-control" placeholder="Marque" #filtre>
+          </div>
+        </div>
+
+      </span>
+    </div>
+  </form>
+
+  <br />
+
+  <div style="text-align:right">
+    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="vehiculeModal.show()"
+      mdbWavesEffect>Ajouter un vehicule</button>
+  </div>
+
+  <div *ngFor="let item of listeV">
+
+    <div class="row-group">
+      <div class="card-deck">
+        <mdb-card class="col-lg-3">
+          <div class="view overlay waves-light" mdbWavesEffect>
+            <mdb-card-img class="img-fluid" src={{item.photoUrl}} alt="Card image cap"></mdb-card-img>
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <mdb-card-body>
+            <mdb-card-title>
+              <h4>{{item.immatriculation}}</h4>
+            </mdb-card-title>
+            <mdb-card-text>
+              {{item.marque}} - {{item.modele}}
+              <br />
+              {{item.categorie}}
+            </mdb-card-text>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
+  </div>
+  <h3>{{msgErreur}}</h3>
 </div>
-</div>
-</div>
+
+<div class="container">
+
+  <!--Central Modal Fluid-->
+  <div mdbModal #vehiculeModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title w-100">Véhicule à enregistrer</div>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="vehiculeModal.hide()">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #nouveauVehicule="ngForm" novalidate>
+
+            <div class="form-row">
+              <div class="col-md-6">
+                  <input #immatriculation="ngModel" [class.is-invalid]="immatriculation.invalid" [class.is-valid]="immatriculation.valid" mdbInput type="text" class="form-control" id="inputImmatriculation" placeholder="XX-ZZZ-XX" name="immatriculation" [(ngModel)]="vehiculeTmp.immatriculation" required>
+                  <label for="inputImmatriculation">Immatriculation</label>
+              </div>
+              <div class="col-md-6">
+                  <input #marque="ngModel" [class.is-invalid]="marque.invalid" [class.is-valid]="marque.valid" mdbInput type="text" class="form-control" id="inputMarque" placeholder="Opel, Peugeot, ..." name="marque" [(ngModel)]="vehiculeTmp.marque" required>
+                  <label for="inputMarque">Marque du véhicule</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                  <input #modele="ngModel" [class.is-invalid]="modele.invalid" [class.is-valid]="modele.valid" mdbInput type="text" class="form-control" id="inputModele" placeholder="806, RAV-4, ..." name="modele" [(ngModel)]="vehiculeTmp.modele" required>
+                  <label for="inputModele">Modèle du véhicule</label>
+              </div>
+
+              <!-- Dropdown menu pour les différentes catégories de véhicules -->
+              <div class="col-md-12">
+                <select #categorie="ngModel" [class.is-invalid]="categorie.invalid" [class.is-valid]="categorie.valid" class="browser-default custom-select" id="inputCategorie" name="categorie" [(ngModel)]="vehiculeTmp.categorie" required>
+                    <option value="1">Micro-urbaines</option>
+                    <option value="2">Mini-citadines</option>
+                    <option value="3">Citadines polyvalentes</option>
+                    <option value="3">Compactes</option>
+                    <option value="3">Berlines Taille S</option>
+                    <option value="3">Berlines Taille M</option>
+                    <option value="3">Berlines Taille L</option>
+                    <option value="3">SUV, Tout-terrains et Pick-up</option>
+                </select>
+                <label for="inputCategorie">Catégorie du véhicule</label>
+              </div>
+
+              <div class="col-md-12">
+                  <input mdbInput type="text" class="form-control is-valid" id="inputNbPlaces" placeholder="Nombre de places" name="nbPlaces" required>
+                  <label for="inputModele">Nombre de places</label>
+              </div>
+              <div class="col-md-12">
+                  <input #photoUrl="ngModel" [class.is-invalid]="photoUrl.invalid" [class.is-valid]="photoUrl.valid" mdbInput type="text" class="form-control" id="inputPhotoUrl" placeholder="http:// [...].jpg" name="photoUrl" [(ngModel)]="vehiculeTmp.photoUrl" minlength=8 required>
+                  <label for="inputModele">Photo du véhicule</label>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button [disabled]="!nouveauVehicule.valid" type="submit" (click)=enregistrerVehicule() mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Enregistrer</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 </div>

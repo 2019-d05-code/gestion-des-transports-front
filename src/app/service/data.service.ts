@@ -18,5 +18,9 @@ export class DataService {
     return this._http.get<Vehicule[]>(`${environment.baseUrl}admin/vehicules`, {withCredentials:true});
   }
 
+  enregistrerVehiculeSrv(vehicule: Vehicule) :Observable<Vehicule>{
+    return this._http.post<Vehicule>(`${environment.baseUrl}admin/vehicules`, vehicule, {withCredentials:true});
+  }
+
 
 }
