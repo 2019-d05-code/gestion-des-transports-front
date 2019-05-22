@@ -1,33 +1,31 @@
-
-<form action="">
-    <!--ici la date de réservation-->
+<!--ici la date de réservation-->
     <div id="dateDeReservation">
       <label for="dateDeReservation" style="margin-left:10px;">Date/heure De Réservation</label>
-      <input type="date" name="dateDeReservation" style="margin-left:10px;">
-      <label for="heureDeReservation" style="margin-left:10px;">Heure</label>
-      <select name="heureDeReservation" style="margin-left:10px;">
-        <option value="heure" *ngFor="let numb of numbers">{{numb}}</option>
+      <input type="date" name="dateDeReservation" style="margin-left:10px;"[(ngModel)]="dateDeReservation" required>
+      <label for="heureDeReservation" style="margin-left:10px;" >Heure</label>
+      <select name="heureDeReservation" style="margin-left:10px;"  [(ngModel)]="heureDeReservation" required>
+        <option *ngFor="let numb of heures">{{numb}}</option>
       </select>
-      <label for="minutes" style="margin-left:10px;">Minutes</label>
-      <select style="margin-left:10px;">
-        <option value="minutes" *ngFor="let min of minutes">{{min}}</option>
+      <label for="minutesDeReservation" style="margin-left:10px;">Minutes</label>
+      <select style="margin-left:10px;"  name="minutesDeReservation" [(ngModel)]="minutesDeReservation" required>
+        <option *ngFor="let min of minutes">{{min}}</option>
       </select>
     </div>
   <!--ici la date de retour-->
     <div id="dateDeRetour">
         <label for="dateDeRetour" style="margin-left:10px;">Date/Heure de Retour</label>
-        <input type="date" name="dateDeRetour" style="margin-left:10px;">
+        <input type="date" name="dateDeRetour" style="margin-left:10px;" [(ngModel)]="dateDeRetour" required>
         <label for="heureDeRetour" style="margin-left:10px;">Heure</label>
-        <select name="heureDeRetour" style="margin-left:10px;">
-          <option value="heure" *ngFor="let numb of numbers">{{numb}}</option>
+        <select name="heureDeRetour" style="margin-left:10px;" [(ngModel)]="heureDeRetour" required>
+          <option *ngFor="let numb of heures">{{numb}}</option>
         </select>
-        <label for="minutes" style="margin-left:10px;">Minutes</label>
-        <select style="margin-left:10px;">
-          <option value="minutes" *ngFor="let min of minutes">{{min}}</option>
+        <label for="minutesDeretour" style="margin-left:10px;">Minutes</label>
+        <select style="margin-left:10px;" [(ngModel)]="minutesDeretour" required>
+          <option *ngFor="let min of minutes">{{min}}</option>
         </select>
       </div>
     <!--le carousel qui contiendra l'ensemble des vehicules contenu dans la base de données-->
-        <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'" >
+<mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'" [interval]="0" >
             <mdb-carousel-item *ngFor="let vehicule of listeVehicules">
               <div class="view w-100">
                 <img class="d-block w-100" src="{{vehicule.photoUrl}}" alt="First slide">
@@ -39,11 +37,32 @@
                <p>{{vehicule.marque}}</p>
                <p>{{vehicule.modele}}</p>
               <p>{{vehicule.categorie}}</p>
-              <!--vehicule.id pour obtenir l'id dont nous avons besoin pour pouvoir effectuer une réservation-->
-              <button type="button" mdbBtn color="primary" mdbWavesEffect >Réserver</button>
-            </div>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="cur=vehicule;basicModal.show()" mdbWavesEffect>Réserver</button>
+              </div>
        </mdb-carousel-item>
        </mdb-carousel>
 
-
-</form>
+       <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true" >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Confirmation de réservation </h4>
+            </div>
+            <div class="modal-body">
+              <p>Date de réservation : {{dateDeReservation}}</p>
+              <p>Date de retour : {{dateDeRetour}}</p>
+              <p >Immatriculation : {{cur.immatriculation}}</p>
+              <p >Marque : {{cur.marque}}</p>
+              <p >Modèle : {{cur.modele}}</p>
+              <p>id: {{cur.id}}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ajouterReservation()">Confirmer</button>
+            </div>
+          </div>
+        </div>
+      </div>
