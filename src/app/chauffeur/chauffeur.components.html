@@ -126,34 +126,5 @@
 </div>
 
 
-<div *ngFor="let chauf of tabChauffeur">
-    <mdb-card>
 
-      <!--Card content-->
-      <mdb-card-body>
-        <!--Title-->
-        <mdb-card-title>
-          <h4>{{chauf.nom}} {{chauf.prenom}}</h4>
-        </mdb-card-title>
-
-        <div class="card-body ml-auto">
-          <!--Card image-->
-          <div class="row justify-content-center">
-            <div class="col">
-              <mdb-card-img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(97).jpg"
-                alt="Card image cap">
-              </mdb-card-img>
-            </div>
-            <div class="col">
-              <p class="card-text">Nom : {{chauf.nom | uppercase}}</p>
-              <p class="card-text">Prénom : {{chauf.prenom}}</p>
-              <p class="card-text">Permis : {{chauf.permis}}</p>
-              <p class="card-text">Email : {{chauf.email}}</p>
-              <p class="card-text">Téléphone : {{chauf.telephone}}</p>
-            </div>
-          </div>
-        </div>
-      </mdb-card-body>
-    </mdb-card>
-  </div>
 
