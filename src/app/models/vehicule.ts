@@ -5,7 +5,8 @@ export class Vehicule {
     public modele: string,
     public categorie: string[],
     public immatriculation: string,
-    public photoUrl?: string
+    public photoUrl: string,
+    public nbPlaces: number
   ) {}
 
 }

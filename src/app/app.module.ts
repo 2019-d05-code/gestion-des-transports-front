@@ -11,6 +11,8 @@ import {FormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
+import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
+import { ImmatriculationValidatorDirective } from './validator/immatriculation-validator.directive';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -25,7 +27,9 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
-    VehiculeGestionComponent
+    VehiculeGestionComponent,
+    PhotoUrlValidatorDirective,
+    ImmatriculationValidatorDirective
   ],
   imports: [
     BrowserModule,

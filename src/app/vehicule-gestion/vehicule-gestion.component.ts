@@ -4,16 +4,17 @@ import { Vehicule } from '../models/vehicule';
 
 @Component({
   selector: 'app-vehicule-gestion',
-  templateUrl: './vehicule-gestion.component.html'
+  templateUrl: './vehicule-gestion.component.html',
+  styleUrls: ['./vehicule-gestion.component.css']
 })
 export class VehiculeGestionComponent implements OnInit {
 
   listeV: Vehicule[] = [];
   listeVFiltree: Vehicule[] = [];
-  vehiculeTmp: Vehicule = new Vehicule('','',[],'','');
+  vehiculeTmp: Vehicule = new Vehicule('','',[],'','',undefined);
   msgErreur: string;
+  msgErreurSaveVehicule: string;
   filtre: string;
-  filtreApplique: Boolean = false;
 
   constructor(private _srv: DataService) { }
 
@@ -27,16 +28,18 @@ export class VehiculeGestionComponent implements OnInit {
   }
 
   filtrerVehicules(filtre: string) {
-    this.listeV = this.listeV.filter(
+    return this.listeV = this.listeV.filter(
       vehicule => vehicule.immatriculation.includes(filtre) || vehicule.marque.includes(filtre)
     );
-    this.filtreApplique = true;
   }
 
   enregistrerVehicule() {
     this._srv.enregistrerVehiculeSrv(this.vehiculeTmp).subscribe(
-      returnValue => console.log(returnValue),
-      err => this.msgErreur = err.error
+      returnValue => {
+        console.log(returnValue);
+        this.ngOnInit();
+      },
+      err => this.msgErreurSaveVehicule = err.error
     );
   }
 }
