@@ -11,7 +11,12 @@ import { DataService } from '../service/data.service';
 })
 export class ChauffeurComponent implements OnInit{
 
+  ajout:boolean=false;
   message: string;
+  ident:any;
+  mat:any;
+  nom:string;
+  prenom:string;
   chauffeur = new Chauffeur(undefined, undefined, undefined, undefined, undefined, undefined);
   tabChauffeur = new Array();
 
@@ -20,19 +25,20 @@ export class ChauffeurComponent implements OnInit{
 
   ngOnInit() {
     this._serv.recupCollegueChauffeur().subscribe(chauffeur => this.tabChauffeur = chauffeur, err => this.message = `${err}`);
-    console.log(this.tabChauffeur);
   }
 
 
-  //declenche la modal
-  ajoutChauffeur(){
 
-  }
-
-  submit(){
-    this._serv.ajoutChauffeur(this.chauffeur).subscribe(() => {},
+ // declenche la modal
+ ajoutChauffeur(){
+    this._serv.ajoutChauffeur(this.ident).subscribe(col => {
+      this.tabChauffeur.push(col);
+      this.ajout = true;
+    },
     err => this.message = ` Erreur lors de l'ajout du collegue : ${err.error}`);
   }
+
+
 
 
 }

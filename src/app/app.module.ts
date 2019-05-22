@@ -11,11 +11,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { ChauffeurComponent } from './chauffeur/chauffeur.component';
+import { FilterPipe } from './filter.pipe';
 
 const routes: Routes = [
-  { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
-  { path:'auth', component: AuthComponent},
-  {path:'admin/chauffeur', component: ChauffeurComponent},
+  { path: 'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
+  { path: 'auth', component: AuthComponent},
+  {path: 'admin/chauffeur', component: ChauffeurComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -25,7 +26,8 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
-    ChauffeurComponent
+    ChauffeurComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

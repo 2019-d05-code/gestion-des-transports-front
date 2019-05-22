@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class DataService {
   constructor(private _http: HttpClient) { }
 
-  ajoutChauffeur(chauffeur:Chauffeur) {
-    return this._http.post<Chauffeur>(`${environment.baseUrl}ajoutChauffeur`, chauffeur, {
+  ajoutChauffeur(matricule:any) {
+    return this._http.patch<any>(`${environment.baseUrl}ajoutChauffeur/${matricule}`, {
       withCredentials : true
     });
   }
