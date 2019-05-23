@@ -12,11 +12,13 @@ import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { ReservationComponent } from './reservation/reservation.component';
 import { CreationReservationComponent } from './creation-reservation/creation-reservation.component';
+import { LireReservationComponent } from './lire-reservation/lire-reservation.component';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
   { path:'auth', component: AuthComponent},
-  {path:'collaborateur/reservations/creer', component:ReservationComponent},
+  {path:'reserver', component:ReservationComponent},
+  {path:'reservations', component:LireReservationComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -28,7 +30,8 @@ const routes: Routes = [
     AuthComponent,
     ReservationComponent,
     ReservationComponent,
-    CreationReservationComponent
+    CreationReservationComponent,
+    LireReservationComponent
   ],
   imports: [
     BrowserModule,

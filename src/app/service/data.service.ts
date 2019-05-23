@@ -13,6 +13,7 @@ export class DataService {
   url_back = environment.baseUrl;
   infosVehiculesUrl= 'admin/vehicules'
   sauvegarderReservaURL = 'collaborateur/reservations/creer'
+  reservationUrls='collaborateur/reservations/'
 
   constructor(private _http:HttpClient) { }
 
@@ -23,4 +24,12 @@ export class DataService {
   reservationAjouter(res:ReservationVehicule){
     return this._http.post<ReservationVehicule>(`${this.url_back}${this.sauvegarderReservaURL}`,res, {"withCredentials": true} )
   }
+
+//permet de récupérer l'ensemble des réservations se trouvant en base
+afficherLesReservation():Observable<ReservationVehicule[]>{
+return this._http.get<ReservationVehicule[]>(`${this.url_back}${this.reservationUrls}`, {"withCredentials": true})
+}
+
+
+
 }
