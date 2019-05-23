@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { InfoVehicule } from '../info-vehicule';
 import { ReservationVehicule } from '../reservation-vehicule';
+import { Vehicule } from '../vehicule';
 
 @Component({
   selector: 'app-creation-reservation',
@@ -31,8 +32,9 @@ reservation:ReservationVehicule = new ReservationVehicule(undefined, undefined, 
 
 
 cur = new InfoVehicule(undefined,undefined,undefined,undefined,undefined,undefined, undefined);
- listeVehicules:InfoVehicule[];
+listeVehicules:InfoVehicule[];
 
+vehiculeAEnvoyer:Vehicule = new Vehicule(undefined,undefined, undefined, undefined, undefined, undefined);
 
 
 
@@ -63,11 +65,16 @@ cur = new InfoVehicule(undefined,undefined,undefined,undefined,undefined,undefin
 this._srv.afficherInfo().subscribe(tab=>this.listeVehicules = tab);
 
   }
+
+
+
 ajouterReservation(){
-  this.reservation = new ReservationVehicule(this.cur,
+  this.reservation = new ReservationVehicule(
      `${this.dateDeReservation}${this.t}${this.heureDeReservation}${this.deuxPoints}${this.minutesDeReservation}${this.deuxPoints}${this.secondes}`,
-    `${this.dateDeRetour}${this.t}${this.heureDeRetour}${this.deuxPoints}${this.minutesDeretour}${this.deuxPoints}${this.secondes}`)
- return this._srv.reservationAjouter(this.reservation).subscribe(res => { console.log(this.cur.id) }, err => {}, () => {
+    `${this.dateDeRetour}${this.t}${this.heureDeRetour}${this.deuxPoints}${this.minutesDeretour}${this.deuxPoints}${this.secondes}`, this.vehiculeAEnvoyer =
+    new Vehicule(this.cur.id, undefined, undefined, undefined,undefined, undefined));
+
+ return this._srv.reservationAjouter(this.reservation).subscribe(res => { console.log(this.vehiculeAEnvoyer.id) }, err => {}, () => {
   alert('votre réservation a bien été sauvegarder, vous pouvez fermer cette fenêtre!')
 })
 }
