@@ -11,9 +11,11 @@ import {FormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { ChauffeurComponent } from './chauffeur/chauffeur.component';
+import { AnnonceCreationCovoiturageComponent } from './annonce-creation-covoiturage/annonce-creation-covoiturage.component';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
+  { path:'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent},
   { path:'auth', component: AuthComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
@@ -24,7 +26,8 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
-    ChauffeurComponent
+    ChauffeurComponent,
+    AnnonceCreationCovoiturageComponent
   ],
   imports: [
     BrowserModule,
