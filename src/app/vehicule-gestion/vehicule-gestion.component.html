@@ -37,10 +37,10 @@
       </div>
       <mdb-card-body>
         <mdb-card-title>
-          <h4>{{item.immatriculation}}</h4>
+          <h4>{{item.immatriculation | uppercase}}</h4>
         </mdb-card-title>
         <mdb-card-text>
-          {{item.marque}} - {{item.modele}}
+          {{item.marque | uppercase}} - {{item.modele | lowercase}}
           <br />
           {{item.categorie}}
         </mdb-card-text>
