@@ -12,6 +12,7 @@ import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { ChauffeurComponent } from './chauffeur/chauffeur.component';
 import { FilterPipe } from './filter.pipe';
+import { CycleVieVehiculeComponent } from './cycle-vie-vehicule/cycle-vie-vehicule.component';
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -27,7 +28,8 @@ const routes: Routes = [
     TechComponent,
     AuthComponent,
     ChauffeurComponent,
-    FilterPipe
+    FilterPipe,
+    CycleVieVehiculeComponent
   ],
   imports: [
     BrowserModule,
