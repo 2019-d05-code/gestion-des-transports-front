@@ -13,6 +13,7 @@ import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 import { ImmatriculationValidatorDirective } from './validator/immatriculation-validator.directive';
+import { ChauffeurComponent } from './chauffeur/chauffeur.component';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -29,7 +30,8 @@ const routes: Routes = [
     AuthComponent,
     VehiculeGestionComponent,
     PhotoUrlValidatorDirective,
-    ImmatriculationValidatorDirective
+    ImmatriculationValidatorDirective,
+    ChauffeurComponent
   ],
   imports: [
     BrowserModule,
