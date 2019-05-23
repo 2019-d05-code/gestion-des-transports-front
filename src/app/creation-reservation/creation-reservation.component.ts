@@ -75,7 +75,7 @@ ajouterReservation(){
     new Vehicule(this.cur.id, undefined, undefined, undefined,undefined, undefined));
 
  return this._srv.reservationAjouter(this.reservation).subscribe(res => { console.log(this.vehiculeAEnvoyer.id) }, err => {}, () => {
-  alert('votre réservation a bien été sauvegarder, vous pouvez fermer cette fenêtre!')
+  alert('votre réservation a bien été sauvegardée, vous pouvez fermer cette fenêtre!')
 })
 }
 
