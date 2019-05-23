@@ -29,12 +29,16 @@
 
   <div class="card-deck">
     <mdb-card *ngFor="let item of listeV">
+      <a routerLink='{{item.immatriculation}}'>
       <div class="view overlay waves-light" mdbWavesEffect>
-        <mdb-card-img class="img-fluid" src={{item.photoUrl}} alt="Card image cap"></mdb-card-img>
+
+          <mdb-card-img class="img-fluid" src={{item.photoUrl}} alt="Card image cap"></mdb-card-img>
+
         <a>
           <div class="mask rgba-white-slight"></div>
         </a>
       </div>
+      </a>
       <mdb-card-body>
         <mdb-card-title>
           <h4>{{item.immatriculation | uppercase}}</h4>

@@ -4,6 +4,7 @@ import { Subject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Vehicule } from '../models/vehicule';
 import { Chauffeur } from '../models/Chauffeur';
+import { tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -32,5 +33,12 @@ export class DataService {
     return this._http.get<Chauffeur[]>(`${environment.baseUrl}chauffeur`, {
       withCredentials: true
     });
+  }
+
+  publish(immatriculation: string) :Observable<Vehicule> {
+    return this._http.get<Vehicule>(`${environment.baseUrl}admin/vehicules`, {withCredentials: true})
+      .pipe (
+        tap(vo => this.subject.next(vo))
+        );
   }
 }
