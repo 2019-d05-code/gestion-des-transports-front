@@ -4,8 +4,6 @@ import { Subject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Vehicule } from '../models/vehicule';
 import { Chauffeur } from '../models/Chauffeur';
-import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -20,18 +18,15 @@ export class DataService {
     return this._http.get<Vehicule[]>(`${environment.baseUrl}admin/vehicules`, {withCredentials:true});
   }
 
-  enregistrerVehiculeSrv(vehicule: Vehicule) :Observable<Vehicule>{
+  enregistrerVehiculeSrv(vehicule: Vehicule) :Observable<Vehicule> {
     return this._http.post<Vehicule>(`${environment.baseUrl}admin/vehicules`, vehicule, {withCredentials:true});
   }
 
-  constructor(private _http: HttpClient) { }
-
-  ajoutChauffeur(matricule:any): Observable<string>{
+  ajoutChauffeur(matricule:any): Observable<string> {
     return this._http.patch<any>(`${environment.baseUrl}ajoutChauffeur/${matricule}`, {
       withCredentials : true
     });
   }
-
 
   recupCollegueChauffeur(): Observable<Chauffeur[]> {
     return this._http.get<Chauffeur[]>(`${environment.baseUrl}chauffeur`, {
