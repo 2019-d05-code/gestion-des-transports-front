@@ -10,11 +10,11 @@
     <!-- Default input -->
     <label for="inputMatricule" class="col-sm-2 col-form-label">Matricule</label>
     <div class="col-sm-5">
-      <select class="browser-default custom-select" [(ngModel)]="mat" #matricule="ngModel" name="Matricule" (change)="tri()">
+      <select class="browser-default custom-select" [(ngModel)]="mat" #Matricule="ngModel" name="Matricule" (change)="tri()">
         <option selected>Ouvrir le menu de selection</option>
         <option *ngFor="let chauf of tabChauffeur">{{chauf.id}}</option>
       </select>
-      <div *ngIf="matricule.dirty && matricule.invalid">
+      <div *ngIf="Matricule.dirty">
 
       </div>
     </div>
@@ -95,7 +95,7 @@
 
 
 
-<div *ngIf=" matricule.dirty || Nom.dirty || Prenom.dirty ; else elseBlockTri">
+<div *ngIf="! Matricule.dirty && Nom.dirty && Prenom.dirty ; else elseBlockTri">
   <div *ngFor="let chauf of tabChauffeur">
     <mdb-card>
 

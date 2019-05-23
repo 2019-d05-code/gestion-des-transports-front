@@ -1,7 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
-import { Chauffeur } from '../models/chauffeur';
+import { Chauffeur } from '../models/Chauffeur';
 import { DataService } from '../service/data.service';
 
 @Component({
@@ -33,22 +31,23 @@ export class ChauffeurComponent implements OnInit {
     this.tabTrierChauffeur = [];
     for ( let chauf of this.tabChauffeur) {
       console.log(this.mat)
-      if (this.mat != undefined && this.nom !== undefined && this.prenom !== undefined) {
-        if (chauf === this.mat && chauf.nom === this.nom && chauf.prenom === this.prenom) {
+      console.log(this.tabTrierChauffeur);
+      if (this.mat != undefined && this.nom != undefined && this.prenom != undefined) {
+        if (chauf.matricule === this.mat && chauf.nom === this.nom && chauf.prenom === this.prenom) {
           this.tabTrierChauffeur.push(chauf);
         }
       }
-      else if (this.mat != undefined && this.nom !== undefined) {
+      else if (this.mat != undefined && this.nom != undefined) {
         if (chauf.matricule === this.mat && chauf.nom === this.nom) {
           this.tabTrierChauffeur.push(chauf);
         }
       }
-      else if (this.mat != undefined && this.prenom !== undefined) {
+      else if (this.mat != undefined && this.prenom != undefined) {
         if (chauf.matricule === this.mat && chauf.prenom === this.prenom) {
           this.tabTrierChauffeur.push(chauf);
         }
       }
-      else if (this.nom != undefined && this.prenom !== undefined) {
+      else if (this.nom != undefined && this.prenom != undefined) {
         if (chauf.nom === this.nom && chauf.prenom === this.prenom) {
           this.tabTrierChauffeur.push(chauf);
         }
@@ -56,6 +55,7 @@ export class ChauffeurComponent implements OnInit {
       else if (this.mat != undefined) {
         if (chauf.matricule === this.mat) {
           this.tabTrierChauffeur.push(chauf);
+
         }
       }
       else if (this.nom != undefined) {
