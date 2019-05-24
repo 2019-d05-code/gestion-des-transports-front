@@ -1,25 +1,116 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <div class="row card">
-        <div class="col-12">
-          <h3 class="card-header">Itinéraire</h3>
-          <div div class="col-12 card-body">
-            <form class="form-group">
-              <label class="offset-1 col-2" for="adressDepart">Adresse de départ</label>
-              <input class="col-5" type="text" name="adressDepart" [(ngModel)]="annonce.adressArrivee">
-              <div class="col-4"></div>
-              <label class="offset-1 col-2" for="adressArrivee">Adresse d'arrivée</label>
-              <input class="col-5" type="text" name="adressArrivee" [(ngModel)]="annonce.adressDepart">
-              <div class="col-4"></div>
-              <div class="col-2"></div>
-            </form>
-          </div>
-          <div class="row">
-            <div class="col-4"></div>
-          </div>
-        </div>
-      </div>
+      <mdb-card>
+        <mdb-card-header>Itinéraire</mdb-card-header>
+        <mdb-card-body>
+          <form>
+            <div class="form-group row">
+              <label for="adressDepart" class="offset-1 col-2 col-form-label">Adresse de départ</label>
+              <div class="col-7">
+                <input mdbInput type="text" class="form-control" id="adressDepart" [(ngModel)]="annonce.adressDepart"
+                  name="depart">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="adressArrivee" class="offset-1 col-2 col-form-label">Adresse d'arrivée</label>
+              <div class="col-7">
+                <input mdbInput type="adressArrivee" class="form-control" id="adressArrivee"
+                  [(ngModel)]="annonce.adressArrivee" name="arrivee">
+              </div>
+            </div>
+          </form>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-12">
+      <mdb-card>
+        <mdb-card-header>Véhicule</mdb-card-header>
+        <mdb-card-body>
+          <form>
+            <div class="form-group row">
+              <label for="immatriculation" class="offset-1 col-2 col-form-label">Immatriculation</label>
+              <div class="col-7">
+                <input mdbInput type="text" class="form-control" id="immatriculation"
+                  [(ngModel)]="annonce.immatriculationVehicule" name="immatriculation">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="marque" class="offset-1 col-2 col-form-label">Marque</label>
+              <div class="col-7">
+                <input mdbInput type="text" class="form-control" id="marque" [(ngModel)]="annonce.marque" name="marque">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="modele" class="offset-1 col-2 col-form-label">Modèle</label>
+              <div class="col-7">
+                <input mdbInput type="text" class="form-control" id="modele" [(ngModel)]="annonce.modele" name="modele">
+              </div>
+            </div>
+          </form>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-12">
+      <mdb-card>
+        <mdb-card-header>Date et Horaires</mdb-card-header>
+        <mdb-card-body>
+          <form class="form-inline">
+            <div class="offset-2"></div>
+            <div class="col-2">
+              <label class="petite-marge">Date / Heure</label>
+            </div>
+            <input class="form-control col-2" type="date" [(ngModel)]="annonce.dateTimeDepart" name="dateDepart">
+            <div class="col-1 text-center">
+              <i class="far fa-calendar-alt fa-2x"></i>
+            </div>
+            <div class="col-1">
+              <select class="form-control" [(ngModel)]="annonce.dateTimeDepart.getHours" name="heure">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>
+                <option>08</option>
+                <option>09</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+              </select>
+            </div>
+            <span>h</span>
+            <div class="col-1">
+              <select class="form-control">
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
+                <option>50</option>
+              </select>
+            </div>
+          </form>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-12 d-flex">
+      <input class="btn btn-primary ml-auto" type="button" (click)="publierAnnonce()" value="Publier">
     </div>
   </div>
 </div>
