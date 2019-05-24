@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { Vehicule } from '../models/vehicule';
 import { Chauffeur } from '../models/Chauffeur';
 import { tap } from 'rxjs/operators';
+import { StatutVehicule } from '../models/statut-vehicule';
 
 
 @Injectable({
@@ -35,10 +36,14 @@ export class DataService {
     });
   }
 
-  publish(immatriculation: string) :Observable<Vehicule> {
-    return this._http.get<Vehicule>(`${environment.baseUrl}admin/vehicules`, {withCredentials: true})
+  choisirVehicule(immatriculation: string) :Observable<Vehicule> {
+    return this._http.get<Vehicule>(`${environment.baseUrl}admin/vehicules/${immatriculation}`, {withCredentials: true})
       .pipe (
         tap(vo => this.subject.next(vo))
         );
+  }
+
+  changerStatutVehiculeSrv(statut: StatutVehicule) :Observable<Vehicule> {
+    return this._http.patch<Vehicule>(`${environment.baseUrl}admin/vehicules/${statut.immatriculation}`, statut, {withCredentials: true});
   }
 }
