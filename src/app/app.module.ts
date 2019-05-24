@@ -36,6 +36,8 @@ const routes: Routes = [
     TechComponent,
     AuthComponent,
     ReservationComponent,
+    LireReservationComponent,
+    ReservationComponent,
     CreationReservationComponent,
     VehiculeGestionComponent,
     PhotoUrlValidatorDirective,

@@ -29,7 +29,6 @@ export class LireReservationComponent implements OnInit {
       this.listesReservations = tab;
       this.listesReservations.forEach(element => {
         let madate = new Date(element.dateDeReservation)
-        console.log(madate>this.maintenant);
 
         if(madate <= this.maintenant){
           this.courant=true;
