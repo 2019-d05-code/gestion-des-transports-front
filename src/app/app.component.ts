@@ -18,6 +18,7 @@ import {Collegue} from "./auth/auth.domains";
         <a  class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</a>
       </div>
     </div>
+
     <router-outlet></router-outlet>
   `,
   styles: []

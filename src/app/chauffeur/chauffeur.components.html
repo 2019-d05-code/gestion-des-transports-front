@@ -27,7 +27,7 @@
     <!-- Default input -->
     <label for="inputNom" class="col-sm-2 col-form-label">Nom</label>
     <div class="col-sm-5">
-      <select class="browser-default custom-select" [(ngModel)]="nom" #Nom="ngModel" name="nom" (change)="tri()">
+      <select class="browser-default custom-select" [(ngModel)]="nom" #Nom="ngModel" name="nom" (change)="triNom()">
         <option selected>Ouvrir le menu de selection</option>
         <option *ngFor="let chauf of tabChauffeur">{{chauf.nom}}</option>
       </select>
@@ -42,7 +42,7 @@
     <label for="inputPenom" class="col-sm-2 col-form-label">Prénom</label>
     <div class="col-sm-5">
       <select class="browser-default custom-select" [(ngModel)]="prenom" #Prenom="ngModel" name="prenom"
-        (change)="tri()">
+        (change)="triPrenom()">
         <option selected>Ouvrir le menu de selection</option>
         <option *ngFor="let chauf of tabChauffeur ">{{chauf.prenom}}</option>
       </select>
@@ -97,7 +97,7 @@
 
 
 
-
+<div *ngIf = "trier === false ; else blockTrier">
 <div *ngFor="let chauf of tabChauffeur">
   <mdb-card>
 
@@ -128,3 +128,36 @@
     </mdb-card-body>
   </mdb-card>
 </div>
+</div>
+<ng-template #blockTrier>
+    <div *ngFor="let chauf of tabTrierChauffeur">
+        <mdb-card>
+
+          <!--Card content-->
+          <mdb-card-body>
+            <!--Title-->
+            <mdb-card-title>
+              <h4>{{chauf.nom}} {{chauf.prenom}}</h4>
+            </mdb-card-title>
+
+            <div class="card-body ml-auto">
+              <!--Card image-->
+              <div class="row justify-content-center">
+                <div class="col">
+                  <mdb-card-img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(97).jpg"
+                    alt="Card image cap">
+                  </mdb-card-img>
+                </div>
+                <div class="col">
+                  <p class="card-text">Nom : {{chauf.nom | uppercase}}</p>
+                  <p class="card-text">Prénom : {{chauf.prenom}}</p>
+                  <p class="card-text">Permis : {{chauf.permis}}</p>
+                  <p class="card-text">Email : {{chauf.email}}</p>
+                  <p class="card-text">Téléphone : {{chauf.telephone}}</p>
+                </div>
+              </div>
+            </div>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+ </ng-template>

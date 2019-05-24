@@ -9,6 +9,7 @@ import { DataService } from '../service/data.service';
 })
 export class ChauffeurComponent implements OnInit {
 
+  trier :boolean = false;
   ajout: boolean = false;
   message: string;
   ident: any;
@@ -24,9 +25,9 @@ export class ChauffeurComponent implements OnInit {
 
   ngOnInit() {
     this._serv.recupCollegueChauffeur().subscribe(chauffeur => this.tabChauffeur = chauffeur, err => this.message = `${err}`);
-    this.tri();
   }
 
+  /*
   tri() {
     this.tabTrierChauffeur = [];
     for ( let chauf of this.tabChauffeur) {
@@ -73,12 +74,22 @@ export class ChauffeurComponent implements OnInit {
         this.tabTrierChauffeur = this.tabChauffeur;
       }
     }
-  }
+  }*/
 
   triMat() {
-    this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.ident == this.mat);
+    this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => this.mat == chauf.id);
+    this.trier=true;
   }
 
+  triNom(){
+    this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => this.nom == chauf.nom);
+    this.trier=true;
+  }
+
+  triPrenom(){
+    this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => this.prenom == chauf.prenom);
+    this.trier=true;
+  }
 
   // declenche la modal
   ajoutChauffeur() {
