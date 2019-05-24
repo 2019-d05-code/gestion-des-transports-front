@@ -8,22 +8,37 @@ import { DataService } from '../service/data.service';
   styleUrls:['./lire-reservation.component.css']
 })
 export class LireReservationComponent implements OnInit {
-
   showed=false;
   listesReservations:ReservationVehicule[];
   enCours:string="Mes Reservation en cours"
   historique:string="Historique"
   maintenant:Date = new Date(Date.now());
 
+  courant:Boolean = false;
+  boolhist:Boolean = true;
+
   constructor(private srv:DataService) { }
 
   ngOnInit() {
 
-    this.srv.afficherLesReservation().subscribe(tab =>this.listesReservations = tab)
   }
+  montrerLesreservations(){
+    this.showed=true;
 
-  show(){
-  this.showed=true;
+    return this.srv.afficherLesReservation().subscribe(tab =>{
+      this.listesReservations = tab;
+      this.listesReservations.forEach(element => {
+        let madate = new Date(element.dateDeReservation)
+        console.log(madate>this.maintenant);
+
+        if(madate <= this.maintenant){
+          this.courant=true;
+        }else if(madate>this.maintenant){
+          this.boolhist=false;
+        }
+
+      });
+    })
+
   }
-
 }

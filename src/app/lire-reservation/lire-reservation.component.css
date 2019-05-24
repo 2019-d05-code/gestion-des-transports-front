@@ -1,9 +1,22 @@
-tbody
+table
 {
-  color: white;
+  color:black;
+  border:solid;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0;
 }
 
-#reservationEnCours{
-  border:solid 10px;
+thead
+{
+  border:solid;
   background-color: black;
+  color:greenyellow;
 }
+
+th{
+  border:solid;
+  background-color: gray;
+  color: fuchsia;
+}
+

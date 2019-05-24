@@ -74,7 +74,7 @@ ajouterReservation(){
     `${this.dateDeRetour}${this.t}${this.heureDeRetour}${this.deuxPoints}${this.minutesDeretour}${this.deuxPoints}${this.secondes}`, this.vehiculeAEnvoyer =
     new Vehicule(this.cur.id, this.cur.marque, this.cur.modele, undefined, this.cur.immatriculation));
 
- return this._srv.reservationAjouter(this.reservation).subscribe(res => { console.log(this.vehiculeAEnvoyer.id) }, err => {}, () => {
+ return this._srv.reservationAjouter(this.reservation).subscribe(res => { }, err => {}, () => {
   alert('votre réservation a bien été sauvegardée, vous pouvez fermer cette fenêtre!')
 })
 }

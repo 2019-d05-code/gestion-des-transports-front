@@ -17,63 +17,41 @@
       </li>
       <li class="nav-item">
         <!-- seulement lorsqu'on clique sur le bouton réserver on affichera la composant création-reservation-->
-        <a class="nav-link waves-light" mdbWavesEffect (click)="show()"> Voir vos réservation</a>
+        <a class="nav-link waves-light" mdbWavesEffect (click)="montrerLesreservations()"> Voir vos réservation</a>
       </li>
     </ul>
   </links>
 </mdb-navbar>
-<!--création d'une réservation //qu'on affiche que seulement lorsque les deux autres covoiturage et vehicule de société -->
-<div *ngIf="showed ==true" id="reservationEnCours">
-  <table mdbTable>
-    <thead class="black white-text">
-      {{enCours}}
-      <tr>
-        <th scope="row">Date de réservation </th>
-        <th scope="row">Date de retour </th>
-        <th scope="row">Immatriculation de la voiture </th>
-        <th scope="row">Modèle de la voiture </th>
-        <th scope="row">Marque de la voiture </th>
+<div *ngIf="showed==true">
+    <table >
+      <thead>Mes Réservations en cours </thead>
+      <th>Date de réservation </th>
+      <th>Date de retour </th>
+      <th>Immatriculation de la voiture </th>
+      <th>Modèle de la voiture </th>
+      <th>Marque de la voiture </th>
+      <tr *ngFor="let res of listesReservations">
+        <td *ngIf="courant==true">{{res.dateDeReservation}}</td>
+        <td *ngIf="courant==true">{{res.dateDeRetour}}</td>
+        <td *ngIf="courant==true">{{res.uneVoiture.immatriculation}}</td>
+        <td *ngIf="courant==true">{{res.uneVoiture.modele}}</td>
+        <td *ngIf="courant==true">{{res.uneVoiture.marque}}</td>
       </tr>
-    </thead>
-    <div *ngFor="let res of listesReservations">
-    <tbody *ngIf="expression"="res.dateDeRetour.getDate() >= maintenant.getDate() ">
-      <tr mdbTableCol  >
-        <td>{{res.dateDeReservation}}</td>
-        <td>{{res.dateDeRetour}}</td>
-        <td>{{res.uneVoiture.immatriculation}}</td>
-        <td>{{res.uneVoiture.modele}}</td>
-        <td>{{res.uneVoiture.marque}}</td>
-      </tr>
-    </tbody>
-  </div>
-  </table>
-  <table mdbTable>
-      <thead class="black white-text">
-        {{historique}}
-        <tr>
-          <th scope="row">Date de réservation </th>
-          <th scope="row">Date de retour </th>
-          <th scope="row">Immatriculation de la voiture </th>
-          <th scope="row">Modèle de la voiture </th>
-          <th scope="row">Marque de la voiture </th>
-        </tr>
-      </thead>
-      <div *ngFor="let res of listesReservations">
-      <tbody *ngIf="res.dateDeRetour<= maintenant" >
-        <tr mdbTableCol  >
-          <td>{{res.dateDeReservation}}</td>
-          <td>{{res.dateDeRetour}}</td>
-          <td>{{res.uneVoiture.immatriculation}}</td>
-          <td>{{res.uneVoiture.modele}}</td>
-          <td>{{res.uneVoiture.marque}}</td>
-        </tr>
-      </tbody>
-    </div>
     </table>
+    <table>
+    <thead>Mes Réservations Terminées</thead>
+    <th>Date de réservation </th>
+      <th>Date de retour </th>
+      <th>Immatriculation de la voiture </th>
+      <th>Modèle de la voiture </th>
+      <th>Marque de la voiture </th>
+      <tr *ngFor="let res of listesReservations" >
+        <td *ngIf="boolhist==false">{{res.dateDeReservation}} </td>
+        <td *ngIf="boolhist==false">{{res.dateDeRetour}}</td>
+        <td *ngIf="boolhist==false">{{res.uneVoiture.immatriculation}}</td>
+        <td *ngIf="boolhist==false">{{res.uneVoiture.modele}}</td>
+        <td *ngIf="boolhist==false">{{res.uneVoiture.marque}}</td>
+      </tr>
 
-
-
-
-
-
-</div>
+    </table>
+  </div>
