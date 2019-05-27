@@ -8,6 +8,7 @@ import { TechComponent } from './tech/tech.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule } from '@angular/forms';
+import { DateValidatorDirective } from './validators/date-validator';
 import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { ChauffeurComponent } from './chauffeur/chauffeur.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
     TechComponent,
     AuthComponent,
     ChauffeurComponent,
-    AnnonceCreationCovoiturageComponent
+    AnnonceCreationCovoiturageComponent,
+    DateValidatorDirective
   ],
   imports: [
     BrowserModule,
