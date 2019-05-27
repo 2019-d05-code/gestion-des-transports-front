@@ -19,14 +19,25 @@ import { LireReservationComponent } from './lire-reservation/lire-reservation.co
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 
+import { MenuComponent } from './menu/menu.component';
+
 const routes: Routes = [
-  { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
+
   { path:'auth', component: AuthComponent},
-  {path:'reserver', component:ReservationComponent},
-  {path:'reservations', component:LireReservationComponent},
-  { path:'admin/vehicules', component: VehiculeGestionComponent},
-  {path: 'admin/chauffeur', component: ChauffeurComponent},
-  { path: '', redirectTo: '/tech', pathMatch: 'full'}
+  { path: '', redirectTo: '/tech', pathMatch: 'full'},
+  {
+    path: '',
+    canActivate:[StatutConnecteService],
+    children: [
+      { path:'tech', component: TechComponent }, // /tech accessible uniquement si connecté
+      { path:'collaborateur/reserver', component:ReservationComponent },
+      { path:'collaborateur/reservations', component:LireReservationComponent },
+      { path:'admin/vehicules', component: VehiculeGestionComponent },
+      { path: 'admin/chauffeur', component: ChauffeurComponent },
+    ]
+  }
+
+
 ];
 
 
@@ -43,7 +54,8 @@ const routes: Routes = [
     PhotoUrlValidatorDirective,
     ImmatriculationValidatorDirective,
     ChauffeurComponent,
-    FilterPipe
+    FilterPipe,
+    MenuComponent
 
   ],
   imports: [

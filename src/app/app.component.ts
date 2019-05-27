@@ -18,6 +18,10 @@ import {Collegue} from "./auth/auth.domains";
         <a  class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</a>
       </div>
     </div>
+
+    <div *ngIf="href != '/'  && href != '/auth'" >
+      <app-menu></app-menu>
+    </div>
     <router-outlet></router-outlet>
   `,
   styles: []
@@ -25,7 +29,7 @@ import {Collegue} from "./auth/auth.domains";
 export class AppComponent implements OnInit {
 
   collegueConnecte:Observable<Collegue>;
-
+  href : string;
   constructor(private _authSrv:AuthService, private _router:Router) {
 
   }
@@ -47,6 +51,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
     this.collegueConnecte = this._authSrv.collegueConnecteObs;
+    this.href = this._router.url;
   }
 
 }
