@@ -11,7 +11,7 @@ export class PhotoUrlValidatorDirective implements Validator {
 
   validate(control: AbstractControl): ValidationErrors | null {
     let photoUrl = control.value;
-    if(!photoUrl.startsWith('http') || photoUrl.length < 8) {
+    if(photoUrl && (!photoUrl.startsWith('http') || photoUrl.length < 8)) {
       return {urlError : `L'URL de la photo doit commencer par http(s)://`};
     }
 

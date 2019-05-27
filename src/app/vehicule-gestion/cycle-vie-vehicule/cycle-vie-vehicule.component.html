@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-4">
+      <img src="{{vehicule.photoUrl}}"
+        alt="thumbnail" class="img-thumbnail">
+    </div>
+
+    <div class="col-md-2">
+      <p>Marque :</p>
+      <p>Modèle :</p>
+      <p>Catégorie :</p>
+      <p>Statut :</p>
+    </div>
+
+    <div class="col-md-3">
+      <p>{{vehicule.marque | uppercase}}</p>
+      <p>{{vehicule.modele | lowercase}}</p>
+      <p>{{vehicule.categorie}}</p>
+      <div>{{vehicule.statutVehicule | uppercase}}</div>
+    </div>
+
+    <div class="col-md-3">
+      <button *ngIf="reparationTF" mdbBtn type="input" size="md" color="warning" outline="true" (click)="changerStatutReparation()" mdbWavesEffect>Mettre en réparation</button>
+      <button *ngIf="serviceTF" mdbBtn type="input" size="md" color="success" outline="true" (click)="changerStatutService()" mdbWavesEffect>Mettre en service</button>
+      <button *ngIf="hsTF" mdbBtn type="input" size="md" color="danger" outline="true" (click)="changerStatutHS()" mdbWavesEffect>Hors Service</button>
+    </div>
+  </div>
+
+</div>
+<br />
+<div style="text-align:right">
+    <a routerLink="../" type="button" mdbBtn gradient="blue" rounded="true" mdbWavesEffect>Retourner à la liste de véhicules</a>
+  </div>
+
+<div class="container">
+
+  <h4>Réservation en cours</h4>
+  {{listeReservationEnCours}}
+
+  <h4>Réservations à venir</h4>
+  {{listeReservationAVenir}}
+  <!-- TODO: afficher la liste des réservations à venir -->
+  <h4>Historique des réservations</h4>
+  {{listeReservationHistorique}}
+  <!-- TODO: afficher l'historique des réservations-->
+
+</div>
