@@ -11,7 +11,7 @@ import {Collegue} from "./auth/auth.domains";
   selector: 'app-root',
   template: `
     <div class="jumbotron">
-      <h2 class="h1 h1-responsive">Super Application</h2>
+      <h2 class="h1 h1-responsive">Gestion Des Transports</h2>
       <div *ngIf="!(collegueConnecte | async).estAnonyme()">
         <span>{{(collegueConnecte | async).email}}</span>
         <span>({{(collegueConnecte | async).roles}})</span>
@@ -19,6 +19,9 @@ import {Collegue} from "./auth/auth.domains";
       </div>
     </div>
 
+    <div *ngIf="href != '/'  && href != '/auth'" >
+      <app-menu></app-menu>
+    </div>
     <router-outlet></router-outlet>
   `,
   styles: []
@@ -26,7 +29,7 @@ import {Collegue} from "./auth/auth.domains";
 export class AppComponent implements OnInit {
 
   collegueConnecte:Observable<Collegue>;
-
+  href : string;
   constructor(private _authSrv:AuthService, private _router:Router) {
 
   }
@@ -48,6 +51,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
     this.collegueConnecte = this._authSrv.collegueConnecteObs;
+    this.href = this._router.url;
   }
 
 }
