@@ -17,6 +17,7 @@ ngOnInit() {
 
 show(){
   this.showed=true;
+
 }
 
 
