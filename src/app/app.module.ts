@@ -7,18 +7,31 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TechComponent } from './tech/tech.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthComponent } from './auth/auth.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DateValidatorDirective } from './validators/date-validator';
-import { StatutConnecteService } from './auth/statut-connecte.service';
-import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import {StatutConnecteService} from "./auth/statut-connecte.service";
+import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { ReservationComponent } from './reservation/reservation.component';
+import { CreationReservationComponent } from './creation-reservation/creation-reservation.component';
+import { ImmatriculationValidatorDirective } from './validator/immatriculation-validator.directive';
 import { ChauffeurComponent } from './chauffeur/chauffeur.component';
 import { AnnonceCreationCovoiturageComponent } from './annonce-creation-covoiturage/annonce-creation-covoiturage.component';
+import { FilterPipe } from './filter.pipe';
+import { CycleVieVehiculeComponent } from './vehicule-gestion/cycle-vie-vehicule/cycle-vie-vehicule.component';
+import { LireReservationComponent } from './lire-reservation/lire-reservation.component';
+import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
+import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 
 const routes: Routes = [
-  { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
+  { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
+  { path:'auth', component: AuthComponent},
+  { path:'collaborateur/reserver', component:ReservationComponent},
+  { path:'collaborateur/reservations', component:LireReservationComponent},
   { path: 'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent },
-  { path: 'auth', component: AuthComponent },
-  { path: '', redirectTo: '/tech', pathMatch: 'full' }
+  { path:'admin/vehicules', component: VehiculeGestionComponent},
+  { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent},
+  { path: 'admin/chauffeur', component: ChauffeurComponent},
+  { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
 
@@ -27,16 +40,28 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
-    ChauffeurComponent,
+    ReservationComponent,
+    LireReservationComponent,
+    ReservationComponent,
     AnnonceCreationCovoiturageComponent,
-    DateValidatorDirective
+    CreationReservationComponent,
+    VehiculeGestionComponent,
+    PhotoUrlValidatorDirective,
+    ImmatriculationValidatorDirective,
+    DateValidatorDirective,
+    ChauffeurComponent,
+    FilterPipe,
+    CycleVieVehiculeComponent
+
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

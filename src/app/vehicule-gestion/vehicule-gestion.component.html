@@ -1,0 +1,139 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-3" style="text-align:left">
+      <button type="button" mdbBtn gradient="blue" rounded="true" (click)="true" mdbWavesEffect>Filtrer</button>
+    </div>
+    <div class="col-md-5"></div>
+    <br />
+    <div class="col-md-4" style="text-align:right">
+      <button type="button" mdbBtn gradient="blue" rounded="true" (click)="vehiculeModal.show()" mdbWavesEffect>Ajouter
+        un vehicule</button>
+    </div>
+  </div>
+  <br />
+
+  <form>
+    <div class="form-group">
+      <span class="align-bottom">
+
+        <div class="col-md-6">
+          <input type="searchText" id="immat" class="form-control" placeholder="AA-111-AA" #filtre>
+          <label for="immat">Immatriculation</label>
+        </div>
+        <div class="col-md-6">
+          <input type="searchText" id="marque" class="form-control" placeholder="Marque" #filtre>
+          <label for="marque">Marque</label>
+        </div>
+
+      </span>
+    </div>
+  </form>
+</div>
+<br />
+
+<div class="container">
+
+  <div class="card-deck">
+    <mdb-card *ngFor="let item of listeV">
+      <a routerLink='{{item.immatriculation}}'>
+        <div class="view overlay waves-light" mdbWavesEffect>
+
+          <mdb-card-img class="img-fluid" src={{item.photoUrl}} alt="Card image cap"></mdb-card-img>
+
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+      </a>
+      <mdb-card-body>
+        <mdb-card-title>
+          <h4>{{item.immatriculation | uppercase}}</h4>
+        </mdb-card-title>
+        <mdb-card-text>
+          {{item.marque | uppercase}} - {{item.modele | lowercase}}
+          <br />
+          {{item.categorie}}
+        </mdb-card-text>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+  <h3>{{msgErreur}}</h3>
+
+</div>
+
+<!-- Container du modal pour ajouter un véhicule dans la bdd -->
+<div class="container">
+
+  <!--Central Modal LG-->
+  <div mdbModal #vehiculeModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title w-100">Véhicule à enregistrer</div>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="vehiculeModal.hide()">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #nouveauVehicule="ngForm" novalidate>
+
+            <div class="form-row">
+              <div class="col-md-6">
+                <input #immatriculation="ngModel" [class.is-valid]="immatriculation.valid" mdbInput type="text"
+                  class="form-control" id="inputImmatriculation" placeholder="XX-ZZZ-XX" name="immatriculation"
+                  [(ngModel)]="vehiculeTmp.immatriculation" required>
+                <label for="inputImmatriculation">Immatriculation</label>
+              </div>
+              <div class="col-md-6">
+                <input #marque="ngModel" [class.is-valid]="marque.valid" mdbInput type="text" class="form-control"
+                  id="inputMarque" placeholder="Opel, Peugeot, ..." name="marque" [(ngModel)]="vehiculeTmp.marque"
+                  required>
+                <label for="inputMarque">Marque du véhicule</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <input #modele="ngModel" [class.is-valid]="modele.valid" mdbInput type="text" class="form-control"
+                  id="inputModele" placeholder="806, RAV-4, ..." name="modele" [(ngModel)]="vehiculeTmp.modele"
+                  required>
+                <label for="inputModele">Modèle du véhicule</label>
+              </div>
+
+              <!-- Dropdown menu pour les différentes catégories de véhicules -->
+              <div class="col-md-12">
+                <select #categorie="ngModel" [class.is-valid]="categorie.valid" class="browser-default custom-select"
+                  id="inputCategorie" name="categorie" [(ngModel)]="vehiculeTmp.categorie" required>
+                  <option *ngFor="let item of listEnum" [value]="item">{{item}}</option>
+                </select>
+                <label for="inputCategorie">Catégorie du véhicule</label>
+              </div>
+
+              <div class="col-md-12">
+                <input #nbPlaces="ngModel" [class.is-valid]="nbPlaces.valid" mdbInput type="text" class="form-control"
+                  id="inputNbPlaces" placeholder="Nombre de places" name="nbPlaces" [(ngModel)]="vehiculeTmp.nbPlaces"
+                  required>
+                <label for="inputModele">Nombre de places</label>
+              </div>
+              <div class="col-md-12">
+                <input appPhotoUrlValidator #photoUrl="ngModel" [class.is-valid]="photoUrl.valid" mdbInput type="text"
+                  class="form-control" id="inputPhotoUrl" placeholder="http:// [...].jpg" name="photoUrl"
+                  [(ngModel)]="vehiculeTmp.photoUrl" required>
+                <label for="inputModele">Photo du véhicule</label>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          {{msgErreurSaveVehicule}}
+          <button [disabled]="!nouveauVehicule.valid" type="submit" (click)=enregistrerVehicule() mdbBtn gradient="blue" rounded="true" mdbWavesEffect>Enregistrer</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,57 @@
+<h1 class="display-4">Espace visualisation</h1>
+<p class="lead">visualiser vos réservations, visualiser vos covoiturage,...</p>
+<button type="button" mdbBtn color="primary" routerLink="/collaborateur/reserver" mdbWavesEffect>Réserver un transport</button>
+<mdb-navbar SideClass="navbar navbar-1 navbar-light amber lighten-2" [containerInside]="false">
+  <mdb-navbar-brand>
+    <a class="navbar-brand" href="#">Menu</a>
+  </mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect>Covoiturage
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect>Véhicules de société </a>
+      </li>
+      <li class="nav-item">
+        <!-- seulement lorsqu'on clique sur le bouton réserver on affichera la composant création-reservation-->
+        <a class="nav-link waves-light" mdbWavesEffect (click)="montrerLesreservations()"> Voir vos réservation</a>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>
+<div *ngIf="showed==true">
+    <table >
+      <thead>Mes Réservations en cours </thead>
+      <th>Date de réservation </th>
+      <th>Date de retour </th>
+      <th>Immatriculation de la voiture </th>
+      <th>Modèle de la voiture </th>
+      <th>Marque de la voiture </th>
+      <tr *ngFor="let res of listesReservations">
+        <td *ngIf="courant==true">{{res.dateDeReservation}}</td>
+        <td *ngIf="courant==true">{{res.dateDeRetour}}</td>
+        <td *ngIf="courant==true">{{res.uneVoiture.immatriculation}}</td>
+        <td *ngIf="courant==true">{{res.uneVoiture.modele}}</td>
+        <td *ngIf="courant==true">{{res.uneVoiture.marque}}</td>
+      </tr>
+    </table>
+    <table>
+    <thead>Mes Réservations Terminées</thead>
+    <th>Date de réservation </th>
+      <th>Date de retour </th>
+      <th>Immatriculation de la voiture </th>
+      <th>Modèle de la voiture </th>
+      <th>Marque de la voiture </th>
+      <tr *ngFor="let res of listesReservations" >
+        <td *ngIf="boolhist==false">{{res.dateDeReservation}} </td>
+        <td *ngIf="boolhist==false">{{res.dateDeRetour}}</td>
+        <td *ngIf="boolhist==false">{{res.uneVoiture.immatriculation}}</td>
+        <td *ngIf="boolhist==false">{{res.uneVoiture.modele}}</td>
+        <td *ngIf="boolhist==false">{{res.uneVoiture.marque}}</td>
+      </tr>
+
+    </table>
+  </div>

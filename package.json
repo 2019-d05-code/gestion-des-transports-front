@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prepare-prod": "node prepare-prod.js",
-    "deploy": "cross-var ngh --no-silent --name=jenkins --email=jenkins@jenkins.io --repo=https://$GH_TOKEN@github.com/$GH_ORG/$APP_REPO.git"
+    "deploy": "cross-var ngh --no-silent --dir=dist/front --name=jenkins --email=jenkins@jenkins.io --repo=https://$GH_TOKEN@github.com/$GH_ORG/$APP_REPO.git"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +24,7 @@
     "@angular/router": "^7.2.15",
     "@types/chart.js": "^2.7.30",
     "angular-bootstrap-md": "^6.2.1",
+    "angular-filter": "^0.5.17",
     "chart.js": "^2.5.0",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
