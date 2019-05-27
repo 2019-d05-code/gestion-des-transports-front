@@ -38,7 +38,7 @@ const colors: any = {
 export class PlanningComponent implements OnInit {
 
   locale: string = 'fr';
-  
+
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Day;
@@ -55,7 +55,7 @@ export class PlanningComponent implements OnInit {
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
-    
+
     {
       title: 'A non all day event',
       color: colors.blue,
@@ -75,7 +75,7 @@ export class PlanningComponent implements OnInit {
         }
       ]
     }
-    
+
     /*,
     {
       start: startOfDay(new Date()),
@@ -107,7 +107,7 @@ export class PlanningComponent implements OnInit {
 
 
 
- 
+
 
   ngOnInit() {
   }

@@ -15,21 +15,24 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
-import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
+import { ReservationComponent } from './reservation/reservation.component';
+import { CreationReservationComponent } from './creation-reservation/creation-reservation.component';
 import { ImmatriculationValidatorDirective } from './validator/immatriculation-validator.directive';
 import { ChauffeurComponent } from './chauffeur/chauffeur.component';
 import { FilterPipe } from './filter.pipe';
+import { LireReservationComponent } from './lire-reservation/lire-reservation.component';
+import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
+import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 
 const routes: Routes = [
-  { path: 'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
-  { path: 'auth', component: AuthComponent},
-  { path: 'chauffeur/planning', component: PlanningComponent},
-  { path: 'admin/vehicules', component: VehiculeGestionComponent},
-  { path: 'admin/chauffeur', component: ChauffeurComponent},
-
+  { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
+  { path:'auth', component: AuthComponent},
+  {path:'reserver', component:ReservationComponent},
+  {path:'reservations', component:LireReservationComponent},
+  { path:'admin/vehicules', component: VehiculeGestionComponent},
+  {path: 'admin/chauffeur', component: ChauffeurComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -42,6 +45,10 @@ registerLocaleData(localeFr);
     TechComponent,
     AuthComponent,
     PlanningComponent,
+    ReservationComponent,
+    LireReservationComponent,
+    ReservationComponent,
+    CreationReservationComponent,
     VehiculeGestionComponent,
     PhotoUrlValidatorDirective,
     ImmatriculationValidatorDirective,
