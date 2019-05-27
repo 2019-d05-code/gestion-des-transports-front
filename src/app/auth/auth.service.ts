@@ -27,7 +27,7 @@ export class AuthService {
    *
    * A l'initialisation, le collègue connecté vaut 'undefined'.
    *
-   * @type {BehaviorSubject<any>}
+   * @type {BehaviorSubject<any>} 
    */
   private collegueConnecteSub:BehaviorSubject<Collegue> = new BehaviorSubject(COLLEGUE_ANONYME);
 
