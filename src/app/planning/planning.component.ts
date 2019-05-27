@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, DAYS_OF_WEEK, CalendarDateFormatter } from 'angular-calendar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { addHours, startOfDay } from 'date-fns';
-import { Subject } from 'rxjs';
+import { addHours, startOfDay, endOfDay } from 'date-fns';
+import { Subject, Observable } from 'rxjs';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import { DataService } from '../service/data.service';
 import { ReservationVehicule } from '../reservation-vehicule';
+import { map } from 'rxjs/operators';
 registerLocaleData(localeEs);
 
 const colors: any = {
@@ -60,7 +61,10 @@ export class PlanningComponent implements OnInit {
 
 
 
-  events: CalendarEvent[] = [
+  events: Observable<CalendarEvent[]>
+
+    /*,
+  ;= [
 
     {
       title: 'A non all day event',
@@ -82,7 +86,6 @@ export class PlanningComponent implements OnInit {
       ]
     }
 
-    /*,
     {
       start: startOfDay(new Date()),
       title: 'An event with no end date',
@@ -106,14 +109,22 @@ export class PlanningComponent implements OnInit {
       },
       draggable: true
     }
-   */
-  ];
 
+  ];
+*/
   constructor(private _serv : DataService, private modal: NgbModal) { }
 
 
   ngOnInit() {
-    this._serv.afficherLesReservation().subscribe(res => this.listesReservations = res);
+    this.events = this._serv.afficherLesReservation().pipe(
+      map(listeRes => listeRes.map(res =>{
+        return <CalendarEvent>{
+          start : addHours(startOfDay(res.dateDeReservation.split("T")[0]), Number(res.dateDeReservation.split("T")[1])),
+          end : addHours(startOfDay(res.dateDeRetour.split("T")[0]), Number(res.dateDeRetour.split("T")[1])),
+        };
+      }
+        ))
+    )
   }
 
 }
