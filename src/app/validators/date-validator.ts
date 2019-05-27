@@ -17,14 +17,6 @@ export class DateValidatorDirective implements Validator {
       return null;
     }
     return { dateInvalide: true };
-    /*
-    if (photoUrl !== null && photoUrl.startsWith('http')) {
-      return null;
-    } else {
-      return { urlInvalide: true };
-    }
-    */
-   return null;
   }
 
 
