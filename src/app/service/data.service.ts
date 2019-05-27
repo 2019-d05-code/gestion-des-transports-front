@@ -15,29 +15,29 @@ import { Chauffeur } from '../models/Chauffeur';
 export class DataService {
 
   url_back = environment.baseUrl;
-  infosVehiculesUrl= 'admin/vehicules'
+  infosVehiculesUrl = 'admin/vehicules'
   sauvegarderReservaURL = 'collaborateur/reservations/creer'
-  reservationUrls='collaborateur/reservations/'
+  reservationUrls = 'collaborateur/reservations/'
 
 
-constructor( private _http: HttpClient) { }
-  afficherInfo() : Observable<InfoVehicule[]>{
-    return this._http.get<InfoVehicule[]>(`${this.url_back}${this.infosVehiculesUrl}`, {"withCredentials": true})
+  constructor(private _http: HttpClient) { }
+  afficherInfo(): Observable<InfoVehicule[]> {
+    return this._http.get<InfoVehicule[]>(`${this.url_back}${this.infosVehiculesUrl}`, { "withCredentials": true })
   }
 
-private subject = new Subject<Vehicule>();
+  private subject = new Subject<Vehicule>();
 
-  listeVehicules() :Observable<Vehicule[]> {
-    return this._http.get<Vehicule[]>(`${environment.baseUrl}admin/vehicules`, {withCredentials:true});
+  listeVehicules(): Observable<Vehicule[]> {
+    return this._http.get<Vehicule[]>(`${environment.baseUrl}admin/vehicules`, { withCredentials: true });
   }
 
-  enregistrerVehiculeSrv(vehicule: Vehicule) :Observable<Vehicule> {
-    return this._http.post<Vehicule>(`${environment.baseUrl}admin/vehicules`, vehicule, {withCredentials:true});
+  enregistrerVehiculeSrv(vehicule: Vehicule): Observable<Vehicule> {
+    return this._http.post<Vehicule>(`${environment.baseUrl}admin/vehicules`, vehicule, { withCredentials: true });
   }
 
-  ajoutChauffeur(matricule:any): Observable<string> {
+  ajoutChauffeur(matricule: any): Observable<string> {
     return this._http.patch<any>(`${environment.baseUrl}ajoutChauffeur/${matricule}`, {
-      withCredentials : true
+      withCredentials: true
     });
   }
 
@@ -47,14 +47,14 @@ private subject = new Subject<Vehicule>();
     });
   }
 
-  reservationAjouter(res:ReservationVehicule){
-    return this._http.post<ReservationVehicule>(`${this.url_back}${this.sauvegarderReservaURL}`,res, {"withCredentials": true} )
+  reservationAjouter(res: ReservationVehicule) {
+    return this._http.post<ReservationVehicule>(`${this.url_back}${this.sauvegarderReservaURL}`, res, { "withCredentials": true })
   }
 
-//permet de récupérer l'ensemble des réservations se trouvant en base
-afficherLesReservation():Observable<ReservationVehicule[]>{
-return this._http.get<ReservationVehicule[]>(`${this.url_back}${this.reservationUrls}`, {"withCredentials": true})
-}
+  //permet de récupérer l'ensemble des réservations se trouvant en base
+  afficherLesReservation(): Observable<ReservationVehicule[]> {
+    return this._http.get<ReservationVehicule[]>(`${this.url_back}${this.reservationUrls}`, { "withCredentials": true })
+  }
 
 
 

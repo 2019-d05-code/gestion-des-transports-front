@@ -29,10 +29,11 @@ import localeFr from '@angular/common/locales/fr';
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
   { path:'auth', component: AuthComponent},
-  {path:'reserver', component:ReservationComponent},
-  {path:'reservations', component:LireReservationComponent},
+  { path:'reserver', component:ReservationComponent},
+  { path:'reservations', component:LireReservationComponent},
   { path:'admin/vehicules', component: VehiculeGestionComponent},
-  {path: 'admin/chauffeur', component: ChauffeurComponent},
+  { path: 'admin/chauffeur', component: ChauffeurComponent},
+  { path: 'chauffeur/planning', component: PlanningComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 

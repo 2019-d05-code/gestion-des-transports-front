@@ -7,6 +7,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import { DataService } from '../service/data.service';
+import { ReservationVehicule } from '../reservation-vehicule';
 registerLocaleData(localeEs);
 
 const colors: any = {
@@ -37,6 +38,8 @@ const colors: any = {
 })
 export class PlanningComponent implements OnInit {
 
+  listesReservations:ReservationVehicule[]
+
   locale: string = 'fr';
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
@@ -53,6 +56,9 @@ export class PlanningComponent implements OnInit {
   };
 
   refresh: Subject<any> = new Subject();
+
+
+
 
   events: CalendarEvent[] = [
 
@@ -106,10 +112,8 @@ export class PlanningComponent implements OnInit {
   constructor(private _serv : DataService, private modal: NgbModal) { }
 
 
-
-
-
   ngOnInit() {
+    this._serv.afficherLesReservation().subscribe(res => this.listesReservations = res);
   }
 
 }
