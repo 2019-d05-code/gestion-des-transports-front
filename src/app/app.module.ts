@@ -19,19 +19,15 @@ import { CycleVieVehiculeComponent } from './vehicule-gestion/cycle-vie-vehicule
 import { LireReservationComponent } from './lire-reservation/lire-reservation.component';
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
-<<<<<<< HEAD
-
-=======
->>>>>>> 08a07a6bce4c773483905b6afaadbf1e76d1cd28
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
   { path:'auth', component: AuthComponent},
-  {path:'collaborateur/reserver', component:ReservationComponent},
-  {path:'collaborateur/reservations', component:LireReservationComponent},
+  { path:'collaborateur/reserver', component:ReservationComponent},
+  { path:'collaborateur/reservations', component:LireReservationComponent},
   { path:'admin/vehicules', component: VehiculeGestionComponent},
-  {path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent},
-  {path: 'admin/chauffeur', component: ChauffeurComponent},
+  { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent},
+  { path: 'admin/chauffeur', component: ChauffeurComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
