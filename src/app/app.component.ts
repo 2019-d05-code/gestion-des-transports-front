@@ -19,7 +19,7 @@ import {Collegue} from "./auth/auth.domains";
       </div>
     </div>
 
-    <div *ngIf="href != '/'  && href != '/auth'" >
+    <div *ngIf="href != '/'  && href != '/auth'">
       <app-menu></app-menu>
     </div>
     <router-outlet></router-outlet>
