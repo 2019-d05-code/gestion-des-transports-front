@@ -49,7 +49,6 @@ private subject = new Subject<Vehicule>();
     });
   }
 
-<<<<<<< HEAD
   choisirVehicule(immatriculation: string) :Observable<Vehicule> {
     return this._http.get<Vehicule>(`${environment.baseUrl}admin/vehicules/${immatriculation}`, {withCredentials: true})
       .pipe (
@@ -60,7 +59,6 @@ private subject = new Subject<Vehicule>();
   changerStatutVehiculeSrv(statut: StatutVehicule) :Observable<Vehicule> {
     return this._http.patch<Vehicule>(`${environment.baseUrl}admin/vehicules/${statut.immatriculation}`, statut, {withCredentials: true});
   }
-=======
   reservationAjouter(res:ReservationVehicule){
     return this._http.post<ReservationVehicule>(`${this.url_back}${this.sauvegarderReservaURL}`,res, {"withCredentials": true} )
   }
@@ -72,5 +70,4 @@ return this._http.get<ReservationVehicule[]>(`${this.url_back}${this.reservation
 
 
 
->>>>>>> master
 }
