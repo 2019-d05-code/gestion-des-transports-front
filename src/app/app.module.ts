@@ -22,8 +22,10 @@ import { LireReservationComponent } from './lire-reservation/lire-reservation.co
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 
+import { MenuComponent } from './menu/menu.component';
+
 const routes: Routes = [
-  { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
+
   { path:'auth', component: AuthComponent},
   { path:'collaborateur/reserver', component:ReservationComponent},
   { path:'collaborateur/reservations', component:LireReservationComponent},
@@ -51,7 +53,9 @@ const routes: Routes = [
     DateValidatorDirective,
     ChauffeurComponent,
     FilterPipe,
+    MenuComponent,
     CycleVieVehiculeComponent
+
 
   ],
   imports: [
