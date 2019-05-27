@@ -10,7 +10,8 @@ export class Vehicule {
     public immatriculation: string,
     public photoUrl: string,
     public nbPlaces: number,
-    public statutVehicule: StatutVehiculeEnum
+    public statutVehicule?: StatutVehiculeEnum,
+    public id?: number
   ) {}
 
 }

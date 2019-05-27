@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Vehicule } from '../../models/vehicule';
 import { StatutVehicule } from 'src/app/models/statut-vehicule';
 import { StatutVehiculeEnum } from 'src/app/enum/statut-vehicule-enum.enum';
+import { Reservation } from 'src/app/models/reservation';
 
 @Component({
   selector: 'app-cycle-vie-vehicule',
@@ -16,9 +17,14 @@ export class CycleVieVehiculeComponent implements OnInit {
   statutVehicule: StatutVehicule = new StatutVehicule('', undefined);
   erreurMsgEntree: string;
   erreurMsgStatut: string;
+  erreurMsgResa: string;
   serviceTF: Boolean = false;
   reparationTF: Boolean = false;
   hsTF: Boolean = false;
+  listeReservations: Reservation[] = [];
+  listeReservationAVenir: Reservation[] = [];
+  listeReservationHistorique: Reservation[] = [];
+  listeReservationEnCours: Reservation[] = [];
 
 
   constructor(private _srv: DataService, private route: ActivatedRoute) {
@@ -90,6 +96,28 @@ export class CycleVieVehiculeComponent implements OnInit {
         this.changerBoolean(returnValue.statutVehicule);
         },
       err => this.erreurMsgStatut = err
+    );
+  }
+
+  afficherReservations() {
+    this._srv.afficherReservationsSrv().subscribe(
+      returnValue => {
+        this.listeReservations = returnValue;
+        this.listeReservations.forEach(
+          resa => {
+            let dateResa = new Date(resa.dateDeReservation);
+            let dateRetour = new Date(resa.dateDeRetour);
+
+            if(dateResa.getDate() >= Date.now()) {
+              this.listeReservationAVenir.push(resa);
+            }else if(dateRetour.getDate() >= Date.now()) {
+              this.listeReservationEnCours.push(resa);
+            }else {this.listeReservationHistorique.push(resa);
+            }
+          }
+        )
+      },
+      err => this.erreurMsgResa = err
     );
   }
 

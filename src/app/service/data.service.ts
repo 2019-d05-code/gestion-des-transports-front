@@ -6,6 +6,7 @@ import { Vehicule } from '../models/vehicule';
 import { Chauffeur } from '../models/Chauffeur';
 import { tap } from 'rxjs/operators';
 import { StatutVehicule } from '../models/statut-vehicule';
+import { Reservation } from '../models/reservation';
 
 
 @Injectable({
@@ -45,5 +46,9 @@ export class DataService {
 
   changerStatutVehiculeSrv(statut: StatutVehicule) :Observable<Vehicule> {
     return this._http.patch<Vehicule>(`${environment.baseUrl}admin/vehicules/${statut.immatriculation}`, statut, {withCredentials: true});
+  }
+
+  afficherReservationsSrv() :Observable<Reservation[]> {
+    return this._http.get<Reservation[]>(`${environment.baseUrl}collaborateur/reservations`, {withCredentials: true});
   }
 }
