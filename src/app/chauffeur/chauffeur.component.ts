@@ -75,6 +75,10 @@ export class ChauffeurComponent implements OnInit {
     }
   }
 
+  triMat() {
+    this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.ident == this.mat);
+  }
+
 
   // declenche la modal
   ajoutChauffeur() {

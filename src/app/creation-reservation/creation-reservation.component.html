@@ -1,0 +1,67 @@
+<!--ici la date de réservation-->
+    <div id="dateDeReservation">
+      <label for="dateDeReservation" style="margin-left:10px;">Date/heure De Réservation</label>
+      <input type="date" name="dateDeReservation" style="margin-left:10px;"[(ngModel)]="dateDeReservation" required>
+      <label for="heureDeReservation" style="margin-left:10px;" >Heure</label>
+      <select name="heureDeReservation" style="margin-left:10px;"  [(ngModel)]="heureDeReservation" required>
+        <option *ngFor="let numb of heures">{{numb}}</option>
+      </select>
+      <label for="minutesDeReservation" style="margin-left:10px;">Minutes</label>
+      <select style="margin-left:10px;"  name="minutesDeReservation" [(ngModel)]="minutesDeReservation" required>
+        <option *ngFor="let min of minutes">{{min}}</option>
+      </select>
+    </div>
+  <!--ici la date de retour-->
+    <div id="dateDeRetour">
+        <label for="dateDeRetour" style="margin-left:10px;">Date/Heure de Retour</label>
+        <input type="date" name="dateDeRetour" style="margin-left:10px;" [(ngModel)]="dateDeRetour" required>
+        <label for="heureDeRetour" style="margin-left:10px;">Heure</label>
+        <select name="heureDeRetour" style="margin-left:10px;" [(ngModel)]="heureDeRetour" required>
+          <option *ngFor="let numb of heures">{{numb}}</option>
+        </select>
+        <label for="minutesDeretour" style="margin-left:10px;">Minutes</label>
+        <select style="margin-left:10px;" [(ngModel)]="minutesDeretour" required>
+          <option *ngFor="let min of minutes">{{min}}</option>
+        </select>
+      </div>
+    <!--le carousel qui contiendra l'ensemble des vehicules contenu dans la base de données-->
+<mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'" [interval]="0" >
+            <mdb-carousel-item *ngFor="let uneVoiture of listeVehicules">
+              <div class="view w-100">
+                <img class="d-block w-100" src="{{uneVoiture.photoUrl}}" alt="First slide">
+                <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+              </div>
+              <div class="carousel-caption">
+              <h3 class="h3-responsive">Light mask</h3>
+              <h3>{{uneVoiture.immatriculation}}</h3>
+               <p>{{uneVoiture.marque}}</p>
+               <p>{{uneVoiture.modele}}</p>
+              <p>{{uneVoiture.categorie}}</p>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="cur=uneVoiture;basicModal.show()" mdbWavesEffect>Réserver</button>
+              </div>
+       </mdb-carousel-item>
+       </mdb-carousel>
+
+       <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true" >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Confirmation de réservation </h4>
+            </div>
+            <div class="modal-body">
+              <p>Date de réservation : {{dateDeReservation}}</p>
+              <p>Date de retour : {{dateDeRetour}}</p>
+              <p >Immatriculation : {{cur.immatriculation}}</p>
+              <p >Marque : {{cur.marque}}</p>
+              <p >Modèle : {{cur.modele}}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ajouterReservation()">Confirmer</button>
+            </div>
+          </div>
+        </div>
+      </div>
