@@ -43,7 +43,8 @@ const routes: Routes = [
     PhotoUrlValidatorDirective,
     ImmatriculationValidatorDirective,
     ChauffeurComponent,
-    FilterPipe
+    FilterPipe,
+
 
   ],
   imports: [
