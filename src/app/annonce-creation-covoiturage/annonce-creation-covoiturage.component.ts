@@ -7,7 +7,7 @@ import { Collegue } from '../auth/auth.domains';
 @Component({
   selector: 'app-annonce-creation-covoiturage',
   templateUrl: './annonce.creation.covoiturage.component.html',
-  styleUrls: ['./annonce.creation.covoiturage.component.css']
+  styleUrls: []
 })
 export class AnnonceCreationCovoiturageComponent implements OnInit {
 
@@ -36,7 +36,7 @@ export class AnnonceCreationCovoiturageComponent implements OnInit {
         this.collegueConnecte = colConnecte;
         this._annonce.annonceurEmail = colConnecte.email;
       },
-      (err) => {},
+      (err) => { },
       () => console.log("est co " + this.collegueConnecte.email)
     );
   }
