@@ -24,19 +24,19 @@ import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
 
-  { path: 'auth', component: AuthComponent },
+  { path:'auth', component: AuthComponent},
 
-  { path: '', redirectTo: '/tech', pathMatch: 'full' },
+  { path: '', redirectTo: '/tech', pathMatch: 'full'},
   {
     path: '',
-    canActivate: [StatutConnecteService],
+    canActivate:[StatutConnecteService],
     children: [
-      { path: 'tech', component: TechComponent }, // /tech accessible uniquement si connecté
-      { path: 'collaborateur/reserver', component: ReservationComponent },
-      { path: 'collaborateur/reservations', component: LireReservationComponent },
-      { path: 'admin/vehicules', component: VehiculeGestionComponent },
+      { path:'tech', component: TechComponent }, // /tech accessible uniquement si connecté
+      { path:'collaborateur/reserver', component:ReservationComponent },
+      { path:'collaborateur/reservations', component:LireReservationComponent },
+      { path:'admin/vehicules', component: VehiculeGestionComponent },
       { path: 'admin/chauffeur', component: ChauffeurComponent },
-      { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent },
+      { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent}
     ]
   }
 

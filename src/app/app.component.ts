@@ -16,6 +16,7 @@ import {Collegue} from "./auth/auth.domains";
         <span>{{(collegueConnecte | async).email}}</span>
         <span>({{(collegueConnecte | async).roles}})</span>
         <a  class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</a>
+        <app-menu></app-menu>
       </div>
     </div>
     <router-outlet></router-outlet>
@@ -25,7 +26,7 @@ import {Collegue} from "./auth/auth.domains";
 export class AppComponent implements OnInit {
 
   collegueConnecte:Observable<Collegue>;
-
+  href : string;
   constructor(private _authSrv:AuthService, private _router:Router) {
 
   }
