@@ -39,24 +39,8 @@
 
 <div class="container">
 
-  <h4>Réservation en cours</h4>
-  <table mdbTable striped="true">
-    <thead class="mdb-color lighten-2 white-text">
-      <tr>
-        <th *ngFor="let head of headElements" scope="col">{{head}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr mdbTableCol *ngFor="let reservation of listeReservationEnCours">
-        <td>{{reservation.dateDeReservation}}</td>
-        <td>{{reservation.dateDeRetour}}</td>
-        <td>UNKNOWN</td>
-      </tr>
-    </tbody>
-  </table>
-
   <br />
-  <h4>Réservations à venir</h4>
+  <h5 class="font-italic">Réservations à venir</h5>
   <table mdbTable striped="true">
     <thead class="mdb-color lighten-2 white-text">
       <tr>
@@ -73,7 +57,7 @@
   </table>
 
   <br />
-  <h4>Historique des réservations</h4>
+  <h5 class="font-italic">Historique des réservations</h5>
   <table mdbTable striped="true">
     <thead class="mdb-color lighten-2 white-text">
       <tr>

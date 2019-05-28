@@ -24,7 +24,6 @@ export class CycleVieVehiculeComponent implements OnInit {
   listeReservations: Reservation[] = [];
   listeReservationAVenir: Reservation[] = [];
   listeReservationHistorique: Reservation[] = [];
-  listeReservationEnCours: Reservation[] = [];
   headElements: string[] = [
     `Date/Heure de début`, `Date/Heure de fin`, `Responsable`
   ];
@@ -61,7 +60,7 @@ export class CycleVieVehiculeComponent implements OnInit {
             if(dateResa.getDate() >= Date.now()) {
               this.listeReservationAVenir.push(resa);
             }else if(dateRetour.getDate() >= Date.now()) {
-              this.listeReservationEnCours.push(resa);
+              this.listeReservationAVenir.push(resa);
             }else {this.listeReservationHistorique.push(resa);
             }
           }
@@ -120,28 +119,6 @@ export class CycleVieVehiculeComponent implements OnInit {
         this.changerBoolean(returnValue.statutVehicule);
         },
       err => this.erreurMsgStatut = err
-    );
-  }
-
-  afficherReservations() {
-    this._srv.afficherReservationsSrv().subscribe(
-      returnValue => {
-        this.listeReservations = returnValue;
-        this.listeReservations.forEach(
-          resa => {
-            let dateResa = new Date(resa.dateDeReservation);
-            let dateRetour = new Date(resa.dateDeRetour);
-
-            if(dateResa.getDate() >= Date.now()) {
-              this.listeReservationAVenir.push(resa);
-            }else if(dateRetour.getDate() >= Date.now()) {
-              this.listeReservationEnCours.push(resa);
-            }else {this.listeReservationHistorique.push(resa);
-            }
-          }
-        )
-      },
-      err => this.erreurMsgResa = err
     );
   }
 
