@@ -25,7 +25,6 @@ export class CreationReservationComponent implements OnInit {
   deuxPoints: string = ":";
   zero: string = "0";
   erreurMsg: string = "";
-  indisponible: Boolean = true;
 
   dateDeRetour: Date = new Date();
   heureDeRetour: string;
@@ -69,12 +68,12 @@ export class CreationReservationComponent implements OnInit {
 
   }
 
-  testStatut(statut: StatutVehiculeEnum): Boolean {
-    if(statut == StatutVehiculeEnum.EN_REPARATION || statut == StatutVehiculeEnum.HORS_SERVICE) {
-      this.indisponible = true;
+  testStatut(voiture: InfoVehicule): Boolean {
+    if(voiture.statutVehicule == StatutVehiculeEnum.EN_REPARATION || voiture.statutVehicule == StatutVehiculeEnum.HORS_SERVICE) {
+      return true;
+    }else{
+       return false;
     }
-
-    return this.indisponible;
   }
 
   ajouterReservation() {
