@@ -16,11 +16,8 @@ import {Collegue} from "./auth/auth.domains";
         <span>{{(collegueConnecte | async).email}}</span>
         <span>({{(collegueConnecte | async).roles}})</span>
         <a  class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</a>
+        <app-menu></app-menu>
       </div>
-    </div>
-
-    <div *ngIf="href != '/'  && href != '/auth'" >
-      <app-menu></app-menu>
     </div>
     <router-outlet></router-outlet>
   `,
@@ -51,7 +48,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
     this.collegueConnecte = this._authSrv.collegueConnecteObs;
-    this.href = this._router.url;
   }
 
 }
