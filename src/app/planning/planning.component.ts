@@ -73,7 +73,7 @@ export class PlanningComponent implements OnInit {
     .pipe(map(
 
       listeRes => listeRes.map( res => {
-        if(res. == true){
+        if(res.avecOuSansChauffeur == true){
           let couleur = colors.blue;
           console.log(new Date(res.dateDeRetour.split("T")[0]))
           return <CalendarEvent> {

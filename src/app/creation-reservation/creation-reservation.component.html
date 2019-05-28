@@ -1,7 +1,12 @@
+ <!-- Default unchecked -->
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input"  [(ngModel)]="avecOuSans" (change)="avecOuSans" id="defaultUnchecked">
+            <label class="custom-control-label" for="defaultUnchecked">Avec Chauffeur </label>
+          </div>
 <!--ici la date de réservation-->
     <div id="dateDeReservation">
       <label for="dateDeReservation" style="margin-left:10px;">Date/heure De Réservation</label>
-      <input type="date" name="dateDeReservation" style="margin-left:10px;"[(ngModel)]="dateDeReservation" required>
+      <input type="date" name="dateDeReservation" style="margin-left:10px;"[(ngModel)]="dateDeReservation" min="2019-05-28" required>
       <label for="heureDeReservation" style="margin-left:10px;" >Heure</label>
       <select name="heureDeReservation" style="margin-left:10px;"  [(ngModel)]="heureDeReservation" required>
         <option *ngFor="let numb of heures">{{numb}}</option>
@@ -11,10 +16,11 @@
         <option *ngFor="let min of minutes">{{min}}</option>
       </select>
     </div>
+
   <!--ici la date de retour-->
     <div id="dateDeRetour">
-        <label for="dateDeRetour" style="margin-left:10px;">Date/Heure de Retour</label>
-        <input type="date" name="dateDeRetour" style="margin-left:10px;" [(ngModel)]="dateDeRetour" required>
+        <label for="dateDeRetour" style="margin-left:10px;" >Date/Heure de Retour</label>
+        <input type="date" name="dateDeRetour" style="margin-left:10px;" [(ngModel)]="dateDeRetour" min="2019-05-28" required>
         <label for="heureDeRetour" style="margin-left:10px;">Heure</label>
         <select name="heureDeRetour" style="margin-left:10px;" [(ngModel)]="heureDeRetour" required>
           <option *ngFor="let numb of heures">{{numb}}</option>
@@ -24,6 +30,7 @@
           <option *ngFor="let min of minutes">{{min}}</option>
         </select>
       </div>
+
     <!--le carousel qui contiendra l'ensemble des vehicules contenu dans la base de données-->
 <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'" [interval]="0" >
             <mdb-carousel-item *ngFor="let uneVoiture of listeVehicules">
@@ -54,9 +61,9 @@
             <div class="modal-body">
               <p>Date de réservation : {{dateDeReservation}}</p>
               <p>Date de retour : {{dateDeRetour}}</p>
-              <p >Immatriculation : {{cur.immatriculation}}</p>
-              <p >Marque : {{cur.marque}}</p>
-              <p >Modèle : {{cur.modele}}</p>
+              <p>Immatriculation : {{cur.immatriculation}}</p>
+              <p>Marque : {{cur.marque}}</p>
+              <p>Modèle : {{cur.modele}}</p>
             </div>
             <div class="modal-footer">
               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>

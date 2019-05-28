@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationVehicule } from '../reservation-vehicule';
 import { DataService } from '../service/data.service';
+import { Chauffeur } from '../models/Chauffeur';
 
 @Component({
   selector: 'app-lire-reservation',
@@ -9,35 +10,37 @@ import { DataService } from '../service/data.service';
 })
 export class LireReservationComponent implements OnInit {
   showed=false;
-  listesReservations:ReservationVehicule[];
+  listesReservationsEnCours:ReservationVehicule[] = new Array();
+  listesReservationsTerminee:ReservationVehicule[] =  new Array();
   enCours:string="Mes Reservation en cours"
   historique:string="Historique"
   maintenant:Date = new Date(Date.now());
 
+
   courant:Boolean = false;
   boolhist:Boolean = true;
+
 
   constructor(private srv:DataService) { }
 
   ngOnInit() {
 
+
+
   }
+
+
   montrerLesreservations(){
     this.showed=true;
 
-    return this.srv.afficherLesReservation().subscribe(tab =>{
-      this.listesReservations = tab;
-      this.listesReservations.forEach(element => {
-        let madate = new Date(element.dateDeReservation)
-
-        if(madate >= this.maintenant){
-          this.courant=true;
-        }else if(madate<this.maintenant){
-          this.boolhist=false;
-        }
-
-      });
-    })
+    return this.srv.afficherLesReservation().subscribe(tab =>tab.forEach(element => {
+        let madate = new Date(element.dateDeRetour);
+      if(madate>=this.maintenant){
+        this.listesReservationsEnCours.push(element);
+      }else{
+        this.listesReservationsTerminee.push(element);
+      }
+    }));
 
   }
 }
