@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, DAYS_OF_WEEK, CalendarDateFormatter } from 'angular-calendar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { addHours, startOfDay, endOfDay } from 'date-fns';
+import { addHours, startOfDay, endOfDay, setHours } from 'date-fns';
 import { Subject, Observable } from 'rxjs';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import { DataService } from '../service/data.service';
 import { ReservationVehicule } from '../reservation-vehicule';
-import { map } from 'rxjs/operators';
+import { map} from 'rxjs/operators';
 registerLocaleData(localeEs);
 
 const colors: any = {
@@ -61,70 +61,36 @@ export class PlanningComponent implements OnInit {
 
 
 
-  events: Observable<CalendarEvent[]>
+  events: Observable<CalendarEvent[]>;
 
-    /*,
-  ;= [
 
-    {
-      title: 'A non all day event',
-      color: colors.blue,
-      start: new Date()
-    },
-    {
-      title: 'Deletable event',
-      color: colors.blue,
-      start: addHours(startOfDay(new Date()), 5),
-      actions: [
-        {
-          label: '<i class="fa fa-fw fa-times"></i>',
-          onClick: ({ event }: { event: CalendarEvent }): void => {
-            this.events = this.events.filter(iEvent => iEvent !== event);
-            console.log('Event deleted', event);
-          }
-        }
-      ]
-    }
-
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-
-  ];
-*/
   constructor(private _serv : DataService, private modal: NgbModal) { }
 
 
   ngOnInit() {
-    this.events = this._serv.afficherLesReservation().pipe(
-      map(listeRes => listeRes.map(res =>{
-        return <CalendarEvent>{
-          start : addHours(startOfDay(res.dateDeReservation.split("T")[0]), Number(res.dateDeReservation.split("T")[1])),
-          end : addHours(startOfDay(res.dateDeRetour.split("T")[0]), Number(res.dateDeRetour.split("T")[1])),
-        };
+
+     this.events = this._serv.afficherLesReservation()
+    .pipe(map(
+
+      listeRes => listeRes.map( res => {
+        if(res. == true){
+          let couleur = colors.blue;
+          console.log(new Date(res.dateDeRetour.split("T")[0]))
+          return <CalendarEvent> {
+            //start: addHours(startOfDay(new Date(res.dateDeReservation)), parseInt(res.dateDeReservation.split("T")[1])+1),
+           //end: addHours(endOfDay(new Date(res.dateDeRetour.split("T")[0])),parseInt(res.dateDeRetour.split("T")[1])+1),
+            start: setHours(new Date(res.dateDeReservation), parseInt(res.dateDeReservation.split("T")[1])+1),
+            end: setHours(new Date(res.dateDeRetour),parseInt(res.dateDeRetour.split("T")[1])+1),
+            title: `${res.dateDeReservation.split("T")[1]}-${res.dateDeRetour.split("T")[1]}`,
+            color: couleur,
+        }
       }
-        ))
-    )
+    })));
+  }
+
+
+  eventClicked({ event }: { event: CalendarEvent }): void {
+    console.log('Event clicked', event);
   }
 
 }
