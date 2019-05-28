@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
-import { CalendarView, CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, DAYS_OF_WEEK, CalendarDateFormatter } from 'angular-calendar';
+import { CalendarView, CalendarEvent, CalendarDateFormatter } from 'angular-calendar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { addHours, startOfDay, endOfDay, setHours } from 'date-fns';
 import { Subject, Observable } from 'rxjs';
@@ -50,11 +50,11 @@ export class PlanningComponent implements OnInit {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
-
   modalData: {
     action: string;
     event: CalendarEvent;
   };
+
 
   refresh: Subject<any> = new Subject();
 
@@ -92,5 +92,4 @@ export class PlanningComponent implements OnInit {
   eventClicked({ event }: { event: CalendarEvent }): void {
     console.log('Event clicked', event);
   }
-
 }
