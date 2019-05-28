@@ -6,7 +6,7 @@
 <!--ici la date de réservation-->
     <div id="dateDeReservation">
       <label for="dateDeReservation" style="margin-left:10px;">Date/heure De Réservation</label>
-      <input type="date" name="dateDeReservation" style="margin-left:10px;"[(ngModel)]="dateDeReservation" required>
+      <input type="date" name="dateDeReservation" style="margin-left:10px;"[(ngModel)]="dateDeReservation" min="2019-05-28" required>
       <label for="heureDeReservation" style="margin-left:10px;" >Heure</label>
       <select name="heureDeReservation" style="margin-left:10px;"  [(ngModel)]="heureDeReservation" required>
         <option *ngFor="let numb of heures">{{numb}}</option>
@@ -19,8 +19,8 @@
 
   <!--ici la date de retour-->
     <div id="dateDeRetour">
-        <label for="dateDeRetour" style="margin-left:10px;">Date/Heure de Retour</label>
-        <input type="date" name="dateDeRetour" style="margin-left:10px;" [(ngModel)]="dateDeRetour" required>
+        <label for="dateDeRetour" style="margin-left:10px;" >Date/Heure de Retour</label>
+        <input type="date" name="dateDeRetour" style="margin-left:10px;" [(ngModel)]="dateDeRetour" min="2019-05-28" required>
         <label for="heureDeRetour" style="margin-left:10px;">Heure</label>
         <select name="heureDeRetour" style="margin-left:10px;" [(ngModel)]="heureDeRetour" required>
           <option *ngFor="let numb of heures">{{numb}}</option>
