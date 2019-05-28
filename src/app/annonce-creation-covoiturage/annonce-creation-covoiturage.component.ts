@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Annonce } from '../models/Annonce';
 import { DataService } from '../service/data.service';
-import { AuthService } from 'gestion-des-transports-front/src/app/auth/auth.service';
-import { Collegue } from 'gestion-des-transports-front/src/app/auth/auth.domains';
+import { AuthService } from '../auth/auth.service';
+import { Collegue } from '../auth/auth.domains';
 
 @Component({
   selector: 'app-annonce-creation-covoiturage',
