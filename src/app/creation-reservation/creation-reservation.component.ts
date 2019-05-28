@@ -23,11 +23,12 @@ minutesDeReservation:string;
 secondes:string="00";
 deuxPoints:string=":";
 zero:string="0";
+avecOuSans:boolean=false;
 
 dateDeRetour:Date = new Date();
 heureDeRetour:string;
 minutesDeretour:string;
-reservation:ReservationVehicule = new ReservationVehicule(undefined, undefined, undefined);
+reservation:ReservationVehicule = new ReservationVehicule(undefined, undefined, undefined, false);
 
 
 
@@ -66,13 +67,17 @@ this._srv.afficherInfo().subscribe(tab=>this.listeVehicules = tab);
 
   }
 
+  avecOuSansChauffeur(){
+    console.log(this.avecOuSans);
+
+  }
 
 
 ajouterReservation(){
   this.reservation = new ReservationVehicule(
      `${this.dateDeReservation}${this.t}${this.heureDeReservation}${this.deuxPoints}${this.minutesDeReservation}${this.deuxPoints}${this.secondes}`,
     `${this.dateDeRetour}${this.t}${this.heureDeRetour}${this.deuxPoints}${this.minutesDeretour}${this.deuxPoints}${this.secondes}`, this.vehiculeAEnvoyer =
-    new Vehicule(this.cur.id, this.cur.marque, this.cur.modele, undefined, this.cur.immatriculation));
+    new Vehicule(this.cur.id, this.cur.marque, this.cur.modele, undefined, this.cur.immatriculation),this.avecOuSans);
 
  return this._srv.reservationAjouter(this.reservation).subscribe(res => { }, err => {}, () => {
   alert('votre réservation a bien été sauvegardée, vous pouvez fermer cette fenêtre!')

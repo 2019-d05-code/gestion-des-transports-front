@@ -22,8 +22,8 @@ import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.dire
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
   { path:'auth', component: AuthComponent},
-  {path:'reserver', component:ReservationComponent},
-  {path:'reservations', component:LireReservationComponent},
+  {path:'collaborateur/reserver', component:ReservationComponent},
+  {path:'collaborateur/reservations', component:LireReservationComponent},
   { path:'admin/vehicules', component: VehiculeGestionComponent},
   {path: 'admin/chauffeur', component: ChauffeurComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
