@@ -2,8 +2,7 @@
 
   <div class="row">
     <div class="col-md-4">
-      <img src="{{vehicule.photoUrl}}"
-        alt="thumbnail" class="img-thumbnail">
+      <img src="{{vehicule.photoUrl}}" alt="thumbnail" class="img-thumbnail">
     </div>
 
     <div class="col-md-2">
@@ -21,28 +20,75 @@
     </div>
 
     <div class="col-md-3">
-      <button *ngIf="reparationTF" mdbBtn type="input" size="md" color="warning" outline="true" (click)="changerStatutReparation()" mdbWavesEffect>Mettre en réparation</button>
-      <button *ngIf="serviceTF" mdbBtn type="input" size="md" color="success" outline="true" (click)="changerStatutService()" mdbWavesEffect>Mettre en service</button>
-      <button *ngIf="hsTF" mdbBtn type="input" size="md" color="danger" outline="true" (click)="changerStatutHS()" mdbWavesEffect>Hors Service</button>
+      <button *ngIf="reparationTF" mdbBtn type="input" size="md" color="warning" outline="true"
+        (click)="changerStatutReparation()" mdbWavesEffect>Mettre en réparation</button>
+      <button *ngIf="serviceTF" mdbBtn type="input" size="md" color="success" outline="true"
+        (click)="changerStatutService()" mdbWavesEffect>Mettre en service</button>
+      <button *ngIf="hsTF" mdbBtn type="input" size="md" color="danger" outline="true" (click)="changerStatutHS()"
+        mdbWavesEffect>Hors Service</button>
     </div>
   </div>
 
 </div>
 <br />
 <div style="text-align:right">
-    <a routerLink="../" type="button" mdbBtn gradient="blue" rounded="true" mdbWavesEffect>Retourner à la liste de véhicules</a>
-  </div>
+  <a routerLink="../" type="button" mdbBtn gradient="blue" rounded="true" mdbWavesEffect>Retourner à la liste de
+    véhicules</a>
+</div>
+<br /><br />
 
 <div class="container">
 
   <h4>Réservation en cours</h4>
-  {{listeReservationEnCours}}
+  <table mdbTable striped="true">
+    <thead class="mdb-color lighten-2 white-text">
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let reservation of listeReservationEnCours">
+        <td>{{reservation.dateDeReservation}}</td>
+        <td>{{reservation.dateDeRetour}}</td>
+        <td>UNKNOWN</td>
+      </tr>
+    </tbody>
+  </table>
 
+  <br />
   <h4>Réservations à venir</h4>
-  {{listeReservationAVenir}}
-  <!-- TODO: afficher la liste des réservations à venir -->
+  <table mdbTable striped="true">
+    <thead class="mdb-color lighten-2 white-text">
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let reservation of listeReservationAVenir">
+        <td>{{reservation.dateDeReservation}}</td>
+        <td>{{reservation.dateDeRetour}}</td>
+        <td>UNKNOWN</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
   <h4>Historique des réservations</h4>
-  {{listeReservationHistorique}}
-  <!-- TODO: afficher l'historique des réservations-->
+  <table mdbTable striped="true">
+    <thead class="mdb-color lighten-2 white-text">
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let reservation of listeReservationHistorique">
+        <td>{{reservation.dateDeReservation}}</td>
+        <td>{{reservation.dateDeRetour}}</td>
+        <td>UNKNOWN</td>
+      </tr>
+    </tbody>
+  </table>
+
+  {{erreurMsgResa}}
 
 </div>
