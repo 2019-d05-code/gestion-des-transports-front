@@ -5,6 +5,8 @@ import { ReservationVehicule } from '../reservation-vehicule';
 import { StatutVehiculeEnum } from '../enum/statut-vehicule-enum.enum';
 import { Vehicule } from '../models/vehicule';
 
+
+
 @Component({
   selector: 'app-creation-reservation',
   templateUrl: './creation-reservation.component.html',
@@ -30,8 +32,6 @@ dateDeRetour:Date = new Date();
 heureDeRetour:string;
 minutesDeretour:string;
 reservation:ReservationVehicule = new ReservationVehicule(undefined, undefined, undefined, false);
-
-
 cur = new InfoVehicule(undefined,undefined,undefined,undefined,undefined,undefined, undefined, undefined );
 listeVehicules:InfoVehicule[];
 
@@ -42,43 +42,41 @@ enService:StatutVehiculeEnum[] = new Array();
   ngOnInit() {
 
 
-  for (let i = 0; i < 24 ; i++) {
-    let nbrArajouter;
-    if(i<=9){
-      nbrArajouter = "0"+i
-    }else{
-      nbrArajouter = i
+    for (let i = 0; i < 24; i++) {
+      let nbrArajouter;
+      if (i <= 9) {
+        nbrArajouter = "0" + i
+      } else {
+        nbrArajouter = i
+      }
+      this.heures.push(nbrArajouter);
     }
-    this.heures.push(nbrArajouter);
-  }
 
-  for(let i=0; i<60; i++){
+    for (let i = 0; i < 60; i++) {
 
-   let nbrArajouter;
-    if(i<=9){
-      nbrArajouter = "0"+i
-    }else{
-      nbrArajouter = i
+      let nbrArajouter;
+      if (i <= 9) {
+        nbrArajouter = "0" + i
+      } else {
+        nbrArajouter = i
+      }
+      this.minutes.push(nbrArajouter);
     }
-    this.minutes.push(nbrArajouter);
-  }
 
 this._srv.afficherInfo().subscribe(tab=>{this.listeVehicules = tab
-
-  tab.forEach(el=>{
- })
-
 },err => {}, () => {
 
 
 });
 
   }
-
-  avecOuSansChauffeur(){
-    console.log(this.avecOuSans);
-
-  }
+  testStatut(voiture: InfoVehicule): Boolean {
+    if (voiture.statutVehicule == StatutVehiculeEnum.EN_REPARATION || voiture.statutVehicule == StatutVehiculeEnum.HORS_SERVICE) {
+      return true;
+    } else {
+      return false;
+    }
+}
 
 
 ajouterReservation(){

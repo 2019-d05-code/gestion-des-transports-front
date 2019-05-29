@@ -6,5 +6,7 @@ export class ReservationVehicule {
   constructor(
     public dateDeReservation: string,
     public dateDeRetour: string,
-    public uneVoiture: Vehicule) { }
+    public uneVoiture: Vehicule
+    ) { }
+
 }

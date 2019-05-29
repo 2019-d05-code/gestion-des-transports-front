@@ -46,7 +46,7 @@
                <p>{{uneVoiture.marque}}</p>
                <p>{{uneVoiture.modele}}</p>
               <p>{{uneVoiture.categorie}}</p>
-              <p style="color:red">{{uneVoiture.statutVehicule}}</p>
+              <p *ngIf="testStatut(uneVoiture)" class="border border-danger"><b class="red-text">INDISPONIBLE</b></p>
 <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="cur=uneVoiture;basicModal.show()" [disabled]="uneVoiture.statutVehicule === 'Hors-service'||uneVoiture.statutVehicule ==='En Reparation'" mdbWavesEffect>Réserver</button>
               </div>
        </mdb-carousel-item>
