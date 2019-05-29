@@ -1,5 +1,6 @@
 import { StatutVehiculeEnum } from './enum/statut-vehicule-enum.enum';
 
+
 export class Vehicule {
   constructor (
     public marque: string,
