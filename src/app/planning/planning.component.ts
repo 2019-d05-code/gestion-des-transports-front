@@ -50,19 +50,9 @@ export class PlanningComponent implements OnInit {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
-  modalData: {
-    action: string;
-    event: CalendarEvent;
-  };
-
 
   refresh: Subject<any> = new Subject();
-
-
-
-
   events: Observable<CalendarEvent[]>;
-
 
   constructor(private _serv : DataService, private modal: NgbModal) { }
 
@@ -81,15 +71,15 @@ export class PlanningComponent implements OnInit {
            //end: addHours(endOfDay(new Date(res.dateDeRetour.split("T")[0])),parseInt(res.dateDeRetour.split("T")[1])+1),
             start: setHours(new Date(res.dateDeReservation), parseInt(res.dateDeReservation.split("T")[1])+1),
             end: setHours(new Date(res.dateDeRetour),parseInt(res.dateDeRetour.split("T")[1])+1),
-            title: `${res.dateDeReservation.split("T")[1]}-${res.dateDeRetour.split("T")[1]}`,
-            color: couleur,
+            title: `${res.dateDeReservation.split("T")[1]}-${res.dateDeRetour.split("T")[1]}`
         }
       }
     })));
   }
 
-
+/*
   eventClicked({ event }: { event: CalendarEvent }): void {
     console.log('Event clicked', event);
   }
+  */
 }
