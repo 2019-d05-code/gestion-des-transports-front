@@ -4,6 +4,7 @@ import { InfoVehicule } from '../info-vehicule';
 import { ReservationVehicule } from '../reservation-vehicule';
 import { StatutVehiculeEnum } from '../enum/statut-vehicule-enum.enum';
 import { Vehicule } from '../models/vehicule';
+import { format } from 'date-fns';
 
 
 
@@ -28,6 +29,8 @@ deuxPoints:string=":";
 zero:string="0";
 avecOuSans:boolean=false;
 
+maintenant:Date= new Date(Date.now());
+aujourdhui:string= format(this.maintenant,"YYYY-MM-DD");
 dateDeRetour:Date = new Date();
 heureDeRetour:string;
 minutesDeretour:string;
