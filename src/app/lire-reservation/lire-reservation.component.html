@@ -15,9 +15,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr mdbTableCol *ngFor="let res of listesReservationsEnCours |filter:filter| paginate: { itemsPerPage: 3, currentPage: p1}">
-          <th scope="row">{{res.dateDeReservation | date:'M/d/yy, h:mm '}}</th>
-          <th scope="row">{{res.dateDeRetour | date:'M/d/yy, h:mm '}}</th>
+        <tr mdbTableCol *ngFor="let res of listesReservationsEnCours">
+          <th scope="row">{{res.dateDeReservation | date:'d/M/yy, h:mm '}}</th>
+          <th scope="row">{{res.dateDeRetour | date:'d/M/yy, h:mm '}}</th>
           <th scope="row">{{res.uneVoiture.immatriculation}}</th>
           <th scope="row">{{res.uneVoiture.marque}}</th>
           <th scope="row">{{res.uneVoiture.modele}}</th>
@@ -28,11 +28,6 @@
         </tr>
       </tbody>
     </table>
-    <div id="pages">
-    <ul class="pagination">
-        <pagination-controls (pageChange)="p1 = $event"  previousLabel="Précédentes" nextLabel="Suivantes"></pagination-controls>
-    </ul>
-  </div>
     <h2>Réservations terminées</h2>
     <table mdbTable>
         <thead>
@@ -47,8 +42,8 @@
         </thead>
         <tbody>
           <tr mdbTableCol *ngFor="let res of listesReservationsTerminee |filter:filter| paginate: { itemsPerPage: 3, currentPage: p}">
-            <th scope="row">{{res.dateDeReservation | date:'M/d/yy, h:mm '}}</th>
-            <th scope="row">{{res.dateDeRetour | date:'M/d/yy, h:mm '}}</th>
+            <th scope="row">{{res.dateDeReservation | date:'d/M/yy, h:mm '}}</th>
+            <th scope="row">{{res.dateDeRetour | date:'d/M/yy, h:mm '}}</th>
             <th scope="row">{{res.uneVoiture.immatriculation}}</th>
             <th scope="row">{{res.uneVoiture.marque}}</th>
             <th scope="row">{{res.uneVoiture.modele}}</th>
