@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -7,10 +8,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TechComponent } from './tech/tech.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthComponent } from './auth/auth.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DateValidatorDirective } from './validators/date-validator';
-import {StatutConnecteService} from "./auth/statut-connecte.service";
-import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { StatutConnecteService } from "./auth/statut-connecte.service";
+import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { ReservationComponent } from './reservation/reservation.component';
 import { CreationReservationComponent } from './creation-reservation/creation-reservation.component';
 import { ImmatriculationValidatorDirective } from './validator/immatriculation-validator.directive';
@@ -25,20 +26,20 @@ import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
 
-  { path:'auth', component: AuthComponent},
+  { path: 'auth', component: AuthComponent },
 
-  { path: '', redirectTo: '/tech', pathMatch: 'full'},
+  { path: '', redirectTo: '/tech', pathMatch: 'full' },
   {
     path: '',
-    canActivate:[StatutConnecteService],
+    canActivate: [StatutConnecteService],
     children: [
-      { path:'tech', component: TechComponent }, // /tech accessible uniquement si connecté
-      { path:'collaborateur/reserver', component:ReservationComponent },
-      { path:'collaborateur/reservations', component:LireReservationComponent },
+      { path: 'tech', component: TechComponent }, // /tech accessible uniquement si connecté
+      { path: 'collaborateur/reserver', component: ReservationComponent },
+      { path: 'collaborateur/reservations', component: LireReservationComponent },
       { path: 'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent },
-      { path:'admin/vehicules', component: VehiculeGestionComponent },
+      { path: 'admin/vehicules', component: VehiculeGestionComponent },
       { path: 'admin/chauffeur', component: ChauffeurComponent },
-      { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent},
+      { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent }
     ]
   }
 
