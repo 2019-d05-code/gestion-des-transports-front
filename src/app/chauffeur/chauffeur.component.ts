@@ -4,7 +4,7 @@ import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-chauffeur',
-  templateUrl: './chauffeur.components.html',
+  templateUrl: './chauffeur.component.html',
   styles: []
 })
 export class ChauffeurComponent implements OnInit {

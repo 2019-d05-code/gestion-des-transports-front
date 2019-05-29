@@ -5,6 +5,7 @@ import { ReservationVehicule } from '../models/reservation-vehicule';
 import { Vehicule } from '../models/vehicule';
 import { StatutVehiculeEnum } from '../enum/statut-vehicule-enum.enum';
 
+
 @Component({
   selector: 'app-creation-reservation',
   templateUrl: './creation-reservation.component.html',
@@ -31,13 +32,10 @@ export class CreationReservationComponent implements OnInit {
   minutesDeretour: string;
   reservation: ReservationVehicule = new ReservationVehicule(undefined, undefined, undefined);
 
-
-
   cur = new InfoVehicule(undefined, '', '', undefined, '', '', undefined, undefined);
   listeVehicules: InfoVehicule[];
 
   vehiculeAEnvoyer: Vehicule = new Vehicule('', '', undefined, '', '', undefined, undefined, undefined);
-
 
 
   ngOnInit() {
@@ -69,10 +67,10 @@ export class CreationReservationComponent implements OnInit {
   }
 
   testStatut(voiture: InfoVehicule): Boolean {
-    if(voiture.statutVehicule == StatutVehiculeEnum.EN_REPARATION || voiture.statutVehicule == StatutVehiculeEnum.HORS_SERVICE) {
+    if (voiture.statutVehicule == StatutVehiculeEnum.EN_REPARATION || voiture.statutVehicule == StatutVehiculeEnum.HORS_SERVICE) {
       return true;
-    }else{
-       return false;
+    } else {
+      return false;
     }
   }
 
@@ -88,9 +86,8 @@ export class CreationReservationComponent implements OnInit {
       res => { },
       err => this.erreurMsg = err,
       () => {
-      alert('Votre réservation a bien été sauvegardée, vous pouvez fermer cette fenêtre!')
-    })
+        alert('Votre réservation a bien été sauvegardée, vous pouvez fermer cette fenêtre!')
+      })
   }
-
 
 }
