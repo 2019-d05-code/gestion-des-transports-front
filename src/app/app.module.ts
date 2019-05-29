@@ -19,7 +19,7 @@ import { CycleVieVehiculeComponent } from './vehicule-gestion/cycle-vie-vehicule
 import { LireReservationComponent } from './lire-reservation/lire-reservation.component';
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
-import { MenuComponent } from './menuCollaborateur/menuCollaborateur.component';
+import { MenuCollaborateurComponent } from './menuCollaborateur/menuCollaborateur.component';
 
 const routes: Routes = [
 
@@ -56,7 +56,7 @@ const routes: Routes = [
     ImmatriculationValidatorDirective,
     ChauffeurComponent,
     FilterPipe,
-    MenuComponent,
+    MenuCollaborateurComponent,
     CycleVieVehiculeComponent
 
 
