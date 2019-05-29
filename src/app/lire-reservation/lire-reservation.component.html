@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr mdbTableCol *ngFor="let res of listesReservationsTerminee | paginate: { itemsPerPage: 3, currentPage: p}">
+          <tr mdbTableCol *ngFor="let res of listesReservationsTerminee | paginate: { itemsPerPage: 3, currentPage: p }">
             <th scope="row">{{res.dateDeReservation | date:'d/M/yy, h:mm '}}</th>
             <th scope="row">{{res.dateDeRetour | date:'d/M/yy, h:mm '}}</th>
             <th scope="row">{{res.uneVoiture.immatriculation}}</th>
@@ -50,10 +50,11 @@
             <th scope="row" *ngIf="res.unChauffeur">{{res.unChauffeur.nom }}</th>
             <th scope="row" *ngIf="!res.avecOuSansChauffeur"></th>
           </tr>
-        </tbody>
-      </table>
-      <div id="pages">
-      <ul class="pagination">
+          <div id="pages">
+        <ul class="pagination">
           <pagination-controls (pageChange)="p = $event" previousLabel="Précédentes" nextLabel="Suivantes"></pagination-controls>
-      </ul>
-    </div>
+         </ul>
+         </div>
+    </tbody>
+      </table>
+
