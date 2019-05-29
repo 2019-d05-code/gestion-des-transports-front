@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { InfoVehicule } from '../info-vehicule';
+import { InfoVehicule } from '../models/info-vehicule';
 import { HttpClient } from '@angular/common/http';
 
-import { ReservationVehicule } from '../reservation-vehicule';
+import { ReservationVehicule } from '../models/reservation-vehicule';
 
 import { Subject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -11,6 +11,7 @@ import { Chauffeur } from '../models/Chauffeur';
 import { tap } from 'rxjs/operators';
 import { StatutVehicule } from '../models/statut-vehicule';
 import { Reservation } from '../models/reservation';
+import { Annonce } from '../models/Annonce';
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +73,12 @@ export class DataService {
   //permet de récupérer l'ensemble des réservations se trouvant en base
   afficherLesReservation(): Observable<ReservationVehicule[]> {
     return this._http.get<ReservationVehicule[]>(`${this.url_back}${this.reservationUrls}`, { "withCredentials": true })
+  }
+
+  public creerAnnonce(annonce: Annonce): Observable<Annonce> {
+    return this._http.post<Annonce>(`${environment.baseUrl}annonce/creer`, annonce, {
+      withCredentials: true
+    });
   }
 
 }
