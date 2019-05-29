@@ -35,6 +35,7 @@ const routes: Routes = [
       { path:'tech', component: TechComponent }, // /tech accessible uniquement si connecté
       { path:'collaborateur/reserver', component:ReservationComponent },
       { path:'collaborateur/reservations', component:LireReservationComponent },
+      { path: 'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent },
       { path:'admin/vehicules', component: VehiculeGestionComponent },
       { path: 'admin/chauffeur', component: ChauffeurComponent },
       { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent},
@@ -42,7 +43,6 @@ const routes: Routes = [
   }
 
 ];
-
 
 @NgModule({
   declarations: [
