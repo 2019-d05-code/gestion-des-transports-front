@@ -26,13 +26,21 @@ import { MenuComponent } from './menu/menu.component';
 const routes: Routes = [
 
   { path:'auth', component: AuthComponent},
-  { path:'collaborateur/reserver', component:ReservationComponent},
-  { path:'collaborateur/reservations', component:LireReservationComponent},
-  { path: 'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent },
-  { path:'admin/vehicules', component: VehiculeGestionComponent},
-  { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent},
-  { path: 'admin/chauffeur', component: ChauffeurComponent},
-  { path: '', redirectTo: '/tech', pathMatch: 'full'}
+
+  { path: '', redirectTo: '/tech', pathMatch: 'full'},
+  {
+    path: '',
+    canActivate:[StatutConnecteService],
+    children: [
+      { path:'tech', component: TechComponent }, // /tech accessible uniquement si connecté
+      { path:'collaborateur/reserver', component:ReservationComponent },
+      { path:'collaborateur/reservations', component:LireReservationComponent },
+      { path:'admin/vehicules', component: VehiculeGestionComponent },
+      { path: 'admin/chauffeur', component: ChauffeurComponent },
+      { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent},
+    ]
+  }
+
 ];
 
 
