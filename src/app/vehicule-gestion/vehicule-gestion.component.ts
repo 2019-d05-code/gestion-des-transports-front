@@ -11,7 +11,7 @@ export class VehiculeGestionComponent implements OnInit {
 
   listeV: Vehicule[] = [];
   listeVFiltree: Vehicule[] = [];
-  vehiculeTmp: Vehicule = new Vehicule('','',[],'','',undefined);
+  vehiculeTmp: Vehicule = new Vehicule('','',[],'','',undefined, undefined);
   msgErreur: string;
   msgErreurSaveVehicule: string;
   filtre: string;

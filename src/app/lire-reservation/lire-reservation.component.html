@@ -1,63 +1,54 @@
-<h1 class="display-4">Espace visualisation</h1>
-<p class="lead">visualiser vos réservations, visualiser vos covoiturage,...</p>
-<button type="button" mdbBtn color="primary" routerLink="/collaborateur/reserver" mdbWavesEffect>Réserver un transport</button>
-<mdb-navbar SideClass="navbar navbar-1 navbar-light amber lighten-2" [containerInside]="false">
-  <mdb-navbar-brand>
-    <a class="navbar-brand" href="#">Menu</a>
-  </mdb-navbar-brand>
-  <links>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link waves-light" mdbWavesEffect>Covoiturage
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Véhicules de société </a>
-      </li>
-      <li class="nav-item">
-        <!-- seulement lorsqu'on clique sur le bouton réserver on affichera la composant création-reservation-->
-        <a class="nav-link waves-light" mdbWavesEffect (click)="montrerLesreservations()"> Voir vos réservations en cours</a>
-      </li>
-    </ul>
-  </links>
-</mdb-navbar>
-<div *ngIf="showed==true">
-    <table >
-      <thead>Mes Réservations en cours </thead>
-      <th>Date de réservation </th>
-      <th>Date de retour </th>
-      <th>Immatriculation de la voiture </th>
-      <th>Modèle de la voiture </th>
-      <th>Marque de la voiture </th>
-      <th>Chauffeur</th>
-      <tr *ngFor="let res of listesReservationsEnCours">
-        <td >{{res.dateDeReservation}}</td>
-        <td >{{res.dateDeRetour}}</td>
-        <td >{{res.uneVoiture.immatriculation}}</td>
-        <td >{{res.uneVoiture.modele}}</td>
-        <td >{{res.uneVoiture.marque}}</td>
-        <td *ngIf="res.unChauffeur">{{res.unChauffeur.nom }}</td>
-        <td *ngIf="res.avecOuSansChauffeur && !res.unChauffeur">en attente</td>
-        <td *ngIf="!res.avecOuSansChauffeur"></td>
-      </tr>
+<div id="tete">
+<h1>Vos réservations </h1>
+<button type="button" mdbBtn color="primary" routerLink="/collaborateur/reservations/creer" mdbWavesEffect>Réserver un transport</button>
+</div>
+<h2>Réservations en cours</h2>
+  <table mdbTable>
+      <thead>
+        <tr>
+          <th scope="col">Date de réservation</th>
+          <th scope="col">Date de retour</th>
+          <th scope="col">Immatriculation de la voiture</th>
+          <th scope="col">Marque de la voiture</th>
+          <th scope="col">Modèle de la voiture</th>
+          <th scope="col">Chauffeur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let res of listesReservationsEnCours">
+          <th scope="row">{{res.dateDeReservation | date:'M/d/yy, h:mm '}}</th>
+          <th scope="row">{{res.dateDeRetour | date:'M/d/yy, h:mm '}}</th>
+          <th scope="row">{{res.uneVoiture.immatriculation}}</th>
+          <th scope="row">{{res.uneVoiture.marque}}</th>
+          <th scope="row">{{res.uneVoiture.modele}}</th>
+          <th scope="row" *ngIf="res.unChauffeur">{{res.unChauffeur.nom }}</th>
+          <th scope="row" *ngIf="res.avecOuSansChauffeur && !res.unChauffeur">En attente</th>
+          <th scope="row" *ngIf="!res.avecOuSansChauffeur"></th>
+
+        </tr>
+      </tbody>
     </table>
-    <table>
-    <thead>Mes Réservations Terminées</thead>
-    <th>Date de réservation </th>
-      <th>Date de retour </th>
-      <th>Immatriculation de la voiture</th>
-      <th>Modèle de la voiture </th>
-      <th>Marque de la voiture </th>
-      <th>Chauffeur </th>
-      <tr *ngFor="let res of listesReservationsTerminee" >
-        <td >{{res.dateDeReservation}} </td>
-        <td >{{res.dateDeRetour}}</td>
-        <td >{{res.uneVoiture.immatriculation}}</td>
-        <td >{{res.uneVoiture.modele}}</td>
-        <td >{{res.uneVoiture.marque}}</td>
-        <td *ngIf="res.unChauffeur">{{res.unChauffeur.nom }}</td>
-        <td *ngIf="!res.avecOuSansChauffeur"></td>
-      </tr>
-    </table>
-  </div>
+    <h2>Réservations terminées</h2>
+    <table mdbTable>
+        <thead>
+          <tr>
+            <th scope="col">Date de réservation</th>
+            <th scope="col">Date de retour</th>
+            <th scope="col">Immatriculation de la voiture</th>
+            <th scope="col">Marque de la voiture</th>
+            <th scope="col">Modèle de la voiture</th>
+            <th scope="col">Chauffeur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr mdbTableCol *ngFor="let res of listesReservationsTerminee">
+            <th scope="row">{{res.dateDeReservation | date:'M/d/yy, h:mm '}}</th>
+            <th scope="row">{{res.dateDeRetour | date:'M/d/yy, h:mm '}}</th>
+            <th scope="row">{{res.uneVoiture.immatriculation}}</th>
+            <th scope="row">{{res.uneVoiture.marque}}</th>
+            <th scope="row">{{res.uneVoiture.modele}}</th>
+            <th scope="row" *ngIf="res.unChauffeur">{{res.unChauffeur.nom }}</th>
+            <th scope="row" *ngIf="!res.avecOuSansChauffeur"></th>
+          </tr>
+        </tbody>
+      </table>

@@ -25,15 +25,7 @@ export class LireReservationComponent implements OnInit {
 
   ngOnInit() {
 
-
-
-  }
-
-
-  montrerLesreservations(){
-    this.showed=true;
-
-    return this.srv.afficherLesReservation().subscribe(tab =>tab.forEach(element => {
+ this.srv.afficherLesReservation().subscribe(tab =>tab.forEach(element => {
         let madate = new Date(element.dateDeRetour);
       if(madate>=this.maintenant){
         this.listesReservationsEnCours.push(element);
@@ -43,4 +35,6 @@ export class LireReservationComponent implements OnInit {
     }));
 
   }
+
+
 }

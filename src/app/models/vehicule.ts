@@ -1,3 +1,5 @@
+import { StatutVehiculeEnum } from '../enum/statut-vehicule-enum.enum';
+
 export class Vehicule {
 
   constructor (
@@ -6,7 +8,9 @@ export class Vehicule {
     public categorie: string[],
     public immatriculation: string,
     public photoUrl: string,
-    public nbPlaces: number
+    public nbPlaces: number,
+    public statutVehicule: StatutVehiculeEnum,
+    public id?: number
   ) {}
 
 }

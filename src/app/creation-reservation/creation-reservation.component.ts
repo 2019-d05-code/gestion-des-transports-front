@@ -3,6 +3,7 @@ import { DataService } from '../service/data.service';
 import { InfoVehicule } from '../info-vehicule';
 import { ReservationVehicule } from '../reservation-vehicule';
 import { Vehicule } from '../vehicule';
+import { StatutVehiculeEnum } from '../enum/statut-vehicule-enum.enum';
 
 @Component({
   selector: 'app-creation-reservation',
@@ -31,12 +32,11 @@ minutesDeretour:string;
 reservation:ReservationVehicule = new ReservationVehicule(undefined, undefined, undefined, false);
 
 
-
-cur = new InfoVehicule(undefined,undefined,undefined,undefined,undefined,undefined, undefined);
+cur = new InfoVehicule(undefined,undefined,undefined,undefined,undefined,undefined, undefined, undefined );
 listeVehicules:InfoVehicule[];
 
-vehiculeAEnvoyer:Vehicule = new Vehicule(undefined,undefined, undefined, undefined, undefined, undefined);
-
+vehiculeAEnvoyer:Vehicule = new Vehicule(undefined,undefined, undefined,undefined,undefined, undefined, undefined);
+enService:StatutVehiculeEnum[] = new Array();
 
 
   ngOnInit() {
@@ -63,7 +63,15 @@ vehiculeAEnvoyer:Vehicule = new Vehicule(undefined,undefined, undefined, undefin
     this.minutes.push(nbrArajouter);
   }
 
-this._srv.afficherInfo().subscribe(tab=>this.listeVehicules = tab);
+this._srv.afficherInfo().subscribe(tab=>{this.listeVehicules = tab
+
+  tab.forEach(el=>{
+ })
+
+},err => {}, () => {
+
+
+});
 
   }
 
@@ -77,10 +85,9 @@ ajouterReservation(){
   this.reservation = new ReservationVehicule(
      `${this.dateDeReservation}${this.t}${this.heureDeReservation}${this.deuxPoints}${this.minutesDeReservation}${this.deuxPoints}${this.secondes}`,
     `${this.dateDeRetour}${this.t}${this.heureDeRetour}${this.deuxPoints}${this.minutesDeretour}${this.deuxPoints}${this.secondes}`, this.vehiculeAEnvoyer =
-    new Vehicule(this.cur.id, this.cur.marque, this.cur.modele, undefined, this.cur.immatriculation),this.avecOuSans);
+    new Vehicule(this.cur.marque, this.cur.modele,this.cur.immatriculation, this.cur.photoUrl,undefined, this.cur.statutVehicule,this.cur.id),this.avecOuSans);
 
  return this._srv.reservationAjouter(this.reservation).subscribe(res => { }, err => {}, () => {
-  alert('votre réservation a bien été sauvegardée, vous pouvez fermer cette fenêtre!')
 })
 }
 

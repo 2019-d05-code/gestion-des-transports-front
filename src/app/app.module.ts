@@ -22,7 +22,7 @@ import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.dire
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
   { path:'auth', component: AuthComponent},
-  {path:'collaborateur/reserver', component:ReservationComponent},
+  {path:'collaborateur/reservations/creer', component:ReservationComponent},
   {path:'collaborateur/reservations', component:LireReservationComponent},
   { path:'admin/vehicules', component: VehiculeGestionComponent},
   {path: 'admin/chauffeur', component: ChauffeurComponent},
@@ -53,7 +53,8 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+
 
   ],
   providers: [{

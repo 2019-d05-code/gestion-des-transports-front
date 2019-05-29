@@ -1,17 +1,20 @@
- <!-- Default unchecked -->
-          <div class="custom-control custom-checkbox">
+ <!--retour vers la liste des reservations-->
+ <a routerLink="/collaborateur/reservations">Retour à la liste</a>
+
+ <h1 id="titre">Créer une réservation</h1>
+      <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input"  [(ngModel)]="avecOuSans" (change)="avecOuSans" id="defaultUnchecked">
             <label class="custom-control-label" for="defaultUnchecked">Avec Chauffeur </label>
-          </div>
+      </div>
 <!--ici la date de réservation-->
     <div id="dateDeReservation">
       <label for="dateDeReservation" style="margin-left:10px;">Date/heure De Réservation</label>
       <input type="date" name="dateDeReservation" style="margin-left:10px;"[(ngModel)]="dateDeReservation" min="2019-05-28" required>
-      <label for="heureDeReservation" style="margin-left:10px;" >Heure</label>
+      <label for="heureDeReservation" style="margin-left:10px;" ><i class="fas fa-calendar-alt"></i></label>
       <select name="heureDeReservation" style="margin-left:10px;"  [(ngModel)]="heureDeReservation" required>
         <option *ngFor="let numb of heures">{{numb}}</option>
       </select>
-      <label for="minutesDeReservation" style="margin-left:10px;">Minutes</label>
+      <label for="minutesDeReservation" style="margin-left:10px;">h</label>
       <select style="margin-left:10px;"  name="minutesDeReservation" [(ngModel)]="minutesDeReservation" required>
         <option *ngFor="let min of minutes">{{min}}</option>
       </select>
@@ -21,11 +24,11 @@
     <div id="dateDeRetour">
         <label for="dateDeRetour" style="margin-left:10px;" >Date/Heure de Retour</label>
         <input type="date" name="dateDeRetour" style="margin-left:10px;" [(ngModel)]="dateDeRetour" min="2019-05-28" required>
-        <label for="heureDeRetour" style="margin-left:10px;">Heure</label>
+        <label for="heureDeRetour" style="margin-left:10px;"><i class="fas fa-calendar-alt"></i></label>
         <select name="heureDeRetour" style="margin-left:10px;" [(ngModel)]="heureDeRetour" required>
           <option *ngFor="let numb of heures">{{numb}}</option>
         </select>
-        <label for="minutesDeretour" style="margin-left:10px;">Minutes</label>
+        <label for="minutesDeretour" style="margin-left:10px;">h</label>
         <select style="margin-left:10px;" [(ngModel)]="minutesDeretour" required>
           <option *ngFor="let min of minutes">{{min}}</option>
         </select>
@@ -43,7 +46,8 @@
                <p>{{uneVoiture.marque}}</p>
                <p>{{uneVoiture.modele}}</p>
               <p>{{uneVoiture.categorie}}</p>
-              <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="cur=uneVoiture;basicModal.show()" mdbWavesEffect>Réserver</button>
+              <p style="color:red">{{uneVoiture.statutVehicule}}</p>
+<button type="button" mdbBtn color="primary" class="relative waves-light" (click)="cur=uneVoiture;basicModal.show()" [disabled]="uneVoiture.statutVehicule === 'Hors-service'||uneVoiture.statutVehicule ==='En Reparation'" mdbWavesEffect>Réserver</button>
               </div>
        </mdb-carousel-item>
        </mdb-carousel>
@@ -58,16 +62,17 @@
               <h4 class="modal-title w-100" id="myModalLabel">Confirmation de réservation </h4>
             </div>
             <div class="modal-body">
-              <p>Date de réservation : {{dateDeReservation}}</p>
-              <p>Date de retour : {{dateDeRetour}}</p>
+              <p>Date de réservation : {{dateDeReservation | date:'dd/MM/yyyy'}}</p>
+              <p>Date de retour : {{dateDeRetour | date:'dd/MM/yyyy'}}</p>
               <p>Immatriculation : {{cur.immatriculation}}</p>
               <p>Marque : {{cur.marque}}</p>
               <p>Modèle : {{cur.modele}}</p>
             </div>
             <div class="modal-footer">
               <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
-              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ajouterReservation()">Confirmer</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ajouterReservation();basicModal.hide()">Confirmer</button>
             </div>
           </div>
         </div>
       </div>
+
