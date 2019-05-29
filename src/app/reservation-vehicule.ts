@@ -1,5 +1,6 @@
-import { Vehicule } from './vehicule';
+
 import { Chauffeur } from './models/Chauffeur';
+import { Vehicule } from './models/vehicule';
 
 
 export class ReservationVehicule {

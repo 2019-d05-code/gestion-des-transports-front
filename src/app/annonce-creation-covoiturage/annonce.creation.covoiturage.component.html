@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <mdb-card>
+        <mdb-card-header>Itinéraire</mdb-card-header>
+        <mdb-card-body>
+          <form>
+            <div class="form-group row">
+              <label for="adressDepart" class="offset-1 col-2 col-form-label" required>Adresse de départ *</label>
+              <div class="col-7">
+                <input mdbInput type="text" class="form-control" id="adressDepart" name="depart"
+                  [(ngModel)]="annonce.adressDepart" #adressDepartFC="ngModel" required>
+                <p class="col-12 text-danger" *ngIf="adressDepartFC.invalid && adressDepartFC.touched">Ce champ est
+                  invalide</p>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="adressArrivee" class="offset-1 col-2 col-form-label">Adresse d'arrivée *</label>
+              <div class="col-7">
+                <input mdbInput type="adressArrivee" class="form-control" id="adressArrivee" name="arrivee"
+                  [(ngModel)]="annonce.adressArrivee" #adressArriveeFC="ngModel" required>
+                <p class="col-12 text-danger" *ngIf="adressArriveeFC.invalid && adressArriveeFC.touched">Ce champ est
+                  invalide</p>
+              </div>
+            </div>
+          </form>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-12">
+      <mdb-card>
+        <mdb-card-header>Véhicule</mdb-card-header>
+        <mdb-card-body>
+          <form>
+            <div class="form-group row">
+              <label for="immatriculation" class="offset-1 col-2 col-form-label">Immatriculation *</label>
+              <div class="col-7">
+                <input mdbInput type="text" class="form-control" id="immatriculation" name="immatriculation"
+                  [(ngModel)]="annonce.immatriculationVehicule" #immatriculationFC="ngModel" required>
+                <p class="col-12 text-danger" *ngIf="immatriculationFC.invalid && immatriculationFC.touched">Ce champ
+                  est
+                  invalide</p>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="marque" class="offset-1 col-2 col-form-label">Marque *</label>
+              <div class="col-7">
+                <input mdbInput type="text" class="form-control" id="marque" name="marque" [(ngModel)]="annonce.marque"
+                  #marqueFC="ngModel" required>
+                <p class="col-12 text-danger" *ngIf="marqueFC.invalid && marqueFC.touched">Ce champ est
+                  invalide</p>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="modele" class="offset-1 col-2 col-form-label">Modèle *</label>
+              <div class="col-7">
+                <input mdbInput type="text" class="form-control" id="modele" name="modele" [(ngModel)]="annonce.modele"
+                  #modeleFC="ngModel" required>
+                <p class="col-12 text-danger" *ngIf="modeleFC.invalid && modeleFC.touched">Ce champ est
+                  invalide</p>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="place" class="offset-1 col-2 col-form-label">Place *</label>
+              <div class="col-1">
+                <input mdbInput type="number" class="form-control" id="place" name="place" min="1"
+                  [(ngModel)]="annonce.place" #placeFC="ngModel" required>
+              </div>
+              <div class="row">
+                <p class="col-12 text-danger" *ngIf="placeFC.invalid && placeFC.touched">Vous devez indiquer au moins 1 place disponible</p>
+              </div>
+            </div>
+          </form>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-12">
+      <mdb-card>
+        <mdb-card-header>Date et Horaires</mdb-card-header>
+        <mdb-card-body>
+          <form class="form-inline">
+            <div class="offset-2"></div>
+            <div class="col-2">
+              <label class="petite-marge">Date / Heure *</label>
+            </div>
+            <input class="form-control col-2" type="date" name="dateDepart"
+              [ngModel]="strDateDepart | date:'yyyy-MM-dd'" (ngModelChange)="strDateDepart = $event"
+              #dateDepartFC="ngModel" appDateValidator>
+            <div class="col-1 text-center">
+              <i class="far fa-calendar-alt fa-2x"></i>
+            </div>
+            <div class="col-1">
+              <select class="form-control" name="heureDepart" [(ngModel)]="strHeureDepart" #heureDepartFC="ngModel"
+                required>
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>
+                <option value="08" selected>08</option>
+                <option>09</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+              </select>
+            </div>
+            <span>h</span>
+            <div class="col-1">
+              <select class="form-control" name="minutesDepart" [(ngModel)]="strMinutesDepart"
+                #minuteDepartFC="ngModel">
+                <option selected>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
+                <option>50</option>
+              </select>
+            </div>
+          </form>
+          <div class="col-12">
+            <p class="text-danger text-center" *ngIf="dateDepartFC.invalid && dateDepartFC.touched">Vous devez choisir
+              une date à partir de demain</p>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-12 d-flex">
+      <input class="btn btn-primary ml-auto" type="button" value="Publier" (click)="publierAnnonce()"
+        [disabled]="dateDepartFC.invalid || adressArriveeFC.invalid || immatriculationFC.invalid || marqueFC.invalid || modeleFC.invalid || placeFC.invalid || dateDepartFC.invalid || heureDepartFC.invalid || minuteDepartFC.invalid">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <p *ngIf='msgSucces' class="text-success">{{msgSucces}}</p>
+      <p *ngIf='msgErreur' class="text-danger">{{msgErreur}}</p>
+    </div>
+  </div>
+</div>

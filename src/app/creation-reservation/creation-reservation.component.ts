@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { InfoVehicule } from '../info-vehicule';
 import { ReservationVehicule } from '../reservation-vehicule';
-import { Vehicule } from '../vehicule';
 import { StatutVehiculeEnum } from '../enum/statut-vehicule-enum.enum';
+import { Vehicule } from '../models/vehicule';
 
 @Component({
   selector: 'app-creation-reservation',
@@ -85,7 +85,7 @@ ajouterReservation(){
   this.reservation = new ReservationVehicule(
      `${this.dateDeReservation}${this.t}${this.heureDeReservation}${this.deuxPoints}${this.minutesDeReservation}${this.deuxPoints}${this.secondes}`,
     `${this.dateDeRetour}${this.t}${this.heureDeRetour}${this.deuxPoints}${this.minutesDeretour}${this.deuxPoints}${this.secondes}`, this.vehiculeAEnvoyer =
-    new Vehicule(this.cur.marque, this.cur.modele,this.cur.immatriculation, this.cur.photoUrl,undefined, this.cur.statutVehicule,this.cur.id),this.avecOuSans);
+    new Vehicule(this.cur.marque, this.cur.modele,undefined,this.cur.immatriculation, this.cur.photoUrl, this.cur.nbPlaces,this.cur.statutVehicule,this.cur.id),this.avecOuSans);
 
  return this._srv.reservationAjouter(this.reservation).subscribe(res => { }, err => {}, () => {
 })

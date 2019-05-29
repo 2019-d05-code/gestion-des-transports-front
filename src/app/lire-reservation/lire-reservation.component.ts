@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ReservationVehicule } from '../reservation-vehicule';
+import { ReservationVehicule } from '../models/reservation-vehicule';
 import { DataService } from '../service/data.service';
 import { Chauffeur } from '../models/Chauffeur';
 
 @Component({
   selector: 'app-lire-reservation',
   templateUrl: './lire-reservation.component.html',
-  styleUrls:['./lire-reservation.component.css']
+  styleUrls: ['./lire-reservation.component.css']
 })
 export class LireReservationComponent implements OnInit {
   showed=false;
