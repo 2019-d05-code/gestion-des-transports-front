@@ -15,7 +15,7 @@ export class LireReservationComponent implements OnInit {
   enCours:string="Mes Reservation en cours"
   historique:string="Historique"
   maintenant:Date = new Date(Date.now());
-
+  p: number = 1;
 
   courant:Boolean = false;
   boolhist:Boolean = true;

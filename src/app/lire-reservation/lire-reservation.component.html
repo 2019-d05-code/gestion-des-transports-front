@@ -50,11 +50,10 @@
             <th scope="row" *ngIf="res.unChauffeur">{{res.unChauffeur.nom }}</th>
             <th scope="row" *ngIf="!res.avecOuSansChauffeur"></th>
           </tr>
-          <div id="pages">
-        <ul class="pagination">
-          <pagination-controls (pageChange)="p = $event" previousLabel="Précédentes" nextLabel="Suivantes"></pagination-controls>
-         </ul>
-         </div>
     </tbody>
       </table>
-
+      <div id="pages">
+          <ul class="pagination">
+            <pagination-controls (pageChange)="p=$event" previousLabel="Précédentes" nextLabel="Suivantes"></pagination-controls>
+           </ul>
+    </div>
