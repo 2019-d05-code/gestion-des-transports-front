@@ -12,6 +12,16 @@ flex-wrap: nowrap;
   flex-wrap: nowrap;
 }
 
-#reserver{
-  
+#titre{
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+input, option, select{
+  margin-left:20px;
+  margin-right: 20px;
+}
+label{
+  margin-left:20px;
+  margin-right: 20px;
 }

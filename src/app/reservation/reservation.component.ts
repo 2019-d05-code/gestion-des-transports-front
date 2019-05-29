@@ -19,7 +19,7 @@ show(){
   this.showed=true;
 
 }
-
+ 
 
 
 }

@@ -1,22 +1,16 @@
+
+#tete{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 table
 {
-  color:black;
   border:solid;
   border-collapse: collapse;
-  width: 100%;
-  margin: 0;
 }
-
-thead
-{
-  border:solid;
-  background-color: black;
-  color:greenyellow;
+#pages{
+  display:flex;
+  justify-content: flex-end;
 }
-
-th{
-  border:solid;
-  background-color: gray;
-  color: fuchsia;
-}
-

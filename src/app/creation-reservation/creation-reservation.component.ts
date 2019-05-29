@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
-import { InfoVehicule } from '../models/info-vehicule';
-import { ReservationVehicule } from '../models/reservation-vehicule';
-import { Vehicule } from '../models/vehicule';
+import { InfoVehicule } from '../info-vehicule';
+import { ReservationVehicule } from '../reservation-vehicule';
 import { StatutVehiculeEnum } from '../enum/statut-vehicule-enum.enum';
+import { Vehicule } from '../models/vehicule';
+import { format } from 'date-fns';
+
 
 
 @Component({
@@ -13,29 +15,32 @@ import { StatutVehiculeEnum } from '../enum/statut-vehicule-enum.enum';
 })
 export class CreationReservationComponent implements OnInit {
 
-  constructor(private _srv: DataService) { }
+  constructor(private _srv:DataService) { }
 
-  heures: string[] = new Array();
-  minutes: string[] = new Array();
+heures:string[] = new Array();
+minutes:string[] = new Array();
 
-  dateDeReservation: Date = new Date();
-  t: string = "T";
-  heureDeReservation: string;
-  minutesDeReservation: string;
-  secondes: string = "00";
-  deuxPoints: string = ":";
-  zero: string = "0";
-  erreurMsg: string = "";
+dateDeReservation:Date = new Date();
+t:string="T";
+heureDeReservation:string;
+minutesDeReservation:string;
+secondes:string="00";
+deuxPoints:string=":";
+zero:string="0";
+avecOuSans:boolean=false;
 
-  dateDeRetour: Date = new Date();
-  heureDeRetour: string;
-  minutesDeretour: string;
-  reservation: ReservationVehicule = new ReservationVehicule(undefined, undefined, undefined);
+maintenant:Date= new Date(Date.now());
+aujourdhui:string= format(this.maintenant,"YYYY-MM-DD");
+dateDeRetour:Date = new Date();
+heureDeRetour:string;
+minutesDeretour:string;
+reservation:ReservationVehicule = new ReservationVehicule(undefined, undefined, undefined, false);
+cur = new InfoVehicule(undefined,undefined,undefined,undefined,undefined,undefined, undefined, undefined );
+listeVehicules:InfoVehicule[];
 
-  cur = new InfoVehicule(undefined, '', '', undefined, '', '', undefined, undefined);
-  listeVehicules: InfoVehicule[];
+vehiculeAEnvoyer:Vehicule = new Vehicule(undefined,undefined, undefined,undefined,undefined, undefined, undefined);
+enService:StatutVehiculeEnum[] = new Array();
 
-  vehiculeAEnvoyer: Vehicule = new Vehicule('', '', undefined, '', '', undefined, undefined, undefined);
 
 
   ngOnInit() {
@@ -62,32 +67,31 @@ export class CreationReservationComponent implements OnInit {
       this.minutes.push(nbrArajouter);
     }
 
-    this._srv.afficherInfo().subscribe(tab => this.listeVehicules = tab);
+this._srv.afficherInfo().subscribe(tab=>{this.listeVehicules = tab
+},err => {}, () => {
+
+
+});
 
   }
-
   testStatut(voiture: InfoVehicule): Boolean {
     if (voiture.statutVehicule == StatutVehiculeEnum.EN_REPARATION || voiture.statutVehicule == StatutVehiculeEnum.HORS_SERVICE) {
       return true;
     } else {
       return false;
     }
-  }
+}
 
-  ajouterReservation() {
-    this.reservation = new ReservationVehicule(
-      `${this.dateDeReservation}${this.t}${this.heureDeReservation}${this.deuxPoints}${this.minutesDeReservation}${this.deuxPoints}${this.secondes}`,
-      `${this.dateDeRetour}${this.t}${this.heureDeRetour}${this.deuxPoints}${this.minutesDeretour}${this.deuxPoints}${this.secondes}`, this.vehiculeAEnvoyer =
-      new Vehicule(this.cur.marque, this.cur.modele, this.cur.categorie, this.cur.immatriculation,
-        this.cur.photoUrl, this.cur.nbPlaces, this.cur.statutVehicule, this.cur.id)
-    );
 
-    return this._srv.reservationAjouter(this.reservation).subscribe(
-      res => { },
-      err => this.erreurMsg = err,
-      () => {
-        alert('Votre réservation a bien été sauvegardée, vous pouvez fermer cette fenêtre!')
-      })
-  }
+ajouterReservation(){
+  this.reservation = new ReservationVehicule(
+     `${this.dateDeReservation}${this.t}${this.heureDeReservation}${this.deuxPoints}${this.minutesDeReservation}${this.deuxPoints}${this.secondes}`,
+    `${this.dateDeRetour}${this.t}${this.heureDeRetour}${this.deuxPoints}${this.minutesDeretour}${this.deuxPoints}${this.secondes}`, this.vehiculeAEnvoyer =
+    new Vehicule(this.cur.marque, this.cur.modele,undefined,this.cur.immatriculation, this.cur.photoUrl, this.cur.nbPlaces,this.cur.statutVehicule,this.cur.id),this.avecOuSans);
+
+ return this._srv.reservationAjouter(this.reservation).subscribe(res => { }, err => {}, () => {
+})
+}
+
 
 }

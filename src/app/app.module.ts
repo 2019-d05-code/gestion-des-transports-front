@@ -23,6 +23,9 @@ import { LireReservationComponent } from './lire-reservation/lire-reservation.co
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 import { MenuComponent } from './menu/menu.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 const routes: Routes = [
 
@@ -34,7 +37,7 @@ const routes: Routes = [
     canActivate: [StatutConnecteService],
     children: [
       { path: 'tech', component: TechComponent }, // /tech accessible uniquement si connecté
-      { path: 'collaborateur/reserver', component: ReservationComponent },
+      { path: 'collaborateur/reservations/creer', component: ReservationComponent },
       { path: 'collaborateur/reservations', component: LireReservationComponent },
       { path: 'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent },
       { path: 'admin/vehicules', component: VehiculeGestionComponent },
@@ -72,7 +75,10 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
+
 
   ],
   providers: [{
