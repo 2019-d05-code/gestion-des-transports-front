@@ -27,7 +27,8 @@ import { AccueilAdministrateurComponent } from './accueil-administrateur/accueil
 
 const routes: Routes = [
 
-  { path: 'auth', component: AuthComponent },
+
+  { path:'connexion', component: AuthComponent},
 
   { path: '', redirectTo: '/tech', pathMatch: 'full' },
   {
