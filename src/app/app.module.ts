@@ -23,7 +23,7 @@ import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
 
-  { path:'auth', component: AuthComponent},
+  { path:'connexion', component: AuthComponent},
 
   { path: '', redirectTo: '/tech', pathMatch: 'full'},
   {
@@ -57,7 +57,7 @@ const routes: Routes = [
     ChauffeurComponent,
     FilterPipe,
     MenuComponent,
-    CycleVieVehiculeComponent
+    CycleVieVehiculeComponent,
 
 
   ],
