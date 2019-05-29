@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 d-flex">
+      <h2 class="mr-auto">Vos annonces</h2>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-12 d-flex">
+      <button class="ml-auto btn btn-primary" [routerLink]="['/collaborateur/annonces/creer']" routerLinkActive="router-link-active" >Créer une nouvelle annonce</button>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-12 d-flex">
+      <h3 class="mr-auto">Annonces en cours</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered table-striped">
+        <thead class="table-active">
+          <tr>
+            <th scope="col">Date/Heure de départ</th>
+            <th scope="col">Lieu de départ</th>
+            <th scope="col">Lieu de destination</th>
+            <th scope="col">Nombre de voyageurs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let annonceEnCours of annoncesEnCours">
+            <th scope="row">{{annonceEnCours.dateTimeDepart | date:'yyyy/MM/dd, hh:mm'}}</th>
+            <td>{{annonceEnCours.adressDepart}}</td>
+            <td>{{annonceEnCours.adressArrivee}}</td>
+            <td>{{annonceEnCours.place}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col-12 d-flex">
+      <h3 class="mr-auto">Historique</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered table-striped">
+        <thead class="table-active">
+          <tr>
+            <th scope="col">Date/Heure de départ</th>
+            <th scope="col">Lieu de départ</th>
+            <th scope="col">Lieu de destination</th>
+            <th scope="col">Nombre de voyageurs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let annoncePassees of annoncesPassees">
+            <th scope="row">{{annoncePassees.dateTimeDepart | date:'yyyy/MM/dd, hh:mm'}}</th>
+            <td>{{annoncePassees.adressDepart}}</td>
+            <td>{{annoncePassees.adressArrivee}}</td>
+            <td>{{annoncePassees.place}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

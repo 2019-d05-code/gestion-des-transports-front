@@ -80,4 +80,8 @@ export class DataService {
     });
   }
 
+  public listeAnnonces(emailAnnonceur: string) {
+    return this._http.get<Annonce[]>(`${environment.baseUrl}annonce/liste?email=${emailAnnonceur}`);
+  }
+
 }
