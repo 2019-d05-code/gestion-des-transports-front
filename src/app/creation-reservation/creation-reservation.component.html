@@ -36,7 +36,7 @@
       <p>{{uneVoiture.marque}}</p>
       <p>{{uneVoiture.modele}}</p>
       <p>{{uneVoiture.categorie}}</p>
-      <b *ngIf="testStatut(uneVoiture)" class="red-text">INDISPONIBLE</b>
+      <span *ngIf="testStatut(uneVoiture)" class="border border-danger"><b class="red-text">INDISPONIBLE</b></span>
       <br />
       <button [disabled]="testStatut(uneVoiture)" type="button" mdbBtn color="primary" class="relative waves-light"
         (click)="cur=uneVoiture;basicModal.show()" mdbWavesEffect>Réserver</button>

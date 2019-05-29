@@ -24,6 +24,7 @@ export class CycleVieVehiculeComponent implements OnInit {
   listeReservations: Reservation[] = [];
   listeReservationAVenir: Reservation[] = [];
   listeReservationHistorique: Reservation[] = [];
+  reservationEnCours: Reservation;
   headElements: string[] = [
     `Date/Heure de début`, `Date/Heure de fin`, `Responsable`
   ];
@@ -60,7 +61,7 @@ export class CycleVieVehiculeComponent implements OnInit {
             if(dateResa.getDate() >= Date.now()) {
               this.listeReservationAVenir.push(resa);
             }else if(dateRetour.getDate() >= Date.now()) {
-              this.listeReservationAVenir.push(resa);
+              this.reservationEnCours = resa;
             }else {this.listeReservationHistorique.push(resa);
             }
           }

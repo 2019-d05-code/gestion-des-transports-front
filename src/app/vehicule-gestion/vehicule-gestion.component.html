@@ -129,7 +129,7 @@
         </div>
         <div class="modal-footer">
           {{msgErreurSaveVehicule}}
-          <button [disabled]="!nouveauVehicule.valid" type="submit" (click)=enregistrerVehicule()  mdbBtn gradient="blue" rounded="true" mdbWavesEffect>Enregistrer</button>
+          <button [disabled]="!nouveauVehicule.valid" type="submit" (click)="enregistrerVehicule(); vehiculeModal.hide()"  mdbBtn gradient="blue" rounded="true" mdbWavesEffect>Enregistrer</button>
         </div>
       </div>
 
