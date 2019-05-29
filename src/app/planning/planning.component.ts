@@ -7,8 +7,9 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import { DataService } from '../service/data.service';
-import { ReservationVehicule } from '../reservation-vehicule';
+import { ReservationVehicule } from '../models/reservation-vehicule';
 import { map} from 'rxjs/operators';
+import { reservationVehiculeChauffeur } from '../models/reservationVehiculeChauffeur';
 registerLocaleData(localeEs);
 
 const colors: any = {
@@ -39,6 +40,7 @@ const colors: any = {
 })
 export class PlanningComponent implements OnInit {
 
+  reservation:reservationVehiculeChauffeur;
   listesReservations:ReservationVehicule[]
 
   locale: string = 'fr';
@@ -59,27 +61,24 @@ export class PlanningComponent implements OnInit {
 
   ngOnInit() {
 
-     this.events = this._serv.afficherLesReservation()
+     this.events = this._serv.afficherLesReservationavecChauffeur()
     .pipe(map(
 
-      listeRes => listeRes.map( res => {
-        if(res.avecOuSansChauffeur == true){
-          let couleur = colors.blue;
-          console.log(new Date(res.dateDeRetour.split("T")[0]))
+      listeRes => listeRes.filter(res => res.avecOuSansChauffeur == true).map( res => {
+        console.log(res.id)
           return <CalendarEvent> {
-            //start: addHours(startOfDay(new Date(res.dateDeReservation)), parseInt(res.dateDeReservation.split("T")[1])+1),
-           //end: addHours(endOfDay(new Date(res.dateDeRetour.split("T")[0])),parseInt(res.dateDeRetour.split("T")[1])+1),
-            start: setHours(new Date(res.dateDeReservation), parseInt(res.dateDeReservation.split("T")[1])+1),
-            end: setHours(new Date(res.dateDeRetour),parseInt(res.dateDeRetour.split("T")[1])+1),
-            title: `${res.dateDeReservation.split("T")[1]}-${res.dateDeRetour.split("T")[1]}`
+            start: setHours(new Date(res.dateDeReservation),new Date(res.dateDeReservation).getHours()),
+            end: setHours(new Date(res.dateDeRetour),new Date(res.dateDeRetour).getHours()),
+            title: `${new Date(res.dateDeReservation).getHours()} - ${new Date(res.dateDeRetour).getHours()} `,
+            meta: `${res.avecOuSansChauffeur}`
         }
-      }
     })));
   }
 
-/*
   eventClicked({ event }: { event: CalendarEvent }): void {
-    console.log('Event clicked', event);
+    console.log(event)
+    //this.reservation = new reservationVehiculeChauffeur(event.id, event.start,event.end);
+
   }
-  */
+
 }

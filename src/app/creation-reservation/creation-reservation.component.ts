@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
-import { InfoVehicule } from '../info-vehicule';
-import { ReservationVehicule } from '../reservation-vehicule';
+
 import { Vehicule } from '../vehicule';
+import { ReservationVehicule } from '../models/reservation-vehicule';
+import { InfoVehicule } from '../models/info-vehicule';
 
 @Component({
   selector: 'app-creation-reservation',

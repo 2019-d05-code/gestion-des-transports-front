@@ -55,7 +55,6 @@ registerLocaleData(localeFr);
     ImmatriculationValidatorDirective,
     ChauffeurComponent,
     FilterPipe
-
   ],
   imports: [
     BrowserModule,

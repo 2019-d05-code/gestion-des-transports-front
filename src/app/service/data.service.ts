@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { InfoVehicule } from '../info-vehicule';
 import { HttpClient } from '@angular/common/http';
-
-import { ReservationVehicule } from '../reservation-vehicule';
-
 import { Subject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Vehicule } from '../models/vehicule';
 import { Chauffeur } from '../models/Chauffeur';
+import { InfoVehicule } from '../models/info-vehicule';
+import { ReservationVehicule } from '../models/reservation-vehicule';
+import { reservationVehiculeChauffeur } from '../models/reservationVehiculeChauffeur';
 
 @Injectable({
   providedIn: 'root'
@@ -56,8 +55,9 @@ export class DataService {
     return this._http.get<ReservationVehicule[]>(`${this.url_back}${this.reservationUrls}`, { "withCredentials": true })
   }
 
-
-
+  afficherLesReservationavecChauffeur(): Observable<reservationVehiculeChauffeur[]> {
+    return this._http.get<reservationVehiculeChauffeur[]>(`${this.url_back}${this.reservationUrls}`, { "withCredentials": true })
+  }
 
 
 }

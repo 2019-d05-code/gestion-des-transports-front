@@ -10,6 +10,6 @@
 </div>
 <br />
 
-<mwl-calendar-day-view [viewDate]="viewDate" [events]="events | async" [refresh]="refresh" [locale]="locale" [dayStartHour]="1" >
+<mwl-calendar-day-view [viewDate]="viewDate" [events]="events | async" [refresh]="refresh" [locale]="locale" [dayStartHour]="1" (eventClicked)="eventClicked($event)">
 </mwl-calendar-day-view>
 
