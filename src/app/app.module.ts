@@ -23,6 +23,9 @@ import { LireReservationComponent } from './lire-reservation/lire-reservation.co
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 import { MenuComponent } from './menu/menu.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 const routes: Routes = [
 
@@ -73,6 +76,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
 
 
   ],

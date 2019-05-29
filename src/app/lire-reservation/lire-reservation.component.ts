@@ -20,7 +20,6 @@ export class LireReservationComponent implements OnInit {
   courant:Boolean = false;
   boolhist:Boolean = true;
 
-
   constructor(private srv:DataService) { }
 
   ngOnInit() {
@@ -35,6 +34,7 @@ export class LireReservationComponent implements OnInit {
     }));
 
   }
+
 
 
 }

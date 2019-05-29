@@ -10,3 +10,7 @@ table
   border:solid;
   border-collapse: collapse;
 }
+#pages{
+  display:flex;
+  justify-content: flex-end;
+}
