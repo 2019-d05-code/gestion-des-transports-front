@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr mdbTableCol *ngFor="let res of listesReservationsTerminee |filter:filter| paginate: { itemsPerPage: 3, currentPage: p}">
+          <tr mdbTableCol *ngFor="let res of listesReservationsTerminee | paginate: { itemsPerPage: 3, currentPage: p}">
             <th scope="row">{{res.dateDeReservation | date:'d/M/yy, h:mm '}}</th>
             <th scope="row">{{res.dateDeRetour | date:'d/M/yy, h:mm '}}</th>
             <th scope="row">{{res.uneVoiture.immatriculation}}</th>
