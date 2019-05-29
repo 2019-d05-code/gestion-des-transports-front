@@ -23,6 +23,7 @@ import { LireReservationComponent } from './lire-reservation/lire-reservation.co
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 import { MenuComponent } from './menu/menu.component';
+import { AccueilAdministrateurComponent } from './accueil-administrateur/accueil-administrateur.component';
 
 const routes: Routes = [
 
@@ -39,7 +40,8 @@ const routes: Routes = [
       { path: 'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent },
       { path: 'admin/vehicules', component: VehiculeGestionComponent },
       { path: 'admin/chauffeur', component: ChauffeurComponent },
-      { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent }
+      { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent },
+      { path: 'admin/accueil', component: AccueilAdministrateurComponent }
     ]
   }
 
@@ -62,7 +64,8 @@ const routes: Routes = [
     ChauffeurComponent,
     FilterPipe,
     MenuComponent,
-    CycleVieVehiculeComponent
+    CycleVieVehiculeComponent,
+    AccueilAdministrateurComponent
 
 
   ],
