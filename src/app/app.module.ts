@@ -29,7 +29,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AccueilChauffeurComponent } from './accueil-chauffeur/accueil-chauffeur.component';
 import { AccueilCollaborateurComponent } from './accueil-collaborateur/accueil-collaborateur.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
 
@@ -90,7 +90,8 @@ const routes: Routes = [
     MDBBootstrapModule.forRoot(),
     FormsModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgbModule
 
 
   ],
