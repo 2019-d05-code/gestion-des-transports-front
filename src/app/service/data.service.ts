@@ -80,6 +80,7 @@ export class DataService {
     });
   }
 
+<<<<<<< HEAD
   public listeAnnonces(emailAnnonceur: string) {
     return this._http.get<Annonce[]>(`${environment.baseUrl}annonce/liste?email=${emailAnnonceur}`);
   }
@@ -87,5 +88,8 @@ export class DataService {
   public listeToutesAnnoncesEnCours() {
     return this._http.get<Annonce[]>(`${environment.baseUrl}annonce/liste/all-current`);
   }
+=======
+
+>>>>>>> master
 
 }
