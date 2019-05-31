@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../service/data.service';
-import { Chauffeur } from '../models/Chauffeur';
 import { ReservationVehicule } from '../models/reservation-vehicule';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-lire-reservation',
   templateUrl: './lire-reservation.component.html',
-  styleUrls:['./lire-reservation.component.css']
+  styleUrls: ['./lire-reservation.component.css']
 })
 export class LireReservationComponent implements OnInit {
   showed=false;
@@ -15,25 +14,16 @@ export class LireReservationComponent implements OnInit {
   enCours:string="Mes Reservation en cours"
   historique:string="Historique"
   maintenant:Date = new Date(Date.now());
-
+  p: number = 1;
 
   courant:Boolean = false;
   boolhist:Boolean = true;
-
 
   constructor(private srv:DataService) { }
 
   ngOnInit() {
 
-
-
-  }
-
-
-  montrerLesreservations(){
-    this.showed=true;
-
-    return this.srv.afficherLesReservation().subscribe(tab =>tab.forEach(element => {
+ this.srv.afficherLesReservation().subscribe(tab =>tab.forEach(element => {
         let madate = new Date(element.dateDeRetour);
       if(madate>=this.maintenant){
         this.listesReservationsEnCours.push(element);
@@ -43,4 +33,7 @@ export class LireReservationComponent implements OnInit {
     }));
 
   }
+
+
+
 }

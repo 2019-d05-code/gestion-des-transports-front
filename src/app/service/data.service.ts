@@ -8,6 +8,10 @@ import { InfoVehicule } from '../models/info-vehicule';
 import { ReservationVehicule } from '../models/reservation-vehicule';
 import { ReservationVehiculeChauffeur } from '../models/ReservationVehiculeChauffeur';
 import { ReservationChauffeur } from '../models/ReservationChauffeur';
+import { tap } from 'rxjs/operators';
+import { StatutVehicule } from '../models/statut-vehicule';
+import { Reservation } from '../models/reservation';
+import { Annonce } from '../models/Annonce';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +21,7 @@ export class DataService {
   url_back = environment.baseUrl;
   infosVehiculesUrl = 'admin/vehicules'
   sauvegarderReservaURL = 'collaborateur/reservations/creer'
-  reservationUrls = 'collaborateur/reservations/'
+  reservationUrls = 'collaborateur/reservations'
 
 
   constructor(private _http: HttpClient) { }
@@ -47,6 +51,21 @@ export class DataService {
     });
   }
 
+  choisirVehicule(immatriculation: string): Observable<Vehicule> {
+    return this._http.get<Vehicule>(`${environment.baseUrl}admin/vehicules/${immatriculation}`, { withCredentials: true })
+      .pipe(
+        tap(vo => this.subject.next(vo))
+      );
+  }
+
+  changerStatutVehiculeSrv(statut: StatutVehicule): Observable<Vehicule> {
+    return this._http.patch<Vehicule>(`${environment.baseUrl}admin/vehicules/${statut.immatriculation}`, statut, { withCredentials: true });
+  }
+
+  afficherReservationsSrv(): Observable<Reservation[]> {
+    return this._http.get<Reservation[]>(`${environment.baseUrl}collaborateur/reservations`, { withCredentials: true });
+  }
+
   reservationAjouter(res: ReservationVehicule) {
     return this._http.post<ReservationVehicule>(`${this.url_back}${this.sauvegarderReservaURL}`, res, { "withCredentials": true })
   }
@@ -54,6 +73,12 @@ export class DataService {
   //permet de récupérer l'ensemble des réservations se trouvant en base
   afficherLesReservation(): Observable<ReservationVehicule[]> {
     return this._http.get<ReservationVehicule[]>(`${this.url_back}${this.reservationUrls}`, { "withCredentials": true })
+  }
+
+  public creerAnnonce(annonce: Annonce): Observable<Annonce> {
+    return this._http.post<Annonce>(`${environment.baseUrl}annonce/creer`, annonce, {
+      withCredentials: true
+    });
   }
 
 

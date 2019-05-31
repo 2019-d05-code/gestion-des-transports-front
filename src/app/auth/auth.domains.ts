@@ -8,6 +8,8 @@ export class Collegue {
   motDePasse:string;
   roles:string[];
   id:number
+  photoUrl:string;
+  telephone:string;
 
   constructor(params:any) {
     Object.assign(this, params);

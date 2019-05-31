@@ -1,12 +1,11 @@
 import { Vehicule } from './vehicule';
 
-
-export class ReservationVehicule {
+export class Reservation {
 
   constructor(
     public dateDeReservation: string,
     public dateDeRetour: string,
-    public uneVoiture: Vehicule
-    ) { }
+    public vehicule?: Vehicule
+  ) {}
 
 }
