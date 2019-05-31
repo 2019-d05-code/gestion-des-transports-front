@@ -80,7 +80,7 @@ const routes: Routes = [
     MenuComponent,
     CycleVieVehiculeComponent,
     AnnonceListeCovoiturageComponent,
-    ReservationCovoiturageComponent
+    ReservationCovoiturageComponent,
     AccueilAdministrateurComponent,
     AccueilChauffeurComponent,
     AccueilCollaborateurComponent,
