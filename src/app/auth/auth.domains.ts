@@ -7,6 +7,8 @@ export class Collegue {
   email:string;
   motDePasse:string;
   roles:string[];
+  photoUrl:string;
+  telephone:string;
 
   constructor(params:any) {
     Object.assign(this, params);
