@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+
+    <mdb-card class="col-4">
+      <mdb-card-img src="{{(collaborateur | async).photoUrl}}" alt="Card image cap"></mdb-card-img>
+      <mdb-card-body>
+        <mdb-card-title>
+          <h4>{{(collaborateur | async).nom}} {{(collaborateur | async).prenom}}</h4>
+        </mdb-card-title>
+        <br />
+        <!--Text-->
+        <mdb-card-text>
+          <h5>{{(collaborateur | async).email}}</h5>
+          <br />
+          <h5>{{(collaborateur | async).telephone}}</h5>
+        </mdb-card-text>
+      </mdb-card-body>
+    </mdb-card>
+
+    <div class="col-8">
+      <blockquote class="blockquote bq-primary">
+        <p class="bq-title">Je veux ...</p>
+        <p>
+          <a routerLink='../reservations' class="font-italic"><i class="fas fa-car-side fa-3x"></i>
+            <h4>Voir toutes mes annonces</h4>
+          </a>
+          <br />
+          <a routerLink='../reservations/creer' class="font-italic"><i class="fas fa-truck-monster fa-3x"></i>
+            <h4>Réserver un véhicule de société</h4>
+          </a>
+          <br />
+          <a routerLink='../annonces/creer' class="font-italic"><i class="fab fa-earlybirds fa-3x"></i>
+            <h4>Créer une annonce de covoiturage</h4>
+          </a>
+        </p>
+      </blockquote>
+    </div>
+
+  </div>
+</div>
