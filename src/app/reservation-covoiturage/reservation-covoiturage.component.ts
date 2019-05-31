@@ -21,7 +21,9 @@ export class ReservationCovoiturageComponent implements OnInit {
 
   public annonce: Annonce;
 
-  constructor(private _dataService: DataService) { }
+  constructor(private _dataService: DataService) {
+    this.annonce = new Annonce();
+  }
 
   ngOnInit() {
     if (this._annonces === undefined) {
