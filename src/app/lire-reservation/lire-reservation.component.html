@@ -18,8 +18,8 @@
       </thead>
       <tbody>
         <tr mdbTableCol *ngFor="let res of listesReservationsEnCours">
-          <th scope="row">{{res.dateDeReservation | date:'d/M/yy, h:mm '}}</th>
-          <th scope="row">{{res.dateDeRetour | date:'d/M/yy, h:mm '}}</th>
+          <th scope="row">{{res.dateDeReservation | date:'dd/MM/yyyy, h:mm '}}</th>
+          <th scope="row">{{res.dateDeRetour | date:'dd/MM/yyyy, h:mm '}}</th>
           <th scope="row">{{res.uneVoiture.immatriculation}}</th>
           <th scope="row">{{res.uneVoiture.marque}}</th>
           <th scope="row">{{res.uneVoiture.modele}}</th>
@@ -44,8 +44,8 @@
         </thead>
         <tbody>
           <tr mdbTableCol *ngFor="let res of listesReservationsTerminee | paginate: { itemsPerPage: 3, currentPage: p }">
-            <th scope="row">{{res.dateDeReservation | date:'d/M/yy, h:mm '}}</th>
-            <th scope="row">{{res.dateDeRetour | date:'d/M/yy, h:mm '}}</th>
+            <th scope="row">{{res.dateDeReservation | date:'dd/MM/yyyy, h:mm '}}</th>
+            <th scope="row">{{res.dateDeRetour | date:'dd/MM/yyyy, h:mm '}}</th>
             <th scope="row">{{res.uneVoiture.immatriculation}}</th>
             <th scope="row">{{res.uneVoiture.marque}}</th>
             <th scope="row">{{res.uneVoiture.modele}}</th>
