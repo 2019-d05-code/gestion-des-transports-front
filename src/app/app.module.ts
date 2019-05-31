@@ -24,7 +24,6 @@ import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.co
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 import { MenuComponent } from './menu/menu.component';
 import { AnnonceListeCovoiturageComponent } from './annonce-liste-covoiturage/annonce-liste-covoiturage.component';
-import { ReservationCovoiturageComponent } from './reservation-covoiturage/reservation-covoiturage.component';
 import { AccueilAdministrateurComponent } from './accueil-administrateur/accueil-administrateur.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -46,7 +45,6 @@ const routes: Routes = [
       { path: 'tech', component: TechComponent }, // /tech accessible uniquement si connecté
       { path: 'collaborateur/reservations/creer', component: ReservationComponent },
       { path: 'collaborateur/reservations', component: LireReservationComponent },
-      { path: 'collaborateur/reservations/creer', component: ReservationCovoiturageComponent },
       { path: 'collaborateur/annonces', component: AnnonceListeCovoiturageComponent },
       { path: 'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent },
       { path: 'admin/vehicules', component: VehiculeGestionComponent },
@@ -80,7 +78,6 @@ const routes: Routes = [
     MenuComponent,
     CycleVieVehiculeComponent,
     AnnonceListeCovoiturageComponent,
-    ReservationCovoiturageComponent,
     AccueilAdministrateurComponent,
     AccueilChauffeurComponent,
     AccueilCollaborateurComponent,
