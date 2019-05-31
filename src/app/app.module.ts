@@ -24,11 +24,17 @@ import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.co
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 import { MenuComponent } from './menu/menu.component';
 import { AccueilAdministrateurComponent } from './accueil-administrateur/accueil-administrateur.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AccueilChauffeurComponent } from './accueil-chauffeur/accueil-chauffeur.component';
+import { AccueilCollaborateurComponent } from './accueil-collaborateur/accueil-collaborateur.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+
 
 const routes: Routes = [
 
 
-  { path:'connexion', component: AuthComponent},
+  { path: 'connexion', component: AuthComponent },
 
   { path: '', redirectTo: '/tech', pathMatch: 'full' },
   {
@@ -36,13 +42,16 @@ const routes: Routes = [
     canActivate: [StatutConnecteService],
     children: [
       { path: 'tech', component: TechComponent }, // /tech accessible uniquement si connecté
-      { path: 'collaborateur/reserver', component: ReservationComponent },
+      { path: 'collaborateur/reservations/creer', component: ReservationComponent },
       { path: 'collaborateur/reservations', component: LireReservationComponent },
       { path: 'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent },
       { path: 'admin/vehicules', component: VehiculeGestionComponent },
       { path: 'admin/chauffeur', component: ChauffeurComponent },
       { path: 'admin/vehicules/:immatriculation', component: CycleVieVehiculeComponent },
-      { path: 'admin/accueil', component: AccueilAdministrateurComponent }
+      { path: 'admin/accueil', component: AccueilAdministrateurComponent },
+      { path: 'collaborateur/accueil', component: AccueilCollaborateurComponent },
+      { path: 'chauffeur/accueil', component: AccueilChauffeurComponent },
+      { path: 'error', component: ErrorPageComponent }
     ]
   }
 
@@ -66,7 +75,10 @@ const routes: Routes = [
     FilterPipe,
     MenuComponent,
     CycleVieVehiculeComponent,
-    AccueilAdministrateurComponent
+    AccueilAdministrateurComponent,
+    AccueilChauffeurComponent,
+    AccueilCollaborateurComponent,
+    ErrorPageComponent
 
 
   ],
@@ -76,7 +88,10 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
+
 
   ],
   providers: [{
