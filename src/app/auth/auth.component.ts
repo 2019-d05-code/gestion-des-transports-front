@@ -36,7 +36,7 @@ export class AuthComponent implements OnInit {
           }else if(col.roles.includes("ROLE_CHAUFFEUR")){
             this.afficheProfil = "chauffeur"
           }else{
-            this._router.navigate(['/collaborateur/acceuil'])
+            this._router.navigate(['/collaborateur/accueil'])
           }
               },
 
