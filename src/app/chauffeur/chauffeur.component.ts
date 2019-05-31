@@ -15,7 +15,7 @@ export class ChauffeurComponent implements OnInit {
   mat: any;
   nom: string;
   prenom: string;
-  chauffeur = new Chauffeur(undefined, undefined, undefined, undefined, undefined, undefined);
+  chauffeur = new Chauffeur(undefined, undefined, undefined, undefined, undefined, undefined,undefined);
   tabChauffeur = new Array();
   tabTrierChauffeur = new Array();
 
