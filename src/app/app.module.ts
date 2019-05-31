@@ -23,6 +23,8 @@ import { LireReservationComponent } from './lire-reservation/lire-reservation.co
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 import { MenuComponent } from './menu/menu.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AnnonceListeCovoiturageComponent } from './annonce-liste-covoiturage/annonce-liste-covoiturage.component';
 import { ReservationCovoiturageComponent } from './reservation-covoiturage/reservation-covoiturage.component';
 
@@ -78,7 +80,9 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
 
   ],
   providers: [{

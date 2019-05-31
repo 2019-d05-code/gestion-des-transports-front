@@ -19,6 +19,16 @@ export class ReservationCovoiturageComponent implements OnInit {
     this._annonces = annonces;
   }
 
+  private _annonce: Annonce;
+
+  get annonce() {
+    return this._annonce;
+  }
+
+  set annonce(annonce: Annonce) {
+    this._annonce = annonce;
+  }
+
   constructor(private _dataService: DataService) { }
 
   ngOnInit() {

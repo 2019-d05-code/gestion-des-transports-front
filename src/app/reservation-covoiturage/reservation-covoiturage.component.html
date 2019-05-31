@@ -18,14 +18,14 @@
                 <label for="adresseDepart" class="col-2 col-form-label" required>Adresse de départ *</label>
                 <div class="col-4">
                   <input mdbInput type="text" class="form-control" id="adresseDepart" name="depart"
-                    [(ngModel)]="annonce.adresseDepart" #adresseDepartFC="ngModel" required>
+                    [(ngModel)]="annonce.adressDepart" #adresseDepartFC="ngModel" required>
                   <p class="col-12 text-danger" *ngIf="adresseDepartFC.invalid && adresseDepartFC.touched">Ce champ est
                     invalide</p>
                 </div>
                 <label for="adresseArrivee" class="col-2 col-form-label">Adresse d'arrivée *</label>
                 <div class="col-4">
                   <input mdbInput type="adresseArrivee" class="form-control" id="adresseArrivee" name="arrivee"
-                    [(ngModel)]="annonce.adresseArrivee" #adresseArriveeFC="ngModel" required>
+                    [(ngModel)]="annonce.adressArrivee" #adresseArriveeFC="ngModel" required>
                   <p class="col-12 text-danger" *ngIf="adresseArriveeFC.invalid && adresseArriveeFC.touched">Ce champ
                     est
                     invalide</p>
@@ -36,7 +36,7 @@
                 <label for="dateDepart" class="col-2 col-form-label">Date de départ</label>
                 <div class="col-4">
                   <input mdbInput type="dateDepart" class="form-control" id="dateDepart" name="dateDepart"
-                    [(ngModel)]="annonce.dateDepart" #dateDepartFC="ngModel" required>
+                    [(ngModel)]="annonce.dateTimeDepart" #dateDepartFC="ngModel" required>
                   <p class="col-12 text-danger" *ngIf="adresseArriveeFC.invalid && dateDepartFC.touched">Ce champ est
                     invalide</p>
                 </div>
@@ -61,38 +61,27 @@
             </div>
           </div>
           <div class="row">
-            <table class="table table-bordered table-striped">
-              <thead class="table-active">
-                <tr>
-                  <th scope="col">Date/Heure</th>
-                  <th scope="col">Départ</th>
-                  <th scope="col">Destination</th>
-                  <th scope="col">Véhicule</th>
-                  <th scope="col">Chauffeur</th>
-                  <th scope="col">Places disponibles</th>
-                </tr>
-              </thead>
-              <ng-container *ngIf="annonces !== undefined && annonces.length >0; else tbodyVide">
-                <tbody>
-                  <tr *ngFor="let annonce of annonces">
-                    <th scope="row">{{annonce.dateTimeDepart | date:'yyyy/MM/dd, hh:mm'}}</th>
-                    <td>{{annonce.adressDepart}}</td>
-                    <td>{{annonce.adressArrivee}}</td>
-                    <td>{{annonce.modele}}</td>
-                    <td>{{annonce.annonceurPrenom}}</td>
-                    <td>{{annonce.place}}</td>
-                  </tr>
-                </tbody>
-              </ng-container>
-              <ng-template #tbodyVide>
-                <tbody>
-                  <tr>
-                    <td colspan="5">
-                      Il n'y a aucune annonce de covoiturage à venir.
-                    </td>
-                  </tr>
-                </tbody>
-              </ng-template>
+              <table mdbTable>
+                  <thead>
+                    <tr>
+                      <th scope="col">Date/Heure</th>
+                      <th scope="col">Départ</th>
+                      <th scope="col">Destination</th>
+                      <th scope="col">Véhicule</th>
+                      <th scope="col">Chauffeur</th>
+                      <th scope="col">Places disponibles</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr mdbTableCol *ngFor="let annonce of annonces">
+                      <th scope="row">{{annonce.dateTimeDepart | date:'yyyy/MM/dd, hh:mm'}}</th>
+                      <th scope="row">{{annonce.adressDepart}}</th>
+                      <th scope="row">{{annonce.adressArrivee}}</th>
+                      <th scope="row">{{annonce.modele}}</th>
+                      <th scope="row">{{annonce.annonceurPrenom}}</th>
+                      <th scope="row">{{annonce.place}}</th>
+                    </tr>
+                  </tbody>
             </table>
           </div>
 
