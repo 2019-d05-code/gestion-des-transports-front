@@ -47,7 +47,7 @@ export class CycleVieVehiculeComponent implements OnInit {
         this.vehicule = returnValue;
         this.changerBoolean(returnValue.statutVehicule);
       },
-      err => this.erreurMsgEntree = err 
+      err => this.erreurMsgEntree = err
     );
 
 
@@ -58,7 +58,6 @@ export class CycleVieVehiculeComponent implements OnInit {
         this.listeReservationAVenir.push(element);
       }else if(date==this.maintenant || dateretour>this.maintenant){
         this.reservationEnCours.push(element);
-        console.log(this.reservationEnCours)
       }else if(dateretour<this.maintenant){
         this.listeReservationHistorique.push(element);
       }
