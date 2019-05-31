@@ -11,6 +11,9 @@ import { Annonce } from '../models/Annonce';
 })
 export class AnnonceListeCovoiturageComponent implements OnInit {
 
+
+  public p: number;
+
   @Input() private _annonceur: Collegue;
   get annonceur() {
     return this._annonceur;
