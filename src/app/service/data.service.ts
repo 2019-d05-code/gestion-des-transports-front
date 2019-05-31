@@ -6,7 +6,8 @@ import { Vehicule } from '../models/vehicule';
 import { Chauffeur } from '../models/Chauffeur';
 import { InfoVehicule } from '../models/info-vehicule';
 import { ReservationVehicule } from '../models/reservation-vehicule';
-import { reservationVehiculeChauffeur } from '../models/reservationVehiculeChauffeur';
+import { ReservationVehiculeChauffeur } from '../models/ReservationVehiculeChauffeur';
+import { ReservationChauffeur } from '../models/ReservationChauffeur';
 
 @Injectable({
   providedIn: 'root'
@@ -55,9 +56,12 @@ export class DataService {
     return this._http.get<ReservationVehicule[]>(`${this.url_back}${this.reservationUrls}`, { "withCredentials": true })
   }
 
-  afficherLesReservationavecChauffeur(): Observable<reservationVehiculeChauffeur[]> {
-    return this._http.get<reservationVehiculeChauffeur[]>(`${this.url_back}${this.reservationUrls}`, { "withCredentials": true })
+
+  ajoutChauffeurAReservation(res : ReservationChauffeur): Observable<ReservationChauffeur>{
+    return this._http.patch<ReservationChauffeur>(`${this.url_back}chauffeur/planning`,res, { "withCredentials": true })
   }
 
-
+  afficherLesReservationavecChauffeur(): Observable<ReservationVehiculeChauffeur[]>{
+    return this._http.get<ReservationVehiculeChauffeur[]>(`${this.url_back}chauffeur/reservationsAvecChauffeur`, { "withCredentials": true })
+  }
 }

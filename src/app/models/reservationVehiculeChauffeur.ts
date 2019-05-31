@@ -1,7 +1,13 @@
-export class reservationVehiculeChauffeur{
+import { Chauffeur } from './Chauffeur';
+
+export class ReservationVehiculeChauffeur{
   constructor(
-    public id:number,
-    public dateDeReservation:Date,
-    public  dateDeRetour:Date,
-    public avecOuSansChauffeur?:boolean){}
+    public id:string | number,
+    public dateDebut:Date,
+    public dateFin:Date,
+    public nomChauffeur?:string,
+    public prenomChauffeur?:string,
+    public idChauffeur?:number,
+    public avecChauffeur?:boolean,
+   ){}
 }
