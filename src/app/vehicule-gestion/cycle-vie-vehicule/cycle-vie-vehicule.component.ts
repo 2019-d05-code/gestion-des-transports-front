@@ -47,7 +47,7 @@ export class CycleVieVehiculeComponent implements OnInit {
         this.vehicule = returnValue;
         this.changerBoolean(returnValue.statutVehicule);
       },
-      err => this.erreurMsgEntree = err
+      err => this.erreurMsgEntree = err 
     );
 
 
