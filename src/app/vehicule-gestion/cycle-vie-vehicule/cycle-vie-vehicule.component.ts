@@ -53,11 +53,13 @@ export class CycleVieVehiculeComponent implements OnInit {
 
     this._srv.afficherReservationsSrv().subscribe( tab => tab.forEach(element => {
     let date = new Date(element.dateDeReservation);
+    let dateretour=new Date(element.dateDeRetour);
       if(date>this.maintenant){
         this.listeReservationAVenir.push(element);
-      }else if(date==this.maintenant){
+      }else if(date==this.maintenant || dateretour>this.maintenant){
         this.reservationEnCours.push(element);
-      }else{
+        console.log(this.reservationEnCours)
+      }else if(dateretour<this.maintenant){
         this.listeReservationHistorique.push(element);
       }
 
