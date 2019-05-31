@@ -4,7 +4,10 @@
 <button type="button" mdbBtn color="primary" routerLink="/collaborateur/reservations/creer" mdbWavesEffect>Réserver un transport</button>
 </div>
 <hr id="ligne">
-<h2>Réservations en cours</h2>
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+      <ngb-panel title="Réservations">
+        <ng-template ngbPanelContent>
+          <h2>Réservations en cours</h2>
   <table mdbTable>
       <thead>
         <tr>
@@ -26,7 +29,6 @@
           <th scope="row" *ngIf="res.unChauffeur">{{res.unChauffeur.nom }}</th>
           <th scope="row" *ngIf="res.avecOuSansChauffeur && !res.unChauffeur">En attente</th>
           <th scope="row" *ngIf="!res.avecOuSansChauffeur"></th>
-
         </tr>
       </tbody>
     </table>
@@ -58,4 +60,10 @@
           <ul class="pagination">
             <pagination-controls (pageChange)="p=$event" previousLabel="Précédentes" nextLabel="Suivantes"></pagination-controls>
            </ul>
-    </div>
+     </div>
+      </ng-template>
+      </ngb-panel>
+
+
+
+    </ngb-accordion>
