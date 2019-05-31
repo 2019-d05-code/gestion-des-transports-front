@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Collegue } from 'gestion-des-transports-front/src/app/auth/auth.domains';
+import { Collegue } from '../auth/auth.domains';
 import { DataService } from '../service/data.service';
 import { AuthService } from '../auth/auth.service';
 import { Annonce } from '../models/Annonce';
