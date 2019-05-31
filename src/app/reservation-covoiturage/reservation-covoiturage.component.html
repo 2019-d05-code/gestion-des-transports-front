@@ -18,14 +18,14 @@
                 <label for="adressDepart" class="col-2 col-form-label" required>Adresse de départ *</label>
                 <div class="col-4">
                   <input mdbInput type="text" class="form-control" id="adressDepart" name="depart"
-                    [(ngModel)]="annonce.adressDepart" #adressDepartFC="ngModel" required>
+                    [(ngModel)]="annonceRecherchee.adressDepart" #adressDepartFC="ngModel" required>
                   <p class="col-12 text-danger" *ngIf="adressDepartFC.invalid && adressDepartFC.touched">Ce champ est
                     invalide</p>
                 </div>
                 <label for="adressArrivee" class="col-2 col-form-label">Adresse d'arrivée *</label>
                 <div class="col-4">
                   <input mdbInput type="adressArrivee" class="form-control" id="adressArrivee" name="arrivee"
-                    [(ngModel)]="annonce.adressArrivee" #adressArriveeFC="ngModel" required>
+                    [(ngModel)]="annonceRecherchee.adressArrivee" #adressArriveeFC="ngModel" required>
                   <p class="col-12 text-danger" *ngIf="adressArriveeFC.invalid && adressArriveeFC.touched">Ce champ
                     est
                     invalide</p>
@@ -36,7 +36,7 @@
                 <label for="dateDepart" class="col-2 col-form-label">Date de départ</label>
                 <div class="col-4">
                   <input mdbInput type="dateDepart" class="form-control" id="dateDepart" name="dateDepart"
-                    [(ngModel)]="annonce.dateTimeDepart" #dateDepartFC="ngModel" required>
+                    [(ngModel)]="annonceRecherchee.dateTimeDepart" #dateDepartFC="ngModel" required>
                   <p class="col-12 text-danger" *ngIf="adressArriveeFC.invalid && dateDepartFC.touched">Ce champ est
                     invalide</p>
                 </div>
