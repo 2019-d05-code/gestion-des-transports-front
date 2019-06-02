@@ -38,36 +38,39 @@
 <br /><br />
 
 <div class="container">
-
   <br />
   <h5 class="font-italic">Réservation en cours</h5>
   <table mdbTable striped="true">
     <thead class="mdb-color lighten-2 white-text">
       <tr>
-        <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+        <th  scope="col">Date/heure de début</th>
+        <th  scope="col">Date/heure de fin</th>
+        <th  scope="col">Responsable</th>
       </tr>
     </thead>
     <tbody>
-      <tr mdbTableCol *ngFor="let reservation of reservationEnCours">
-        <td>{{reservationEnCours.dateDeReservation}}</td>
-        <td>{{reservationEnCours.dateDeRetour}}</td>
+      <tr mdbTableCol *ngFor="let res of reservationEnCours">
+        <td>{{res.dateDeReservation | date:'dd/MM/yyyy, hh:mm '}}</td>
+        <td>{{res.dateDeRetour | date:'dd/MM/yyyy, hh:mm '}}</td>
         <td>UNKNOWN</td>
       </tr>
     </tbody>
   </table>
 
   <br />
-  <h5 class="font-italic">Réservations à venir</h5>
+  <h5 class="font-italic">Réservations à venir </h5>
   <table mdbTable striped="true">
     <thead class="mdb-color lighten-2 white-text">
       <tr>
-        <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+        <th  scope="col">Date/heure de début</th>
+        <th  scope="col">Date/heure de fin</th>
+        <th  scope="col">Responsable</th>
       </tr>
     </thead>
     <tbody>
       <tr mdbTableCol *ngFor="let reservation of listeReservationAVenir">
-        <td>{{reservation.dateDeReservation}}</td>
-        <td>{{reservation.dateDeRetour}}</td>
+        <td>{{reservation.dateDeReservation | date:'dd/MM/yyyy, hh:mm '}}</td>
+        <td>{{reservation.dateDeRetour | date:'dd/MM/yyyy, hh:mm '}}</td>
         <td>UNKNOWN</td>
       </tr>
     </tbody>
@@ -78,13 +81,15 @@
   <table mdbTable striped="true">
     <thead class="mdb-color lighten-2 white-text">
       <tr>
-        <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+        <th  scope="col">Date/heure de début</th>
+        <th  scope="col">Date/heure de fin</th>
+        <th  scope="col">Responsable</th>
       </tr>
     </thead>
     <tbody>
       <tr mdbTableCol *ngFor="let reservation of listeReservationHistorique">
-        <td>{{reservation.dateDeReservation}}</td>
-        <td>{{reservation.dateDeRetour}}</td>
+        <td>{{reservation.dateDeReservation | date:'dd/MM/yyyy, h:mm '}}</td>
+        <td>{{reservation.dateDeRetour | date:'dd/MM/yyyy, h:mm '}}</td>
         <td>UNKNOWN</td>
       </tr>
     </tbody>
@@ -93,3 +98,8 @@
   {{erreurMsgResa}}
 
 </div>
+
+<br /><br />
+<a routerLink="../../accueil" mdbBtn gradient="blue" rounded="true" mdbWavesEffect>
+  <i class="fas fa-chevron-circle-left waves-light" mdbWavesEffect></i>  Retourner à l'accueil</a>
+<br /><br /><br /><br /><br /><br />
