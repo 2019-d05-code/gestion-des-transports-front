@@ -1,0 +1,123 @@
+<div class="text-center">
+  <img src="./../../assets/logo.png" height="200" class="rounded" alt="...">
+</div>
+<h1 class="text-center display-1 font-weight-bold">GDT</h1>
+<h2 class="text-center font-italic">Gestion des transports</h2>
+<mdb-card class="animated zoomIn">
+  <mdb-card-header class="primary-color white-text">
+    <h4 class="text-center">Authentification</h4>
+  </mdb-card-header>
+  <mdb-card-body>
+    <mdb-card>
+      <mdb-card-body>
+        <mdb-card-title>
+          <h4>Utilisateurs</h4>
+        </mdb-card-title>
+        <mdb-card-text>
+          Deux utilisateurs sont créés par défaut :
+          <ul>
+            <li>admin@dev.fr / superpass / ROLE_ADMINISTRATEUR, ROLE_UTILISATEUR</li>
+            <li>user@dev.fr / superpass / ROLE_UTILISATEUR</li>
+          </ul>
+
+        </mdb-card-text>
+
+      </mdb-card-body>
+    </mdb-card>
+    <form>
+      <div class="md-form">
+        <i class="fa fa-envelope prefix grey-text"></i>
+        <input type="text" [validateSuccess]="false" data-error="Une adresse email est requise" id="defaultForm-email"
+          class="form-control" name="email" mdbInputDirective [(ngModel)]="collegue.email" required>
+        <label for="defaultForm-email">Email</label>
+      </div>
+
+      <div class="md-form">
+        <i class="fa fa-lock prefix grey-text"></i>
+        <input type="password" id="defaultForm-pass" [validateSuccess]="false" data-error="Un mot de passe est requis"
+          name="motDePasse" class="form-control" mdbInputDirective [(ngModel)]="collegue.motDePasse" required>
+        <label for="defaultForm-pass">Mot de passe</label>
+      </div>
+
+      <div class="text-center">
+        <input type="submit" mdbBtn color="primary" sclass="waves-light" mdbWavesEffect value="Se connecter"
+          (click)="connecter();basicModal.show()">
+      </div>
+      <div *ngIf="err" class="text-danger">
+        Vos informations d'authentification sont invalides.
+      </div>
+    </form>
+  </mdb-card-body>
+</mdb-card>
+
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Choisissez votre profil</h4>
+      </div>
+      <div class="modal-body">
+        <div class="card-deck">
+          <!-- Card -->
+          <mdb-card *ngIf="afficheProfil === 'chauffeur' || afficheProfil === 'admin'">
+              <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+              <!-- Card img -->
+              <mdb-card-img src="./../../assets/Utilisateur.PNG" class="d-flex justify-content-center" alt="Card image cap">
+              </mdb-card-img>
+              <a class="nav-link" routerLink="/collaborateur/accueil" href="#">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+              </div>
+            <!--Card content-->
+            <mdb-card-body>
+              <!--Title-->
+              <mdb-card-title>
+                <h4 class="text-center">Collaborateur</h4>
+              </mdb-card-title>
+            </mdb-card-body>
+          </mdb-card>
+
+          <!-- Card -->
+          <mdb-card *ngIf="afficheProfil === 'chauffeur' || afficheProfil === 'admin'">
+            <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+              <!-- Card img -->
+              <mdb-card-img  src="./../../assets/Chauffeur.PNG" alt="Card image cap">
+              </mdb-card-img>
+              <a class="nav-link" routerLink="/chauffeur/accueil" href="#">
+                <div class="mask"></div>
+              </a>
+            </div>
+            <!--Card content-->
+            <mdb-card-body>
+              <!--Title-->
+              <mdb-card-title>
+                <h4 class="text-center">Chauffeur</h4>
+              </mdb-card-title>
+            </mdb-card-body>
+          </mdb-card>
+
+          <!-- Card -->
+          <mdb-card *ngIf="afficheProfil === 'admin'">
+            <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+              <!-- Card img -->
+              <mdb-card-img class="img-fluid" src="./../../assets/Admin.PNG" alt="Card image cap">
+              </mdb-card-img>
+              <a class="nav-link" routerLink="/admin/accueil" href="#">
+                <div class="mask"></div>
+              </a>
+            </div>
+            <!--Card content-->
+            <mdb-card-body>
+              <!--Title-->
+              <mdb-card-title>
+                <h4 class="text-center">Administrateur</h4>
+              </mdb-card-title>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

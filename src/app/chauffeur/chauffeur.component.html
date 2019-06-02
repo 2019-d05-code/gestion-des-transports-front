@@ -53,7 +53,8 @@
 
 <div class="form-group row text-right">
   <div class="col-sm-10">
-    <button type="submit" (click)="[basicModal.show(),ajout=false]" class="btn btn-primary btn-md">Ajouter un
+    <button type="submit" (click)="[basicModal.show(),ajout=false]" mdbBtn gradient="blue" rounded="true"
+      mdbWavesEffect>Ajouter un
       chauffeur</button>
   </div>
 </div>
@@ -80,10 +81,10 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-            (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
-          <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="ajoutChauffeur()"
-            dbWavesEffect>Ajouter</button>
+          <button type="button" aria-label="Close" (click)="basicModal.hide()" mdbBtn gradient="purple" rounded="true"
+            mdbWavesEffect>Annuler</button>
+          <button type="button" (click)="ajoutChauffeur()" mdbBtn gradient="blue" rounded="true"
+            mdbWavesEffect>Ajouter</button>
           <div *ngIf="ajout === true">
             {{basicModal.hide()}}
           </div>
@@ -99,6 +100,7 @@
 
 <div *ngIf = "trier === false ; else blockTrier">
 <div *ngFor="let chauf of tabChauffeur">
+    <div class="card-deck">
   <mdb-card>
 
     <!--Card content-->
@@ -112,8 +114,7 @@
         <!--Card image-->
         <div class="row justify-content-center">
           <div class="col">
-            <mdb-card-img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(97).jpg"
-              alt="Card image cap">
+            <mdb-card-img src="{{chauf.photoUrl}}" alt="Card image cap">
             </mdb-card-img>
           </div>
           <div class="col">
@@ -127,12 +128,13 @@
       </div>
     </mdb-card-body>
   </mdb-card>
+    </div>
 </div>
 </div>
 <ng-template #blockTrier>
     <div *ngFor="let chauf of tabTrierChauffeur">
+        <div class="card-deck">
         <mdb-card>
-
           <!--Card content-->
           <mdb-card-body>
             <!--Title-->
@@ -159,5 +161,11 @@
             </div>
           </mdb-card-body>
         </mdb-card>
+        </div>
       </div>
  </ng-template>
+
+<br /><br />
+<a routerLink="../accueil" mdbBtn gradient="blue" rounded="true" mdbWavesEffect>
+  <i class="fas fa-chevron-circle-left waves-light" mdbWavesEffect></i> Retourner à l'accueil</a>
+<br /><br /><br /><br /><br /><br />

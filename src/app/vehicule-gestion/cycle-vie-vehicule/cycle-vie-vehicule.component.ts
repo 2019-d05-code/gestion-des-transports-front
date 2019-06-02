@@ -24,7 +24,11 @@ export class CycleVieVehiculeComponent implements OnInit {
   listeReservations: Reservation[] = [];
   listeReservationAVenir: Reservation[] = [];
   listeReservationHistorique: Reservation[] = [];
-  listeReservationEnCours: Reservation[] = [];
+  reservationEnCours: Reservation[]=[];
+  headElements: string[] = [
+    `Date/Heure de début`, `Date/Heure de fin`, `Responsable`
+  ];
+  maintenant:Date = new Date(Date.now());
 
 
   constructor(private _srv: DataService, private route: ActivatedRoute) {
@@ -44,6 +48,22 @@ export class CycleVieVehiculeComponent implements OnInit {
         this.changerBoolean(returnValue.statutVehicule);
       },
       err => this.erreurMsgEntree = err
+    );
+
+
+    this._srv.afficherReservationsSrv().subscribe( tab => tab.forEach(element => {
+    let date = new Date(element.dateDeReservation);
+    let dateretour=new Date(element.dateDeRetour);
+      if(date>this.maintenant){
+        this.listeReservationAVenir.push(element);
+      }else if(date==this.maintenant || dateretour>this.maintenant){
+        this.reservationEnCours.push(element);
+      }else if(dateretour<this.maintenant){
+        this.listeReservationHistorique.push(element);
+      }
+
+    }),
+      err => this.erreurMsgResa = err
     );
 
   }
@@ -96,28 +116,6 @@ export class CycleVieVehiculeComponent implements OnInit {
         this.changerBoolean(returnValue.statutVehicule);
         },
       err => this.erreurMsgStatut = err
-    );
-  }
-
-  afficherReservations() {
-    this._srv.afficherReservationsSrv().subscribe(
-      returnValue => {
-        this.listeReservations = returnValue;
-        this.listeReservations.forEach(
-          resa => {
-            let dateResa = new Date(resa.dateDeReservation);
-            let dateRetour = new Date(resa.dateDeRetour);
-
-            if(dateResa.getDate() >= Date.now()) {
-              this.listeReservationAVenir.push(resa);
-            }else if(dateRetour.getDate() >= Date.now()) {
-              this.listeReservationEnCours.push(resa);
-            }else {this.listeReservationHistorique.push(resa);
-            }
-          }
-        )
-      },
-      err => this.erreurMsgResa = err
     );
   }
 

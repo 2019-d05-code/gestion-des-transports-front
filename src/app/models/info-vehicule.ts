@@ -1,17 +1,17 @@
 import { StatutVehiculeEnum } from '../enum/statut-vehicule-enum.enum';
 import { CategorieVehiculeEnum } from '../enum/categorie-vehicule-enum.enum';
 
-export class Vehicule {
+export class InfoVehicule {
 
-  constructor (
+  constructor(
+    public id: number,
     public marque: string,
     public modele: string,
     public categorie: CategorieVehiculeEnum,
     public immatriculation: string,
-    public photoUrl: string,
+    public photoUrl,
     public nbPlaces: number,
-    public statutVehicule: StatutVehiculeEnum,
-    public id?: number
-  ) {}
+    public statutVehicule: StatutVehiculeEnum
+    ) {}
 
 }

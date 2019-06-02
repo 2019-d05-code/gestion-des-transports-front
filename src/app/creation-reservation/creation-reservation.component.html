@@ -1,67 +1,118 @@
-<!--ici la date de réservation-->
-    <div id="dateDeReservation">
-      <label for="dateDeReservation" style="margin-left:10px;">Date/heure De Réservation</label>
-      <input type="date" name="dateDeReservation" style="margin-left:10px;"[(ngModel)]="dateDeReservation" required>
-      <label for="heureDeReservation" style="margin-left:10px;" >Heure</label>
-      <select name="heureDeReservation" style="margin-left:10px;"  [(ngModel)]="heureDeReservation" required>
-        <option *ngFor="let numb of heures">{{numb}}</option>
-      </select>
-      <label for="minutesDeReservation" style="margin-left:10px;">Minutes</label>
-      <select style="margin-left:10px;"  name="minutesDeReservation" [(ngModel)]="minutesDeReservation" required>
-        <option *ngFor="let min of minutes">{{min}}</option>
-      </select>
-    </div>
-  <!--ici la date de retour-->
-    <div id="dateDeRetour">
-        <label for="dateDeRetour" style="margin-left:10px;">Date/Heure de Retour</label>
-        <input type="date" name="dateDeRetour" style="margin-left:10px;" [(ngModel)]="dateDeRetour" required>
-        <label for="heureDeRetour" style="margin-left:10px;">Heure</label>
-        <select name="heureDeRetour" style="margin-left:10px;" [(ngModel)]="heureDeRetour" required>
+<!--retour vers la liste des reservations-->
+<a routerLink="/collaborateur/reservations" mdbBtn gradient="purple" rounded="true" mdbWavesEffect><i
+    class="fas fa-chevron-circle-left"></i> Retour à la liste</a>
+
+<h1 id="titre">Créer une réservation</h1>
+
+<div class="lesDates">
+  <div class="custom-control custom-checkbox" id="chauffeur">
+    <input type="checkbox" class="custom-control-input" [(ngModel)]="avecOuSans" (change)="avecOuSans"
+      id="defaultUnchecked">
+    <label class="custom-control-label" for="defaultUnchecked">Avec Chauffeur </label>
+  </div>
+  <!--ici la date de réservation-->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <label for="dateDeReservation">Date/heure De Réservation *</label>
+      </div>
+      <div class="col-sm">
+        <input type="date" name="dateDeReservation" [(ngModel)]="dateDeReservation" min="{{aujourdhui}}" required>
+      </div>
+      <div class="col-sm">
+        <label for="heureDeReservation"><i class="fas fa-calendar-alt"></i></label>
+      </div>
+      <div class="col-sm">
+        <select name="heureDeReservation" [(ngModel)]="heureDeReservation" required>
           <option *ngFor="let numb of heures">{{numb}}</option>
         </select>
-        <label for="minutesDeretour" style="margin-left:10px;">Minutes</label>
-        <select style="margin-left:10px;" [(ngModel)]="minutesDeretour" required>
+      </div>
+      <div class="col-sm">
+        <label for="minutesDeReservation">h</label>
+      </div>
+      <div class="col-sm">
+        <select name="minutesDeReservation" [(ngModel)]="minutesDeReservation" required>
           <option *ngFor="let min of minutes">{{min}}</option>
         </select>
       </div>
-    <!--le carousel qui contiendra l'ensemble des vehicules contenu dans la base de données-->
-<mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'" [interval]="0" >
-            <mdb-carousel-item *ngFor="let uneVoiture of listeVehicules">
-              <div class="view w-100">
-                <img class="d-block w-100" src="{{uneVoiture.photoUrl}}" alt="First slide">
-                <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
-              </div>
-              <div class="carousel-caption">
-              <h3 class="h3-responsive">Light mask</h3>
-              <h3>{{uneVoiture.immatriculation}}</h3>
-               <p>{{uneVoiture.marque}}</p>
-               <p>{{uneVoiture.modele}}</p>
-              <p>{{uneVoiture.categorie}}</p>
-              <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="cur=uneVoiture;basicModal.show()" mdbWavesEffect>Réserver</button>
-              </div>
-       </mdb-carousel-item>
-       </mdb-carousel>
-
-       <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true" >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-                <span aria-hidden="true">×</span>
-              </button>
-              <h4 class="modal-title w-100" id="myModalLabel">Confirmation de réservation </h4>
-            </div>
-            <div class="modal-body">
-              <p>Date de réservation : {{dateDeReservation}}</p>
-              <p>Date de retour : {{dateDeRetour}}</p>
-              <p >Immatriculation : {{cur.immatriculation}}</p>
-              <p >Marque : {{cur.marque}}</p>
-              <p >Modèle : {{cur.modele}}</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
-              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="ajouterReservation()">Confirmer</button>
-            </div>
-          </div>
-        </div>
+    </div>
+  </div>
+  <!--ici la date de retour-->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <label for="dateDeRetour">Date/Heure de Retour *</label>
       </div>
+      <div class="col-sm">
+        <input type="date" name="dateDeRetour" [(ngModel)]="dateDeRetour" min="{{aujourdhui}}" required>
+      </div>
+      <div class="col-sm">
+        <label for="heureDeRetour"><i class="fas fa-calendar-alt"></i></label>
+      </div>
+      <div class="col-sm">
+        <select name="heureDeRetour" [(ngModel)]="heureDeRetour" required>
+          <option *ngFor="let numb of heures">{{numb}}</option>
+        </select>
+      </div>
+      <div class="col-sm">
+        <label for="minutesDeretour">h</label>
+      </div>
+      <div class="col-sm">
+        <select [(ngModel)]="minutesDeretour" required>
+          <option *ngFor="let min of minutes">{{min}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<!--le carousel qui contiendra l'ensemble des vehicules contenu dans la base de données-->
+<mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'" [interval]="0">
+  <mdb-carousel-item *ngFor="let uneVoiture of listeVehicules">
+    <div class="view w-100">
+      <img class="d-block w-100" src="{{uneVoiture.photoUrl}}" alt="First slide">
+      <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+    </div>
+    <div class="carousel-caption">
+      <h3>{{uneVoiture.immatriculation}}</h3>
+      <p>{{uneVoiture.marque}}</p>
+      <p>{{uneVoiture.modele}}</p>
+      <p>{{uneVoiture.categorie}}</p>
+      <p *ngIf="testStatut(uneVoiture)" class="border border-danger"><b class="red-text">INDISPONIBLE</b></p>
+      <button type="button" mdbBtn gradient="aqua" rounded="true" (click)="cur=uneVoiture;basicModal.show()"
+        [disabled]="uneVoiture.statutVehicule === 'Hors-service'||uneVoiture.statutVehicule ==='En Reparation'"
+        mdbWavesEffect>Réserver</button>
+    </div>
+  </mdb-carousel-item>
+</mdb-carousel>
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Confirmation de réservation </h4>
+      </div>
+      <div class="modal-body">
+        <p>Date de réservation : {{dateDeReservation | date:'dd/MM/yyyy'}}</p>
+        <p>Date de retour : {{dateDeRetour | date:'dd/MM/yyyy'}}</p>
+        <p>Immatriculation : {{cur.immatriculation}}</p>
+        <p>Marque : {{cur.marque}}</p>
+        <p>Modèle : {{cur.modele}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn gradient="purple" rounded="true" aria-label="Close" (click)="basicModal.hide()"
+          mdbWavesEffect>Annuler</button>
+        <button type="button" mdbBtn gradient="blue" rounded="true" mdbWavesEffect
+          (click)="ajouterReservation();basicModal.hide()">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br /><br />
+<a routerLink="../../accueil" mdbBtn gradient="blue" rounded="true" mdbWavesEffect>
+  <i class="fas fa-chevron-circle-left waves-light" mdbWavesEffect></i> Retourner à l'accueil</a>
+<br /><br /><br /><br /><br /><br />

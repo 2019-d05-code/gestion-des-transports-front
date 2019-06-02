@@ -5,5 +5,7 @@ export class Chauffeur{
     public prenom:string,
     public permis:string,
     public email:string,
-    public telephone:string){}
+    public telephone:string,
+    public photoUrl
+    ){}
 }

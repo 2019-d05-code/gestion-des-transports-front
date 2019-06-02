@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { InfoVehicule } from '../info-vehicule';
 import { HttpClient } from '@angular/common/http';
-
-import { ReservationVehicule } from '../reservation-vehicule';
-
 import { Subject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+
 import { Vehicule } from '../models/vehicule';
 import { Chauffeur } from '../models/Chauffeur';
 import { tap } from 'rxjs/operators';
 import { StatutVehicule } from '../models/statut-vehicule';
 import { Reservation } from '../models/reservation';
+import { InfoVehicule } from '../models/info-vehicule';
+import { Annonce } from '../models/Annonce';
+import { ReservationVehicule } from '../models/reservation-vehicule';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class DataService {
   url_back = environment.baseUrl;
   infosVehiculesUrl = 'admin/vehicules'
   sauvegarderReservaURL = 'collaborateur/reservations/creer'
-  reservationUrls = 'collaborateur/reservations/'
+  reservationUrls = 'collaborateur/reservations'
 
 
   constructor(private _http: HttpClient) { }
@@ -73,5 +73,13 @@ export class DataService {
   afficherLesReservation(): Observable<ReservationVehicule[]> {
     return this._http.get<ReservationVehicule[]>(`${this.url_back}${this.reservationUrls}`, { "withCredentials": true })
   }
+
+  public creerAnnonce(annonce: Annonce): Observable<Annonce> {
+    return this._http.post<Annonce>(`${environment.baseUrl}annonce/creer`, annonce, {
+      withCredentials: true
+    });
+  }
+
+
 
 }

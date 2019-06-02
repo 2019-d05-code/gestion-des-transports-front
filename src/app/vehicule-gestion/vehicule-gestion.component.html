@@ -1,38 +1,10 @@
 <div class="container">
 
-  <div class="row">
-    <div class="col-md-3" style="text-align:left">
-      <button type="button" mdbBtn gradient="blue" rounded="true" (click)="true" mdbWavesEffect>Filtrer</button>
-    </div>
-    <div class="col-md-5"></div>
-    <br />
-    <div class="col-md-4" style="text-align:right">
-      <button type="button" mdbBtn gradient="blue" rounded="true" (click)="vehiculeModal.show()" mdbWavesEffect>Ajouter
-        un vehicule</button>
-    </div>
+  <div class="text-center">
+    <button type="button" mdbBtn gradient="blue" rounded="true" (click)="vehiculeModal.show()" mdbWavesEffect>Ajouter
+      un vehicule</button>
   </div>
   <br />
-
-  <form>
-    <div class="form-group">
-      <span class="align-bottom">
-
-        <div class="col-md-6">
-          <input type="searchText" id="immat" class="form-control" placeholder="AA-111-AA" #filtre>
-          <label for="immat">Immatriculation</label>
-        </div>
-        <div class="col-md-6">
-          <input type="searchText" id="marque" class="form-control" placeholder="Marque" #filtre>
-          <label for="marque">Marque</label>
-        </div>
-
-      </span>
-    </div>
-  </form>
-</div>
-<br />
-
-<div class="container">
 
   <div class="card-deck">
     <mdb-card *ngFor="let item of listeV">
@@ -129,7 +101,9 @@
         </div>
         <div class="modal-footer">
           {{msgErreurSaveVehicule}}
-          <button [disabled]="!nouveauVehicule.valid" type="submit" (click)=enregistrerVehicule() mdbBtn gradient="blue" rounded="true" mdbWavesEffect>Enregistrer</button>
+          <button [disabled]="!nouveauVehicule.valid" type="submit"
+            (click)="enregistrerVehicule(); vehiculeModal.hide()" mdbBtn gradient="blue" rounded="true"
+            mdbWavesEffect>Enregistrer</button>
         </div>
       </div>
 
@@ -137,3 +111,8 @@
   </div>
 
 </div>
+
+<br /><br />
+<a routerLink="../accueil" mdbBtn gradient="blue" rounded="true" mdbWavesEffect>
+  <i class="fas fa-chevron-circle-left waves-light" mdbWavesEffect></i> Retourner à l'accueil</a>
+<br /><br /><br /><br /><br /><br />

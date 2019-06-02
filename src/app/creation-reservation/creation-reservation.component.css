@@ -1,17 +1,10 @@
-#dateDeReservation{
-display: flex;
-flex-direction: row;
-justify-content: center;
-flex-wrap: nowrap;
+.lesDates{
+  background-color: rgba(52, 116, 236, 0.856);
+  color:black;
 }
-
-#dateDeRetour{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: nowrap;
-}
-
-#reserver{
-  
+#chauffeur{
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ padding: 10px;
 }
