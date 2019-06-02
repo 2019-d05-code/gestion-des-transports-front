@@ -36,14 +36,17 @@ export class AnnonceCreationCovoiturageComponent implements OnInit {
         this.collegueConnecte = colConnecte;
         this._annonce.annonceurEmail = colConnecte.email;
       },
-      (err) => { },
-      () => console.log("est co " + this.collegueConnecte.email)
+      (err) => { }
     );
   }
 
-  public publierAnnonce() {
+  public metAJourDateTimeDepart() {
     this.strDateDepart = `${this.strDateDepart}T${this.strHeureDepart}:${this.strMinutesDepart}`;
     this._annonce.dateTimeDepart = new Date(this.strDateDepart);
+  }
+
+  public publierAnnonce() {
+    this.metAJourDateTimeDepart();
     this._dataService.creerAnnonce(this._annonce).subscribe(
       annonceCreee => {
         this.annonce = annonceCreee;
