@@ -1,5 +1,7 @@
 export class Annonce {
 
+  public annonceurNom: string;
+  public annonceurPrenom: string;
   public annonceurEmail: string;
   public adressDepart: string;
   public adressArrivee: string;

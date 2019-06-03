@@ -155,6 +155,7 @@
     <div class="col-12 d-flex">
       <input class="btn btn-primary ml-auto" type="button" value="Publier"
         (click)="metAJourDateTimeDepart();basicModal.show()"
+
         [disabled]="dateDepartFC.invalid || adressArriveeFC.invalid || immatriculationFC.invalid || marqueFC.invalid || modeleFC.invalid || placeFC.invalid || dateDepartFC.invalid || heureDepartFC.invalid || minuteDepartFC.invalid">
     </div>
   </div>
@@ -193,3 +194,8 @@
     </div>
   </div>
 </div>
+
+<br /><br />
+<a routerLink="../../accueil" mdbBtn gradient="blue" rounded="true" mdbWavesEffect>
+  <i class="fas fa-chevron-circle-left waves-light" mdbWavesEffect></i> Retourner à l'accueil</a>
+<br /><br /><br /><br /><br /><br />
