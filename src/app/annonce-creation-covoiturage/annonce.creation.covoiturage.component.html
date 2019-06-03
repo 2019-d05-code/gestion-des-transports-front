@@ -1,5 +1,15 @@
 <div class="container">
   <div class="row">
+    <div class="col-2">
+      <a [routerLink]="[ '/collaborateur/annonces']">retour à la liste</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h2>Vos annonces</h2>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-12">
       <mdb-card>
         <mdb-card-header>Itinéraire</mdb-card-header>
@@ -67,11 +77,12 @@
             <div class="form-group row">
               <label for="place" class="offset-1 col-2 col-form-label">Place *</label>
               <div class="col-1">
-                <input mdbInput type="number" class="form-control" id="place" name="place" min="1"
+                <input mdbInput type="number" class="form-control" id="place" name="place" min="1" max="20"
                   [(ngModel)]="annonce.place" #placeFC="ngModel" required>
               </div>
               <div class="row">
-                <p class="col-12 text-danger" *ngIf="placeFC.invalid && placeFC.touched">Vous devez indiquer au moins 1 place disponible</p>
+                <p class="col-12 text-danger" *ngIf="placeFC.invalid && placeFC.touched">Vous devez indiquer au moins 1
+                  place disponible</p>
               </div>
             </div>
           </form>
@@ -103,7 +114,7 @@
                 <option>05</option>
                 <option>06</option>
                 <option>07</option>
-                <option value="08" selected>08</option>
+                <option>08</option>
                 <option>09</option>
                 <option>10</option>
                 <option>11</option>
@@ -142,8 +153,38 @@
       </mdb-card>
     </div>
     <div class="col-12 d-flex">
-      <input class="ml-auto" mdbBtn gradient="blue" rounded="true" mdbWavesEffect type="button" value="Publier" (click)="publierAnnonce()"
+      <input mdbBtn class="ml-auto" gradient="blue" rounded="true" mdbWavesEffect type="button" value="Publier"
+        (click)="metAJourDateTimeDepart();basicModal.show()"
+
         [disabled]="dateDepartFC.invalid || adressArriveeFC.invalid || immatriculationFC.invalid || marqueFC.invalid || modeleFC.invalid || placeFC.invalid || dateDepartFC.invalid || heureDepartFC.invalid || minuteDepartFC.invalid">
+    </div>
+  </div>
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Confirmation de réservation </h4>
+        </div>
+        <div class="modal-body">
+          <p>Départ : {{annonce.adressDepart}}</p>
+          <p>Destination : {{annonce.adressArrivee}}</p>
+          <p>Immatriculation : {{annonce.immatriculationVehicule}}</p>
+          <p>Marque : {{annonce.marque}}</p>
+          <p>Modèle : {{annonce.modele}}</p>
+          <p>Nombre de places disponibles : {{annonce.place}}</p>
+          <p>Date/heure : {{annonce.dateTimeDepart | date:'dd/MM/yyyy, HH:mm'}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn gradient="purple" rounded="true" aria-label="Close"
+            (click)="basicModal.hide()" mdbWavesEffect>Annuler</button>
+          <button type="button" mdbBtn gradient="blue" rounded="true" mdbWavesEffect
+            (click)="publierAnnonce();basicModal.hide()">Confirmer</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
