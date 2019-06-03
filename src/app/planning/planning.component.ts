@@ -51,6 +51,7 @@ export class PlanningComponent implements OnInit {
   CalendarView = CalendarView;
   collegueConnecte:Observable<Collegue>;
   email:string;
+  nomChauffeur:string;
   statut : string = "";
   viewDate: Date = new Date();
   refresh: Subject<any> = new Subject();
@@ -60,14 +61,15 @@ export class PlanningComponent implements OnInit {
 
 
   ngOnInit() {
-    this._authSrv.verifierAuthentification().subscribe(col => this.idChauffeur = col.id);
+    this._authSrv.verifierAuthentification().subscribe(col => {this.idChauffeur = col.id; this.nomChauffeur = col.nom});
       this._serv.afficherLesReservationavecChauffeur().subscribe();
      this.events = this._serv.afficherLesReservationavecChauffeur()
     .pipe(map(
        listeRes => listeRes.filter(res => res.avecChauffeur == true).map( res => {
         let couleur = colors.yellow;
-        if (res.nomChauffeur == "") { couleur = colors.red; }
-        else { couleur = colors.blue; this.statut = "accepté"}
+        if (res.nomChauffeur == "") { couleur = colors.red; this.statut = "Accepter la demande"}
+        else if(res.nomChauffeur == this.nomChauffeur){ couleur = colors.blue;this.statut = "Accepté"}
+        else { couleur = colors.blue}
 
           return <CalendarEvent> {
             start: setHours(new Date(res.dateDebut),new Date(res.dateDebut).getHours()+1),
