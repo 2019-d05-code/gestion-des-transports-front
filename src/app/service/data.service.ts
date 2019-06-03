@@ -6,12 +6,12 @@ import { Vehicule } from '../models/vehicule';
 import { Chauffeur } from '../models/Chauffeur';
 import { InfoVehicule } from '../models/info-vehicule';
 import { ReservationVehicule } from '../models/reservation-vehicule';
-import { ReservationVehiculeChauffeur } from '../models/ReservationVehiculeChauffeur';
 import { ReservationChauffeur } from '../models/ReservationChauffeur';
 import { tap } from 'rxjs/operators';
 import { StatutVehicule } from '../models/statut-vehicule';
 import { Reservation } from '../models/reservation';
 import { Annonce } from '../models/Annonce';
+import { ReservationVehiculeChauffeur } from '../models/reservationVehiculeChauffeur';
 
 @Injectable({
   providedIn: 'root'

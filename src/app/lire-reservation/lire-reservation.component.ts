@@ -25,9 +25,11 @@ export class LireReservationComponent implements OnInit {
 
  this.srv.afficherLesReservation().subscribe(tab =>tab.forEach(element => {
         let madate = new Date(element.dateDeRetour);
-      if(madate>=this.maintenant){
+        let autreDate= new Date(element.dateDeReservation)
+      if(autreDate>=this.maintenant || madate>this.maintenant){
         this.listesReservationsEnCours.push(element);
-      }else{
+      }
+      else if(autreDate<this.maintenant){
         this.listesReservationsTerminee.push(element);
       }
     }));
