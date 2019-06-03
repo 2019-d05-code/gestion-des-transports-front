@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TechComponent } from './tech/tech.component';
-import { PlanningComponent } from './planning/planning.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,6 +33,7 @@ import { AccueilChauffeurComponent } from './accueil-chauffeur/accueil-chauffeur
 import { AccueilCollaborateurComponent } from './accueil-collaborateur/accueil-collaborateur.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { PlanningComponent } from './planning/planning.component';
 registerLocaleData(localeFr);
 
 
@@ -54,6 +54,7 @@ const routes: Routes = [
       { path: 'admin/accueil', component: AccueilAdministrateurComponent },
       { path: 'collaborateur/accueil', component: AccueilCollaborateurComponent },
       { path: 'chauffeur/accueil', component: AccueilChauffeurComponent },
+      { path: 'chauffeur/planning', component: PlanningComponent },
       { path: 'error', component: ErrorPageComponent }
     ]
   }

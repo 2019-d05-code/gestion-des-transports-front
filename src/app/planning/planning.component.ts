@@ -29,7 +29,6 @@ const colors: any = {
 
 @Component({
   selector: 'app-planning',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: `planning.component.html`,
   providers: [
     {
@@ -62,11 +61,13 @@ export class PlanningComponent implements OnInit {
 
   ngOnInit() {
     this._authSrv.verifierAuthentification().subscribe(col => this.idChauffeur = col.id);
-    //this._serv.afficherLesReservationavecChauffeur().pipe(map(res => res.map(res =>console.log(res))))
       this._serv.afficherLesReservationavecChauffeur().subscribe();
      this.events = this._serv.afficherLesReservationavecChauffeur()
     .pipe(map(
        listeRes => listeRes.filter(res => res.avecChauffeur == true).map( res => {
+         console.log(new Date(res.dateDebut))
+         console.log(new Date(res.dateDebut).getHours())
+         console.log(new Date(res.dateFin))
           return <CalendarEvent> {
             start: setHours(new Date(res.dateDebut),new Date(res.dateDebut).getHours()+1),
             end: setHours(new Date(res.dateFin),new Date(res.dateFin).getHours()+1),
