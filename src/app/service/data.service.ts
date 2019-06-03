@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-
 import { Vehicule } from '../models/vehicule';
 import { Chauffeur } from '../models/Chauffeur';
+import { InfoVehicule } from '../models/info-vehicule';
+import { ReservationVehicule } from '../models/reservation-vehicule';
+import { ReservationChauffeur } from '../models/ReservationChauffeur';
 import { tap } from 'rxjs/operators';
 import { StatutVehicule } from '../models/statut-vehicule';
 import { Reservation } from '../models/reservation';
-import { InfoVehicule } from '../models/info-vehicule';
 import { Annonce } from '../models/Annonce';
-import { ReservationVehicule } from '../models/reservation-vehicule';
+import { ReservationVehiculeChauffeur } from '../models/reservationVehiculeChauffeur';
 
 @Injectable({
   providedIn: 'root'
@@ -84,8 +85,15 @@ export class DataService {
     return this._http.get<Annonce[]>(`${environment.baseUrl}annonce/liste?email=${emailAnnonceur}`);
   }
 
+  ajoutChauffeurAReservation(res : ReservationChauffeur): Observable<ReservationChauffeur>{
+    return this._http.patch<ReservationChauffeur>(`${this.url_back}chauffeur/planning`,res, { "withCredentials": true })
+  }
+
   public listeToutesAnnoncesEnCours() {
     return this._http.get<Annonce[]>(`${environment.baseUrl}annonce/liste/all-current`);
   }
 
+  afficherLesReservationavecChauffeur(): Observable<ReservationVehiculeChauffeur[]>{
+    return this._http.get<ReservationVehiculeChauffeur[]>(`${this.url_back}chauffeur/reservationsAvecChauffeur`, { "withCredentials": true })
+  }
 }

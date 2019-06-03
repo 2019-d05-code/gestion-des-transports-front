@@ -12,10 +12,11 @@ export class ChauffeurComponent implements OnInit {
   ajout: boolean = false;
   message: string;
   ident: any;
+  trier :boolean = false;
   mat: any;
   nom: string;
   prenom: string;
-  chauffeur = new Chauffeur(undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+  chauffeur = new Chauffeur(undefined, undefined, undefined, undefined, undefined, undefined,undefined);
   tabChauffeur = new Array();
   tabTrierChauffeur = new Array();
 
@@ -24,59 +25,36 @@ export class ChauffeurComponent implements OnInit {
 
   ngOnInit() {
     this._serv.recupCollegueChauffeur().subscribe(chauffeur => this.tabChauffeur = chauffeur, err => this.message = `${err}`);
-    this.tri();
-  }
-
-  tri() {
-    this.tabTrierChauffeur = [];
-    for ( let chauf of this.tabChauffeur) {
-      console.log(this.mat)
-      console.log(this.tabTrierChauffeur);
-      if (this.mat != undefined && this.nom != undefined && this.prenom != undefined) {
-        if (chauf.matricule === this.mat && chauf.nom === this.nom && chauf.prenom === this.prenom) {
-          this.tabTrierChauffeur.push(chauf);
-        }
-      }
-      else if (this.mat != undefined && this.nom != undefined) {
-        if (chauf.matricule === this.mat && chauf.nom === this.nom) {
-          this.tabTrierChauffeur.push(chauf);
-        }
-      }
-      else if (this.mat != undefined && this.prenom != undefined) {
-        if (chauf.matricule === this.mat && chauf.prenom === this.prenom) {
-          this.tabTrierChauffeur.push(chauf);
-        }
-      }
-      else if (this.nom != undefined && this.prenom != undefined) {
-        if (chauf.nom === this.nom && chauf.prenom === this.prenom) {
-          this.tabTrierChauffeur.push(chauf);
-        }
-      }
-      else if (this.mat != undefined) {
-        if (chauf.matricule === this.mat) {
-          this.tabTrierChauffeur.push(chauf);
-
-        }
-      }
-      else if (this.nom != undefined) {
-        console.log(chauf);
-        if (chauf.nom === this.nom) {
-          this.tabTrierChauffeur.push(chauf);
-        }
-      }
-      else if (this.prenom != undefined) {
-        if (chauf.prenom === this.prenom) {
-          this.tabTrierChauffeur.push(chauf);
-        }
-      }
-      else if (this.mat === undefined && this.nom === undefined && this.prenom === undefined) {
-        this.tabTrierChauffeur = this.tabChauffeur;
-      }
-    }
   }
 
   triMat() {
-    this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.ident == this.mat);
+    if (this.mat != "Ouvrir le menu de selection"){
+      this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.id == this.mat);
+      this.trier=true;
+    }else{
+      this.trier = false;
+    }
+
+  }
+
+  triNom(){
+    if (this.nom != "Ouvrir le menu de selection"){
+      this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.nom == this.nom);
+      this.trier=true;
+    }else{
+      this.trier = false;
+    }
+
+  }
+
+  triPrenom(){
+    if (this.prenom != "Ouvrir le menu de selection"){
+      this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.prenom == this.prenom);
+      this.trier=true;
+    }
+    else{
+      this.trier = false;
+    }
   }
 
 
@@ -87,5 +65,7 @@ export class ChauffeurComponent implements OnInit {
       this.ajout = true;
     },
       err => this.message = ` Erreur lors de l'ajout du collegue : ${err.error}`);
+      this.ident = "";
+
   }
 }

@@ -1,11 +1,13 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TechComponent } from './tech/tech.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -22,6 +24,8 @@ import { CycleVieVehiculeComponent } from './vehicule-gestion/cycle-vie-vehicule
 import { LireReservationComponent } from './lire-reservation/lire-reservation.component';
 import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.component';
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 import { AnnonceListeCovoiturageComponent } from './annonce-liste-covoiturage/annonce-liste-covoiturage.component';
 import { AccueilAdministrateurComponent } from './accueil-administrateur/accueil-administrateur.component';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -30,10 +34,11 @@ import { AccueilChauffeurComponent } from './accueil-chauffeur/accueil-chauffeur
 import { AccueilCollaborateurComponent } from './accueil-collaborateur/accueil-collaborateur.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { PlanningComponent } from './planning/planning.component';
+registerLocaleData(localeFr);
+
 
 const routes: Routes = [
-
-
   { path: 'connexion', component: AuthComponent },
 
   { path: '', redirectTo: 'collaborateur/accueil', pathMatch: 'full' },
@@ -51,6 +56,7 @@ const routes: Routes = [
       { path: 'admin/accueil', component: AccueilAdministrateurComponent },
       { path: 'collaborateur/accueil', component: AccueilCollaborateurComponent },
       { path: 'chauffeur/accueil', component: AccueilChauffeurComponent },
+      { path: 'chauffeur/planning', component: PlanningComponent },
       { path: 'error', component: ErrorPageComponent }
     ]
   }
@@ -62,9 +68,9 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
+    PlanningComponent,
     ReservationComponent,
     LireReservationComponent,
-    ReservationComponent,
     AnnonceCreationCovoiturageComponent,
     CreationReservationComponent,
     VehiculeGestionComponent,
@@ -80,7 +86,6 @@ const routes: Routes = [
     AccueilCollaborateurComponent,
     ErrorPageComponent
 
-
   ],
   imports: [
     BrowserModule,
@@ -89,6 +94,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     NgxPaginationModule,
     Ng2SearchPipeModule,
     NgbModule

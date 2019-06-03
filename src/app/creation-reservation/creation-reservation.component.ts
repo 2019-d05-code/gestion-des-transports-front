@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
-import { InfoVehicule } from '../info-vehicule';
 import { ReservationVehicule } from '../reservation-vehicule';
 import { StatutVehiculeEnum } from '../enum/statut-vehicule-enum.enum';
 import { Vehicule } from '../models/vehicule';
 import { format } from 'date-fns';
+import { InfoVehicule } from '../models/info-vehicule';
 
 
 

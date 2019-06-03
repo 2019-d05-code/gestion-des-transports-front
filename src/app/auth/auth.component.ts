@@ -3,7 +3,6 @@ import {Collegue} from "./auth.domains";
 import {AuthService} from "./auth.service";
 import {Router} from "@angular/router";
 import { Observable } from 'rxjs';
-import { collectExternalReferences } from '@angular/compiler';
 
 /**
  * Formulaire d'authentification.

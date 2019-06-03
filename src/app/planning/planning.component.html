@@ -1,0 +1,19 @@
+<h1>Planning</h1>
+<div class="row text-center">
+  <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+    < </div> <div class="col-md-4">
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
+  </div>
+  <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+    >
+  </div>
+</div>
+<br />
+
+<mwl-calendar-day-view [viewDate]="viewDate" [events]="events | async" [refresh]="refresh" [locale]="locale" [dayStartHour]="1" (eventClicked)="eventClicked($event)">
+</mwl-calendar-day-view>
+
+<br />
+  <div class="text-right">
+    <a routerLink="../../connexion" mdbBtn gradient="blue" rounded="true" mdbWavesEffect>Changer de profile</a>
+  </div>

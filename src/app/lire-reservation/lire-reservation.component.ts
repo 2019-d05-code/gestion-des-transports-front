@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationVehicule } from '../models/reservation-vehicule';
 import { DataService } from '../service/data.service';
-import { Chauffeur } from '../models/Chauffeur';
 
 @Component({
   selector: 'app-lire-reservation',
