@@ -69,7 +69,7 @@ export class PlanningComponent implements OnInit {
         let couleur = colors.yellow;
         if (res.nomChauffeur == "") { couleur = colors.red; this.statut = "Accepter la demande"}
         else if(res.nomChauffeur == this.nomChauffeur){ couleur = colors.blue;this.statut = "Accepté"}
-        else { couleur = colors.blue}
+        else { couleur = colors.yellow}
 
           return <CalendarEvent> {
             start: setHours(new Date(res.dateDebut),new Date(res.dateDebut).getHours()+1),
