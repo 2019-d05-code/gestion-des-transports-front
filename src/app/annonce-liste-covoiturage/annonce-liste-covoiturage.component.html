@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 d-flex">
+      <h2 class="mr-auto">Vos annonces</h2>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-12 d-flex">
+      <button class="ml-auto btn btn-primary" [routerLink]="['/collaborateur/annonces/creer']"
+        routerLinkActive="router-link-active">Créer une nouvelle annonce</button>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-12 d-flex">
+      <h3 class="mr-auto">Annonces en cours</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table mdbTable>
+        <thead class="mdb-color lighten-2 white-text">
+          <tr>
+            <th scope="col">Date/Heure de départ</th>
+            <th scope="col">Lieu de départ</th>
+            <th scope="col">Lieu de destination</th>
+            <th scope="col">Nombre de voyageurs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr mdbTableCol *ngFor="let annonceEnCours of annoncesEnCours">
+            <th scope="row">{{annonceEnCours.dateTimeDepart | date:'yyyy/MM/dd, hh:mm'}}</th>
+            <th scope="row">{{annonceEnCours.adressDepart}}</th>
+            <th scope="row">{{annonceEnCours.adressArrivee}}</th>
+            <th scope="row">{{annonceEnCours.place}}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col-12 d-flex">
+      <h3 class="mr-auto">Historique</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table mdbTable striped="true">
+        <thead class="mdb-color lighten-2 white-text">
+          <tr>
+            <th scope="col">Date/Heure de départ</th>
+            <th scope="col">Lieu de départ</th>
+            <th scope="col">Lieu de destination</th>
+            <th scope="col">Nombre de voyageurs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr mdbTableCol *ngFor="let annoncePassee of annoncesPassees | paginate: { itemsPerPage: 3, currentPage: p }">
+            <th scope="row">{{annoncePassee.dateTimeDepart | date:'yyyy/MM/dd, hh:mm'}}</th>
+            <th scope="row">{{annoncePassee.adressDepart}}</th>
+            <th scope="row">{{annoncePassee.adressArrivee}}</th>
+            <th scope="row">{{annoncePassee.place}}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 d-flex">
+      <div id="pages" class="ml-auto">
+        <ul class="pagination">
+          <pagination-controls (pageChange)="p=$event" previousLabel="Précédentes" nextLabel="Suivantes">
+          </pagination-controls>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
