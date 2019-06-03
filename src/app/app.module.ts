@@ -27,7 +27,6 @@ import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.co
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { MenuComponent } from './menu/menu.component';
 import { AccueilAdministrateurComponent } from './accueil-administrateur/accueil-administrateur.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -41,12 +40,11 @@ registerLocaleData(localeFr);
 const routes: Routes = [
   { path: 'connexion', component: AuthComponent },
 
-  { path: '', redirectTo: '/tech', pathMatch: 'full' },
+  { path: '', redirectTo: 'collaborateur/accueil', pathMatch: 'full' },
   {
     path: '',
     canActivate: [StatutConnecteService],
     children: [
-      { path: 'tech', component: TechComponent }, // /tech accessible uniquement si connecté
       { path: 'collaborateur/reservations/creer', component: ReservationComponent },
       { path: 'collaborateur/reservations', component: LireReservationComponent },
       { path: 'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent },
@@ -70,7 +68,6 @@ const routes: Routes = [
     PlanningComponent,
     ReservationComponent,
     LireReservationComponent,
-    ReservationComponent,
     AnnonceCreationCovoiturageComponent,
     CreationReservationComponent,
     VehiculeGestionComponent,
@@ -79,7 +76,6 @@ const routes: Routes = [
     DateValidatorDirective,
     ChauffeurComponent,
     FilterPipe,
-    MenuComponent,
     CycleVieVehiculeComponent,
     AccueilAdministrateurComponent,
     AccueilChauffeurComponent,

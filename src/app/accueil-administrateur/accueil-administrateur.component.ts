@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class AccueilAdministrateurComponent implements OnInit {
 
   administrateur:Observable<Collegue>;
+
   constructor(private _authSrv:AuthService) { }
 
   ngOnInit() {
@@ -17,5 +18,6 @@ export class AccueilAdministrateurComponent implements OnInit {
     this.administrateur = this._authSrv.collegueConnecteObs;
 
   }
+
 
 }
