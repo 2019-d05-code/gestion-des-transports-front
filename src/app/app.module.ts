@@ -26,6 +26,7 @@ import { VehiculeGestionComponent } from './vehicule-gestion/vehicule-gestion.co
 import { PhotoUrlValidatorDirective } from './validator/photo-url-validator.directive';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { AnnonceListeCovoiturageComponent } from './annonce-liste-covoiturage/annonce-liste-covoiturage.component';
 import { AccueilAdministrateurComponent } from './accueil-administrateur/accueil-administrateur.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -47,6 +48,7 @@ const routes: Routes = [
     children: [
       { path: 'collaborateur/reservations/creer', component: ReservationComponent },
       { path: 'collaborateur/reservations', component: LireReservationComponent },
+      { path: 'collaborateur/annonces', component: AnnonceListeCovoiturageComponent },
       { path: 'collaborateur/annonces/creer', component: AnnonceCreationCovoiturageComponent },
       { path: 'admin/vehicules', component: VehiculeGestionComponent },
       { path: 'admin/chauffeur', component: ChauffeurComponent },
@@ -78,6 +80,7 @@ const routes: Routes = [
     ChauffeurComponent,
     FilterPipe,
     CycleVieVehiculeComponent,
+    AnnonceListeCovoiturageComponent,
     AccueilAdministrateurComponent,
     AccueilChauffeurComponent,
     AccueilCollaborateurComponent,
@@ -96,7 +99,6 @@ const routes: Routes = [
     NgxPaginationModule,
     Ng2SearchPipeModule,
     NgbModule
-
 
   ],
   providers: [{

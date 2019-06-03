@@ -66,7 +66,7 @@ export class PlanningComponent implements OnInit {
      this.events = this._serv.afficherLesReservationavecChauffeur()
     .pipe(map(
        listeRes => listeRes.filter(res => res.avecChauffeur == true).map( res => {
-        let couleur = colors.yellow;
+        let couleur = colors.yellow
         if (res.nomChauffeur == "") { couleur = colors.red; this.statut = "Accepter la demande"}
         else if(res.nomChauffeur == this.nomChauffeur){ couleur = colors.blue;this.statut = "Accepté"}
         else { couleur = colors.yellow}

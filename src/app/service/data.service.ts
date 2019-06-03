@@ -81,9 +81,16 @@ export class DataService {
     });
   }
 
+  public listeAnnonces(emailAnnonceur: string) {
+    return this._http.get<Annonce[]>(`${environment.baseUrl}annonce/liste?email=${emailAnnonceur}`);
+  }
 
   ajoutChauffeurAReservation(res : ReservationChauffeur): Observable<ReservationChauffeur>{
     return this._http.patch<ReservationChauffeur>(`${this.url_back}chauffeur/planning`,res, { "withCredentials": true })
+  }
+
+  public listeToutesAnnoncesEnCours() {
+    return this._http.get<Annonce[]>(`${environment.baseUrl}annonce/liste/all-current`);
   }
 
   afficherLesReservationavecChauffeur(): Observable<ReservationVehiculeChauffeur[]>{
