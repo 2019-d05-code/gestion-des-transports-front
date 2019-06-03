@@ -8,6 +8,8 @@ export class ReservationVehiculeChauffeur{
     public nomChauffeur?:string,
     public prenomChauffeur?:string,
     public idChauffeur?:number,
+    public telephone?:string,
     public avecChauffeur?:boolean,
+    public immatriculation?:string
    ){}
 }

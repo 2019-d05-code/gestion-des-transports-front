@@ -3,8 +3,6 @@ import { CalendarView, CalendarEvent, CalendarDateFormatter } from 'angular-cale
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { addHours, startOfDay, endOfDay, setHours } from 'date-fns';
 import { Subject, Observable } from 'rxjs';
-import { registerLocaleData } from '@angular/common';
-import localeEs from '@angular/common/locales/es';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import { DataService } from '../service/data.service';
 import { ReservationVehicule } from '../models/reservation-vehicule';
@@ -72,7 +70,7 @@ export class PlanningComponent implements OnInit {
           return <CalendarEvent> {
             start: setHours(new Date(res.dateDebut),new Date(res.dateDebut).getHours()+1),
             end: setHours(new Date(res.dateFin),new Date(res.dateFin).getHours()+1),
-            title: `${new Date(res.dateDebut).getHours()} - ${new Date(res.dateFin).getHours()} </br> ${res.nomChauffeur}-${res.prenomChauffeur} `,
+            title: `${new Date(res.dateDebut).getHours()} - ${new Date(res.dateFin).getHours()} </br> Responsable : ${res.nomChauffeur}-${res.prenomChauffeur} </br> Telephone : ${res.telephone} </br> Immatriculation : ${res.immatriculation}`,
             meta: res.id,
         }
     })));
