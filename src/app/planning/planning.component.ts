@@ -51,8 +51,8 @@ export class PlanningComponent implements OnInit {
   CalendarView = CalendarView;
   collegueConnecte:Observable<Collegue>;
   email:string;
+  statut : string = "";
   viewDate: Date = new Date();
-
   refresh: Subject<any> = new Subject();
   events: Observable<CalendarEvent[]>;
 
@@ -65,14 +65,16 @@ export class PlanningComponent implements OnInit {
      this.events = this._serv.afficherLesReservationavecChauffeur()
     .pipe(map(
        listeRes => listeRes.filter(res => res.avecChauffeur == true).map( res => {
-         console.log(new Date(res.dateDebut))
-         console.log(new Date(res.dateDebut).getHours())
-         console.log(new Date(res.dateFin))
+        let couleur = colors.yellow;
+        if (res.nomChauffeur == "") { couleur = colors.red; }
+        else { couleur = colors.blue; this.statut = "accepté"}
+
           return <CalendarEvent> {
             start: setHours(new Date(res.dateDebut),new Date(res.dateDebut).getHours()+1),
             end: setHours(new Date(res.dateFin),new Date(res.dateFin).getHours()+1),
-            title: `${new Date(res.dateDebut).getHours()} - ${new Date(res.dateFin).getHours()} </br> Responsable : ${res.nomChauffeur}-${res.prenomChauffeur} </br> Telephone : ${res.telephone} </br> Immatriculation : ${res.immatriculation}`,
+            title: `${new Date(res.dateDebut).getHours()} - ${new Date(res.dateFin).getHours()} </br> Responsable : ${res.nomChauffeur}-${res.prenomChauffeur} </br> Telephone : ${res.telephone} </br> Immatriculation : ${res.immatriculation} </br> <B>${this.statut}<B> `,
             meta: res.id,
+            color: couleur,
         }
     })));
 
@@ -82,6 +84,7 @@ export class PlanningComponent implements OnInit {
 
     this.reservation = new ReservationChauffeur(event.meta,this.idChauffeur);
     this._serv.ajoutChauffeurAReservation(this.reservation).subscribe();
+    this.ngOnInit();
   }
 
 }

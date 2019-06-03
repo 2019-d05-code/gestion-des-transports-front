@@ -12,6 +12,7 @@ export class ChauffeurComponent implements OnInit {
   ajout: boolean = false;
   message: string;
   ident: any;
+  trier :boolean = false;
   mat: any;
   nom: string;
   prenom: string;
@@ -27,15 +28,33 @@ export class ChauffeurComponent implements OnInit {
   }
 
   triMat() {
-    this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.id == this.mat);
+    if (this.mat != "Ouvrir le menu de selection"){
+      this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.id == this.mat);
+      this.trier=true;
+    }else{
+      this.trier = false;
+    }
+
   }
 
   triNom(){
-    this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.nom == this.nom);
+    if (this.nom != "Ouvrir le menu de selection"){
+      this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.nom == this.nom);
+      this.trier=true;
+    }else{
+      this.trier = false;
+    }
+
   }
 
   triPrenom(){
-    this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.prenom == this.prenom);
+    if (this.prenom != "Ouvrir le menu de selection"){
+      this.tabTrierChauffeur = this.tabChauffeur.filter(chauf => chauf.prenom == this.prenom);
+      this.trier=true;
+    }
+    else{
+      this.trier = false;
+    }
   }
 
 
@@ -46,5 +65,7 @@ export class ChauffeurComponent implements OnInit {
       this.ajout = true;
     },
       err => this.message = ` Erreur lors de l'ajout du collegue : ${err.error}`);
+      this.ident = "";
+
   }
 }

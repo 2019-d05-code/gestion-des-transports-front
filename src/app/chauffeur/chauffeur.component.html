@@ -15,9 +15,6 @@
         <option selected>Ouvrir le menu de selection</option>
         <option *ngFor="let chauf of tabChauffeur">{{chauf.id}}</option>
       </select>
-      <div *ngIf="Matricule.dirty">
-
-      </div>
     </div>
   </div>
   <!-- Grid row -->
@@ -81,13 +78,14 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" aria-label="Close" (click)="basicModal.hide()" mdbBtn gradient="purple" rounded="true"
+          <button type="button" aria-label="Close" (click)="basicModal.hide();message = ''" mdbBtn gradient="purple" rounded="true"
             mdbWavesEffect>Annuler</button>
           <button type="button" (click)="ajoutChauffeur()" mdbBtn gradient="blue" rounded="true"
             mdbWavesEffect>Ajouter</button>
           <div *ngIf="ajout === true">
             {{basicModal.hide()}}
           </div>
+
         </div>
 
       </div>
@@ -99,35 +97,68 @@
 
 
 
-<div *ngFor="let chauf of tabChauffeur">
-  <mdb-card>
+<div *ngIf = "trier == false ; else blockTrier">
+    <div class="card-deck">
+      <mdb-card *ngFor="let chauf of tabChauffeur">
+        <!--Card content-->
+        <mdb-card-body>
+          <!--Title-->
+          <mdb-card-title>
+            <h4>{{chauf.nom}} {{chauf.prenom}}</h4>
+          </mdb-card-title>
 
-    <!--Card content-->
-    <mdb-card-body>
-      <!--Title-->
-      <mdb-card-title>
-        <h4>{{chauf.nom}} {{chauf.prenom}}</h4>
-      </mdb-card-title>
-
-      <div class="card-body ml-auto">
-        <!--Card image-->
-        <div class="row justify-content-center">
-          <div class="col">
-            <mdb-card-img src="{{chauf.photoUrl}}" alt="Card image cap">
-            </mdb-card-img>
+          <div class="card-body ml-auto">
+            <!--Card image-->
+            <div class="row justify-content-center">
+              <div class="col">
+                <mdb-card-img src="{{chauf.photoUrl}}" alt="Card image cap">
+                </mdb-card-img>
+              </div>
+              <div class="col">
+                <p class="card-text">Nom : {{chauf.nom | uppercase}}</p>
+                <p class="card-text">Prénom : {{chauf.prenom}}</p>
+                <p class="card-text">Permis : {{chauf.permis}}</p>
+                <p class="card-text">Email : {{chauf.email}}</p>
+                <p class="card-text">Téléphone : {{chauf.telephone}}</p>
+              </div>
+            </div>
           </div>
-          <div class="col">
-            <p class="card-text">Nom : {{chauf.nom | uppercase}}</p>
-            <p class="card-text">Prénom : {{chauf.prenom}}</p>
-            <p class="card-text">Permis : {{chauf.permis}}</p>
-            <p class="card-text">Email : {{chauf.email}}</p>
-            <p class="card-text">Téléphone : {{chauf.telephone}}</p>
-          </div>
+        </mdb-card-body>
+      </mdb-card>
         </div>
-      </div>
-    </mdb-card-body>
-  </mdb-card>
-</div>
+    </div>
+    <ng-template #blockTrier>
+        <div class="card-deck">
+            <mdb-card *ngFor="let chauf of tabTrierChauffeur">
+              <!--Card content-->
+              <mdb-card-body>
+                <!--Title-->
+                <mdb-card-title>
+                  <h4>{{chauf.nom}} {{chauf.prenom}}</h4>
+                </mdb-card-title>
+
+                <div class="card-body ml-auto">
+                  <!--Card image-->
+                  <div class="row justify-content-center">
+                    <div class="col">
+                      <mdb-card-img src="{{chauf.photoUrl}}"
+                        alt="Card image cap">
+                      </mdb-card-img>
+                    </div>
+                    <div class="col">
+                      <p class="card-text">Nom : {{chauf.nom | uppercase}}</p>
+                      <p class="card-text">Prénom : {{chauf.prenom}}</p>
+                      <p class="card-text">Permis : {{chauf.permis}}</p>
+                      <p class="card-text">Email : {{chauf.email}}</p>
+                      <p class="card-text">Téléphone : {{chauf.telephone}}</p>
+                    </div>
+                  </div>
+                </div>
+              </mdb-card-body>
+            </mdb-card>
+            </div>
+    </ng-template>
+
 
 <br /><br />
 <a routerLink="../accueil" mdbBtn gradient="blue" rounded="true" mdbWavesEffect>
