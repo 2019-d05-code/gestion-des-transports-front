@@ -41,18 +41,26 @@ export class AnnonceCreationCovoiturageComponent implements OnInit {
   }
 
   public metAJourDateTimeDepart() {
-    this.strDateDepart = `${this.strDateDepart}T${this.strHeureDepart}:${this.strMinutesDepart}`;
-    this._annonce.dateTimeDepart = new Date(this.strDateDepart);
+    {
+      if (!this.strDateDepart.includes("T")) {
+        this.strDateDepart = `${this.strDateDepart}T${this.strHeureDepart}:${this.strMinutesDepart}`;
+      }
+      else {
+        this.strDateDepart = this.strDateDepart.split("T")[0];
+        this.strDateDepart = `${this.strDateDepart}T${this.strHeureDepart}:${this.strMinutesDepart}`;
+      }
+      this._annonce.dateTimeDepart = new Date(this.strDateDepart);
+    }
   }
 
   public publierAnnonce() {
-    this.metAJourDateTimeDepart();
     this._dataService.creerAnnonce(this._annonce).subscribe(
       annonceCreee => {
         this.annonce = annonceCreee;
         this.msgSucces = 'Votre annonce de covoiturage a bien été enregistrée!';
       },
-      (err: Error) => this.msgErreur = `Une erreur ${err.name} est arrivée pendant la création de l'annonce: ${err.message}.`
+      (err: Error) => this.msgErreur = `Une erreur ${err.name} est arrivée pendant la création de l'annonce: ${err.message}.`,
+      () => this.strDateDepart = ""
     );
   }
 
